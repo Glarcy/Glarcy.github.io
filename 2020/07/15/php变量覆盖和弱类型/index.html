@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="变量覆盖extract：从数组中将变量导入到当前的符号表，检查每个键名看是否可以作为一个合法的变量名，同时也检查和符号表中已有的变量名的冲突">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php变量覆盖和弱类型">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/php变量覆盖和弱类型/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="变量覆盖extract：从数组中将变量导入到当前的符号表，检查每个键名看是否可以作为一个合法的变量名，同时也检查和符号表中已有的变量名的冲突">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/1.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/2.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/3.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/4.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/5.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/7.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/6.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/8.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/9.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/10.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/11.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/12.png">
+<meta property="og:image" content="http://yoursite.com/img/php_sec/13.png">
+<meta property="og:updated_time" content="2022-04-12T08:36:58.092Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php变量覆盖和弱类型">
+<meta name="twitter:description" content="变量覆盖extract：从数组中将变量导入到当前的符号表，检查每个键名看是否可以作为一个合法的变量名，同时也检查和符号表中已有的变量名的冲突">
+<meta name="twitter:image" content="http://yoursite.com/img/php_sec/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/15/php变量覆盖和弱类型/">
+
+
+
+
+
+  <title>php变量覆盖和弱类型 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/php变量覆盖和弱类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php变量覆盖和弱类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-15T15:23:44+08:00">
+                2020-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h4><p><strong>extract</strong>：从数组中将变量导入到当前的符号表，检查每个键名看是否可以作为一个合法的变量名，同时也检查和符号表中已有的变量名的冲突</p>
+<a id="more"></a>
+
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extract ( array &amp;$array [, int $flags = EXTR_OVERWRITE [, string $prefix = NULL ]] )</span><br></pre></td></tr></table></figure>
+
+<p>在没有指定flags情况下，如果有冲突，覆盖已有的变量</p>
+<p><img src="../../../../img/php_sec/1.png" alt></p>
+<p><img src="../../../../img/php_sec/2.png" alt></p>
+<p><strong>parse_str</strong>：将字符串解析成多个变量，如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量。 </p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parse_str ( string $encoded_string [, array &amp;$result ] )</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/php_sec/3.png" alt></p>
+<p><img src="../../../../img/php_sec/4.png" alt></p>
+<p><strong>可变变量导致的变量覆盖问题</strong></p>
+<p>可变变量就是由两个<code>$$</code>符号的变量</p>
+<p><img src="../../../../img/php_sec/5.png" alt></p>
+<p><strong>$GLOBALS</strong></p>
+<p>引用全局作用域中可用的全部变量</p>
+<h4 id="php弱类型"><a href="#php弱类型" class="headerlink" title="php弱类型"></a>php弱类型</h4><h5 id="相等比较"><a href="#相等比较" class="headerlink" title="相等比较"></a>相等比较</h5><p>php中有两种比较符号：<code>==</code> 与 <code>===</code></p>
+<p><code>==</code> 在进行比较时，<strong>会先把两个变量的类型变成相同再比较</strong></p>
+<p><img src="../../../../img/php_sec/7.png" alt></p>
+<p><code>===</code> 在进行比较时，<strong>会先判断两个变量的类型是否相同，再比较</strong></p>
+<p><img src="../../../../img/php_sec/6.png" alt></p>
+<p>为什么会出现‘admin’ == 0 ==&gt; true 这种结果呢？</p>
+<p>因为字符串在和数字进行比较的时候，字符串会被转换成数值再进行比较</p>
+<p>而在PHP手册中写道，当一个字符串当作一个数值来取值时，有以下结果：</p>
+<p>（1）如果字符串没有包含<code>.</code>、<code>e</code>、<code>E</code>并且其数值在整型的范围之内，该字符串被当作int取值，其他情况下都被作为float来取值</p>
+<p>（2）该<strong>字符串的开始部分决定了它的值</strong>，如果该字符串以合法数值开始，则使用该数值，否则值为0</p>
+<p>为什么会出现’0e123456’ == ‘0e987654’ ==&gt; true 这种结果呢？</p>
+<p>0e开头加数字组成的字符串在比较时，会将0e这类字符串识别为<strong>科学技术法</strong>的数字，<strong>0的无论多少次方都是零</strong>，所以相等</p>
+<h5 id="md5绕过"><a href="#md5绕过" class="headerlink" title="md5绕过"></a>md5绕过</h5><p>关于md5绕过的题目基本就三种：</p>
+<p>（1）== 比较用0e绕过</p>
+<p>一些常见的md5开头是0e的字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">常用</span><br><span class="line">QNKCDZO  ==&gt;  0e830400451993494058024219903391</span><br><span class="line">s878926199a  ==&gt;  0e545993274517709034328855841020</span><br><span class="line">s155964671a  ==&gt;  0e342768416822451524974117254469</span><br><span class="line">s214587387a  ==&gt;  0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line">纯数字类</span><br><span class="line">240610708  ==&gt;  0e462097431906509019562988736854</span><br><span class="line">314282422  ==&gt;  0e990995504821699494520356953734</span><br><span class="line">571579406	  ==&gt;  0e972379832854295224118025748221</span><br><span class="line">903251147  ==&gt;  0e174510503823932942361353209384</span><br><span class="line"></span><br><span class="line">纯字母类</span><br><span class="line">QLTHNDT  ==&gt;  0e405967825401955372549139051580</span><br><span class="line">QNKCDZO  ==&gt;  0e830400451993494058024219903391</span><br><span class="line">EEIZDOI  ==&gt;  0e782601363539291779881938479162</span><br><span class="line">TUFEPMC  ==&gt;  0e839407194569345277863905212547</span><br><span class="line"></span><br><span class="line">python脚本生成：</span><br><span class="line">https://blog.csdn.net/kalbertlee/article/details/70213392</span><br></pre></td></tr></table></figure>
+
+<p>（2）!== 利用数组绕过</p>
+<p>md5() 中需要的是一个 string 类型的参数。但是当你传递一个 array 时，md5() 不会报错，只是会无法正确地求出 array 的 md5 值，这样就会导致任意 2 个 array 的 md5 值都会相等</p>
+<p><img src="../../../../img/php_sec/8.png" alt></p>
+<p>（3）找出md5值真正相等的三个不同字符串，可以用文件生成，github已有工具</p>
+<h5 id="strcmp绕过"><a href="#strcmp绕过" class="headerlink" title="strcmp绕过"></a>strcmp绕过</h5><p><strong>strcmp()</strong>：是比较两个<strong>字符串</strong>是否相等的函数</p>
+<p>它的判断原理是先将两个字符串转换成ascii然后进行减法运算，如果str1 &lt; str2，则返回 &lt;0；如果 str1 &gt; str2，返回 &gt;0；如果两者相等则返回 0</p>
+<p>如果传入的是个数组会怎么样呢？</p>
+<p>因为函数接受到了不符合的类型，strcmp无法比较，因此会返回null，但null与0进行松散比较结果是true的</p>
+<p><img src="../../../../img/php_sec/9.png" alt></p>
+<h5 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h5><p>如果 switch 是数字类型的 case 的判断时，switch 会将参数转换为 int 类型。原理和之前的一样</p>
+<p><img src="../../../../img/php_sec/10.png" alt></p>
+<h5 id="json"><a href="#json" class="headerlink" title="json"></a>json</h5><p>要求输入一个json类型的字符串，json_decode函数解密成一个数组，判断数组中key的值是否等于 <code>$flag</code>的值，但是<code>$flag</code>的值我们不知道，但是可以利用0==”admin”这种形式绕过</p>
+<p>利用的其实还是字符串和数字比较的转换问题</p>
+<p><img src="../../../../img/php_sec/11.png" alt></p>
+<h5 id="in-array-和-array-search"><a href="#in-array-和-array-search" class="headerlink" title="in_array() 和 array_search()"></a>in_array() 和 array_search()</h5><p><strong>in_array</strong>：检查数组中是否存在某个值</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )</span><br></pre></td></tr></table></figure>
+
+<p>在PHP手册的解释中，如果 strict 参数没有提供，那么 in_array 就会使用松散比较来判断 <code>$needle</code> 是否在 <code>$haystack</code> 中</p>
+<p><img src="../../../../img/php_sec/12.png" alt></p>
+<p><strong>array_search</strong>：在数组中搜索给定的值，如果成功则返回首个相应的键名</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array_search ( mixed $needle , array $haystack [, bool $strict = false ] )</span><br></pre></td></tr></table></figure>
+
+<p>第三个参数默认为 false ，如果设置为 true 则会进行严格过滤</p>
+<p><img src="../../../../img/php_sec/13.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/24/春秋杯新春战役网络安全公益赛/" rel="next" title="春秋杯新春战役网络安全公益赛">
+                <i class="fa fa-chevron-left"></i> 春秋杯新春战役网络安全公益赛
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/16/文件上传漏洞总结/" rel="prev" title="文件上传漏洞总结">
+                文件上传漏洞总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量覆盖"><span class="nav-number">1.</span> <span class="nav-text">变量覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php弱类型"><span class="nav-number">2.</span> <span class="nav-text">php弱类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#相等比较"><span class="nav-number">2.1.</span> <span class="nav-text">相等比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#md5绕过"><span class="nav-number">2.2.</span> <span class="nav-text">md5绕过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#strcmp绕过"><span class="nav-number">2.3.</span> <span class="nav-text">strcmp绕过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#switch"><span class="nav-number">2.4.</span> <span class="nav-text">switch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#json"><span class="nav-number">2.5.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#in-array-和-array-search"><span class="nav-number">2.6.</span> <span class="nav-text">in_array() 和 array_search()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

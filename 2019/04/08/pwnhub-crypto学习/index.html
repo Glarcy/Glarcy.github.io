@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,crypto,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Twings师傅给本菜鸡推荐了Pwnhub的两道Crypto，于是本菜鸡去研究了一下 题目一题目很短，如下： 12345678910111213141516171819#!/usr/bin/env python3import zlibfrom Crypto.Cipher import AESimport sysimport osfrom hashlib import md5flag = open(">
+<meta name="keywords" content="ctf,crypto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwnhub crypto学习">
+<meta property="og:url" content="http://yoursite.com/2019/04/08/pwnhub-crypto学习/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="Twings师傅给本菜鸡推荐了Pwnhub的两道Crypto，于是本菜鸡去研究了一下 题目一题目很短，如下： 12345678910111213141516171819#!/usr/bin/env python3import zlibfrom Crypto.Cipher import AESimport sysimport osfrom hashlib import md5flag = open(">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/pwnhub/1.png">
+<meta property="og:image" content="http://yoursite.com/img/pwnhub/1.png">
+<meta property="og:image" content="http://yoursite.com/img/pwnhub/3.png">
+<meta property="og:image" content="http://yoursite.com/img/pwnhub/4.png">
+<meta property="og:updated_time" content="2022-04-10T09:54:22.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pwnhub crypto学习">
+<meta name="twitter:description" content="Twings师傅给本菜鸡推荐了Pwnhub的两道Crypto，于是本菜鸡去研究了一下 题目一题目很短，如下： 12345678910111213141516171819#!/usr/bin/env python3import zlibfrom Crypto.Cipher import AESimport sysimport osfrom hashlib import md5flag = open(">
+<meta name="twitter:image" content="http://yoursite.com/img/pwnhub/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/08/pwnhub-crypto学习/">
+
+
+
+
+
+  <title>pwnhub crypto学习 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/pwnhub-crypto学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pwnhub crypto学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T13:30:47+08:00">
+                2019-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Twings师傅给本菜鸡推荐了Pwnhub的两道Crypto，于是本菜鸡去研究了一下</p>
+<h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>题目很短，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"></span><br><span class="line">flag = open(<span class="string">"flag.txt"</span>).read()</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = input()</span><br><span class="line">    data = <span class="string">"message: %s, flag: %s"</span> % (data, flag)</span><br><span class="line">    compressed = zlib.compress(data.encode())</span><br><span class="line">    <span class="keyword">if</span> len(compressed) % <span class="number">16</span>:</span><br><span class="line">        compressed += <span class="string">b"\x00"</span> * (<span class="number">16</span> - len(compressed) % <span class="number">16</span>)</span><br><span class="line">    encrypted = AES.new(</span><br><span class="line">        md5(flag.encode()).digest(), AES.MODE_CBC, os.urandom(<span class="number">16</span>)</span><br><span class="line">    ).encrypt(compressed)</span><br><span class="line">    print(encrypted.hex())</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>解读一下源码就是，接收用户输入的值，将输入值与flag放在一起使用zlib进行压缩，对压缩结果进行padding，再进行AES加密然后返回加密结果。</p>
+<p>一开始以为是单纯的AES，想着对其进行攻击，但是只可控明文，不太靠谱，于是考虑zlib压缩算法</p>
+<p>zlib压缩算法详情：<a href="https://blog.csdn.net/wtyqm/article/details/7294242" target="_blank" rel="noopener">https://blog.csdn.net/wtyqm/article/details/7294242</a></p>
+<p>文章重点是：</p>
+<p>zlib大概是参考了Rabin–Karp字符串查找算法，即使用hash方法来确定一个字符串是否在前面出现过。zlib压缩过程中会维护一个比较大的hash值数组，这个数组存储了数据流中每3个字符组成的字符串的hash值，例如4、5、6号字符计算一个hash值，5、6、7号字符也计算一个hash值。计算出的hash值作为下标，用来在hash值数组里存储当前三字字符串的下标。当数据流中出现一个新字符时，和之前的两个字符组成一个字符串，计算hash值，看在hash数组里该值的位置是否已经有值，有的话就取出这个值(上一次得到这个hash值的三个字符的下标)，检查是否是有效匹配。可以将查找过程理解为一个查字典的过程，只不过这个字典的条目也是处理过程中逐渐生成、逐渐抛弃的。</p>
+<p>测试一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line">flag = <span class="string">'flag&#123;ajfh9409248&#125;'</span></span><br><span class="line">data1 = <span class="string">'flag'</span></span><br><span class="line">data1 = <span class="string">"message: %s, flag: %s"</span> % (data1, flag)</span><br><span class="line">data2 = <span class="string">'jklj'</span></span><br><span class="line">data2 = <span class="string">"message: %s, flag: %s"</span> % (data2, flag)</span><br><span class="line"><span class="keyword">print</span> len(zlib.compress(data1.encode()))</span><br><span class="line"><span class="keyword">print</span> len(zlib.compress(data2.encode()))</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/pwnhub/1.png" alt></p>
+<p>也就是说当输入的值中存在与flag相同的字符时，压缩结果将会变短，这就存在一种叫做侧信道攻击的方法：</p>
+<p><a href="https://www.sjoerdlangkemper.nl/2016/08/23/compression-side-channel-attacks/" target="_blank" rel="noopener">https://www.sjoerdlangkemper.nl/2016/08/23/compression-side-channel-attacks/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line">flag = <span class="string">'flag&#123;ajfh9409248&#125;'</span></span><br><span class="line">data1 = <span class="string">'flag'</span></span><br><span class="line">data1 = <span class="string">"message: %s, flag: %s"</span> % (data1, flag)</span><br><span class="line">data2 = <span class="string">'flag&#123;ajfh'</span></span><br><span class="line">data2 = <span class="string">"message: %s, flag: %s"</span> % (data2, flag)</span><br><span class="line">data3 = <span class="string">'flag&#123;ajfh94092'</span></span><br><span class="line">data3 = <span class="string">"message: %s, flag: %s"</span> % (data3, flag)</span><br><span class="line"><span class="keyword">print</span> len(zlib.compress(data1.encode()))</span><br><span class="line"><span class="keyword">print</span> len(zlib.compress(data2.encode()))</span><br><span class="line"><span class="keyword">print</span> len(zlib.compress(data3.encode()))</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/pwnhub/1.png" alt></p>
+<p>但是同时我们发现，当我们知道前面的字符的时候，当后面的字符一旦匹配，长度始终为最小值，即38。这样的话，如果flag的开头为flag{，那我们就可以一个一个匹配，寻找长度为最短值的字符</p>
+<p>测试题目</p>
+<p><img src="../../../../img/pwnhub/3.png" alt></p>
+<p>发现如果是与flag一致的话，则长度为129，否则为161，脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters+string.digits+string.punctuation</span><br><span class="line">s = remote(<span class="string">"40.73.22.31"</span>, <span class="string">"2333"</span>)</span><br><span class="line">flag = <span class="string">'flag&#123;'</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        tmp = flag+i</span><br><span class="line">        <span class="keyword">print</span> tmp</span><br><span class="line">        s.sendline(tmp)</span><br><span class="line">        res = s.recvline()</span><br><span class="line">        <span class="keyword">if</span> len(res)==<span class="number">129</span>:</span><br><span class="line">            flag +=i</span><br><span class="line">            <span class="keyword">print</span> flag</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>但是跑完只得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;de12473b-</span><br></pre></td></tr></table></figure>
+
+<p>由于有aes，输入得太长，压缩变短后再加密也会变长，后面的字母跑出来长度都是161，所以得三个三个一起爆，同时发现flag和de12返回的结果不一样，尽管两个字符串都属于flag，但是在data中flag出现的次数多了一次，因此这里需要构造一个padding</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~!@#$%^&amp;*()_+&#123;&#125;SKYISC(4&amp;^@)#%^</span><br></pre></td></tr></table></figure>
+
+<p>改进脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters+string.digits+string.punctuation</span><br><span class="line">s = remote(&quot;40.73.22.31&quot;, &quot;2333&quot;)</span><br><span class="line">flag = &apos;flag&#123;de12473b-&apos;</span><br><span class="line">padding = &apos;~!@#$%^&amp;*()_+&#123;&#125;SKYISC(4&amp;^@)#%^&apos;</span><br><span class="line">while True:</span><br><span class="line">    str = flag[-2:]</span><br><span class="line">    for i in dic:</span><br><span class="line">        tmp = str+i</span><br><span class="line">        s.sendline(padding+tmp)</span><br><span class="line">        res = s.recvline()</span><br><span class="line">        if len(res)&lt;224:</span><br><span class="line">            flag +=i</span><br><span class="line">            print flag</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>这个题目也很短，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"></span><br><span class="line">p = <span class="number">449703347709287328982446812318870158230369688625894307953604074502413258045265502496365998383562119915565080518077360839705004058211784369656486678307007348691991136610142919372779782779111507129101110674559235388392082113417306002050124215904803026894400155194275424834577942500150410440057660679460918645357376095613079720172148302097893734034788458122333816759162605888879531594217661921547293164281934920669935417080156833072528358511807757748554348615957977663784762124746554638152693469580761002437793837094101338408017407251986116589240523625340964025531357446706263871843489143068620501020284421781243879675292060268876353250854369189182926055204229002568224846436918153245720514450234433170717311083868591477186061896282790880850797471658321324127334704438430354844770131980049668516350774939625369909869906362174015628078258039638111064842324979997867746404806457329528690722757322373158670827203350590809390932986616805533168714686834174965211242863201076482127152571774960580915318022303418111346406295217571564155573765371519749325922145875128395909112254242027512400564855444101325427710643212690768272048881411988830011985059218048684311349415764441760364762942692722834850287985399559042457470942580456516395188637916303814055777357738894264037988945951468416861647204658893837753361851667573185920779272635885127149348845064478121843462789367112698673780005436144393573832498203659056909233757206537514290993810628872250841862059672570704733990716282248839</span></span><br><span class="line">g = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> sys.argv[<span class="number">1</span>] == <span class="string">'s'</span>: <span class="comment"># server</span></span><br><span class="line">    s.bind((<span class="string">'127.0.0.1'</span>, <span class="number">23333</span>))</span><br><span class="line">    s.listen()</span><br><span class="line">    s, _ = s.accept()</span><br><span class="line"><span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'c'</span>: <span class="comment"># client</span></span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    s.connect((<span class="string">'127.0.0.1'</span>, <span class="number">23333</span>))</span><br><span class="line"></span><br><span class="line">x = secrets.randbelow(p)</span><br><span class="line">s.send(str(pow(g, x, p)).encode())</span><br><span class="line">r = int(s.recv(<span class="number">2048</span>))</span><br><span class="line">key = pow(r, x, p)</span><br><span class="line">aes = AES.new(sha256(str(key).encode()).digest())</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> sys.argv[<span class="number">1</span>] == <span class="string">'s'</span>:</span><br><span class="line">    flag = open(<span class="string">'flag.txt'</span>).read()</span><br><span class="line">    flag += <span class="string">' '</span> * (<span class="number">32</span> - len(flag) % <span class="number">32</span>)</span><br><span class="line">    s.send(aes.encrypt(flag))</span><br><span class="line"><span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'c'</span>:</span><br><span class="line">    print(aes.decrypt(s.recv(<span class="number">2048</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>题目是一个Diffle-Hellman密钥交换算法，同时题目用共享密钥key作为AES的密钥加密了flag，同时，在流量包中发现了如下值：</p>
+<p>str(pow(g, x, p)).encode()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">312827656920665019052154527973062873164155435750834364099549354276600246039780808375717193869518770295806958147314654770520680676883270457649459743668787722703852223185610468575274145823739097462833932263058142549857140269637619269087411010174206045061016542198959480305747562269639856888526630582754886085323913120581662775122656234745332568520238838445916214100660745696922469287938919295619254972946705975683751437282135292172658670815955803075584269128554697234601952297591311295087027674743379383960411103043466786182497597866061129442701995358254124186369249520035589323173168805824570833282035445498782643378768358700682376307190201843700760320696872165065894961224809252051704551991788222733119953751476970741723581723530792919118911052397510799833080000512103966726938986113045128903532639271674853108472379556253636897190191182797552815462576549308131710191832665640046277651599574046021255652154555206626299039923531695289748325251163391286522402130644593746350983380447169395283756146065786333043918764637244487399476582803660120363329563190678655408546077633121456889790401760376550560489115040487451522266237283633048382172370079943143410743342217597309023634940063326550917247604702902550215759784529552401298569555386076473292117763682664669364246320241134117049920406912330431288119412796087737646208534116711021629494365386501930451907402808159838174943862279362834677757884050584093448170667659133693515258906880458166511868847468784977428190810086167564</span><br></pre></td></tr></table></figure>
+
+<p>r</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">78087120192506798185304785534036220490682295457985899593552286015760906515956977310718106026282702809422711635619435917331518767851766791450692341186817654392039937276866732823290900777821010247327671241243643650412880368150333211471395035297424887127204256326908722464623917394462679939630749446410387197599335390520467029069728074767246541966424633680601615773218990609115018202108293891151991011803340952544552635132188415103709705346657970777043221314746732187471928545207308547177553542327264672520940226251888781036654093770411265925735389942610651694464713219676594471860313120475954809929673190737166098124441789345848214708040517022155838996124293848907006907419888109057810382829316850548709211468528812150512419577354250048007280565757975359757844819724279701194952271971968109182400983285949430466403580176579808358235196432047919412166611978194160383972820803839428543781819223102375217858138264186633827564726154084918862464617886404527934356701470162555172341817057875835953741671717748853387699781466740938591750994343486592410583776852328678921121336669128939343468165354791232165526407821586702774092562342825423846314736479769371630140795341485570538796652969642206321722350767458962990861456051369560315789943007263349872724565868324293287652102593428824637171300666426843580254096051705945897970157438347228211952956498549949387040740580715926063683264912465718505170513257955773741351861008670710537188992538116637590461265650926502662281478520940158</span><br></pre></td></tr></table></figure>
+
+<p>aes.encrypt(flag)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0e10f06cc8a34a8b93d2f5afd2a32109413fc6c1bdf3985fa55a7427f5befb215afe920b4c9f1c5fd7cd8621eccbce74842474de9eab381535ca5a3d0d21d37a</span><br></pre></td></tr></table></figure>
+
+<p>Diffle-Hellman密钥交换算法</p>
+<p>原理：</p>
+<ul>
+<li>Alice和Bob先对p 和g达成一致，而且公开出来</li>
+<li>Alice取一个私密的整数x，发给Bob 计算结果：C1 = g ^ x mod p</li>
+<li>Bob 取一私密的整数y，发给Alice计算结果：C2 = g ^ y mod p</li>
+<li>Alice计算S = C2 ^ x mod p = (g ^ y) ^ a mod p = g ^ (x * y) mod p</li>
+<li>Bob计算S1 = C1 ^ y mod p = (g ^ z) ^ y mod p = g ^ (x * y) mod p</li>
+</ul>
+<p>即S = S1</p>
+<p>这里我们知道p、g的值，同时知道了g ^ x mod p的值和r的值，只要我们通过g ^ x mod p计算出x，就可以利用r ^ x mod p得到key</p>
+<p>计算x</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env sage</span><br><span class="line"># coding=utf-8</span><br><span class="line">from sage.all import *</span><br><span class="line"></span><br><span class="line">p = 449703347709287328982446812318870158230369688625894307953604074502413258045265502496365998383562119915565080518077360839705004058211784369656486678307007348691991136610142919372779782779111507129101110674559235388392082113417306002050124215904803026894400155194275424834577942500150410440057660679460918645357376095613079720172148302097893734034788458122333816759162605888879531594217661921547293164281934920669935417080156833072528358511807757748554348615957977663784762124746554638152693469580761002437793837094101338408017407251986116589240523625340964025531357446706263871843489143068620501020284421781243879675292060268876353250854369189182926055204229002568224846436918153245720514450234433170717311083868591477186061896282790880850797471658321324127334704438430354844770131980049668516350774939625369909869906362174015628078258039638111064842324979997867746404806457329528690722757322373158670827203350590809390932986616805533168714686834174965211242863201076482127152571774960580915318022303418111346406295217571564155573765371519749325922145875128395909112254242027512400564855444101325427710643212690768272048881411988830011985059218048684311349415764441760364762942692722834850287985399559042457470942580456516395188637916303814055777357738894264037988945951468416861647204658893837753361851667573185920779272635885127149348845064478121843462789367112698673780005436144393573832498203659056909233757206537514290993810628872250841862059672570704733990716282248839</span><br><span class="line">g = 2</span><br><span class="line">y = 312827656920665019052154527973062873164155435750834364099549354276600246039780808375717193869518770295806958147314654770520680676883270457649459743668787722703852223185610468575274145823739097462833932263058142549857140269637619269087411010174206045061016542198959480305747562269639856888526630582754886085323913120581662775122656234745332568520238838445916214100660745696922469287938919295619254972946705975683751437282135292172658670815955803075584269128554697234601952297591311295087027674743379383960411103043466786182497597866061129442701995358254124186369249520035589323173168805824570833282035445498782643378768358700682376307190201843700760320696872165065894961224809252051704551991788222733119953751476970741723581723530792919118911052397510799833080000512103966726938986113045128903532639271674853108472379556253636897190191182797552815462576549308131710191832665640046277651599574046021255652154555206626299039923531695289748325251163391286522402130644593746350983380447169395283756146065786333043918764637244487399476582803660120363329563190678655408546077633121456889790401760376550560489115040487451522266237283633048382172370079943143410743342217597309023634940063326550917247604702902550215759784529552401298569555386076473292117763682664669364246320241134117049920406912330431288119412796087737646208534116711021629494365386501930451907402808159838174943862279362834677757884050584093448170667659133693515258906880458166511868847468784977428190810086167564</span><br><span class="line"></span><br><span class="line">I = Integers(p)</span><br><span class="line">base =I(g)</span><br><span class="line">power = I(y)</span><br><span class="line">x = discrete_log(power,base,I.order()-1)</span><br><span class="line">print x</span><br></pre></td></tr></table></figure>
+
+<p>得到x</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">406518553680923303810998357867089986872597384625428296032382082223605988123574210841218447069934463869653305779972123070300843700243223695683842745570568684988254542730892443975304109337441724302279618874884331668884226985266615045139866948788642830842298877192435129229769098933982345569684722762310667192130392534911466160274059969529107046199350538396064656112295906250939672478159817378079309441784880287725371781211748012877184256920210313871719115362010515515110891402855431658223334353873593303525395667978618326801978550187994124468270924013873572498432067645518118093443435418639520888364353499167897138949530744479663644999699224624773483099925521628862586180232198687320947503864600545302221833421275377235509032523457368609815918585758902481553859663387458618816129349463449419087862341088098652933968194993618037910771065808327330647298288575310835586890815804579122178907612697859270737899965594281906994558485264432034470368606167998120003373267066108968891036101743283670490035545481631859464049676062374641157466906693289719168834606604591256752463984131731185528958907446384032245887743211357901745111407737140995225229516243384229267475225313252051953270472323465728081856951111786989858395543299883339743470874543998207949716754885646487861907213598041410526482071904355862055436218492748770410795259787330776539666787777384878258553459788559880593421515430755132522925521857946949333624821971975459183239317332938414550857334189671635116967802683106640</span><br></pre></td></tr></table></figure>
+
+<p>getflag，decode.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"></span><br><span class="line">p = <span class="number">449703347709287328982446812318870158230369688625894307953604074502413258045265502496365998383562119915565080518077360839705004058211784369656486678307007348691991136610142919372779782779111507129101110674559235388392082113417306002050124215904803026894400155194275424834577942500150410440057660679460918645357376095613079720172148302097893734034788458122333816759162605888879531594217661921547293164281934920669935417080156833072528358511807757748554348615957977663784762124746554638152693469580761002437793837094101338408017407251986116589240523625340964025531357446706263871843489143068620501020284421781243879675292060268876353250854369189182926055204229002568224846436918153245720514450234433170717311083868591477186061896282790880850797471658321324127334704438430354844770131980049668516350774939625369909869906362174015628078258039638111064842324979997867746404806457329528690722757322373158670827203350590809390932986616805533168714686834174965211242863201076482127152571774960580915318022303418111346406295217571564155573765371519749325922145875128395909112254242027512400564855444101325427710643212690768272048881411988830011985059218048684311349415764441760364762942692722834850287985399559042457470942580456516395188637916303814055777357738894264037988945951468416861647204658893837753361851667573185920779272635885127149348845064478121843462789367112698673780005436144393573832498203659056909233757206537514290993810628872250841862059672570704733990716282248839</span></span><br><span class="line">g = <span class="number">2</span></span><br><span class="line">x = <span class="number">406518553680923303810998357867089986872597384625428296032382082223605988123574210841218447069934463869653305779972123070300843700243223695683842745570568684988254542730892443975304109337441724302279618874884331668884226985266615045139866948788642830842298877192435129229769098933982345569684722762310667192130392534911466160274059969529107046199350538396064656112295906250939672478159817378079309441784880287725371781211748012877184256920210313871719115362010515515110891402855431658223334353873593303525395667978618326801978550187994124468270924013873572498432067645518118093443435418639520888364353499167897138949530744479663644999699224624773483099925521628862586180232198687320947503864600545302221833421275377235509032523457368609815918585758902481553859663387458618816129349463449419087862341088098652933968194993618037910771065808327330647298288575310835586890815804579122178907612697859270737899965594281906994558485264432034470368606167998120003373267066108968891036101743283670490035545481631859464049676062374641157466906693289719168834606604591256752463984131731185528958907446384032245887743211357901745111407737140995225229516243384229267475225313252051953270472323465728081856951111786989858395543299883339743470874543998207949716754885646487861907213598041410526482071904355862055436218492748770410795259787330776539666787777384878258553459788559880593421515430755132522925521857946949333624821971975459183239317332938414550857334189671635116967802683106640</span></span><br><span class="line">r = <span class="number">78087120192506798185304785534036220490682295457985899593552286015760906515956977310718106026282702809422711635619435917331518767851766791450692341186817654392039937276866732823290900777821010247327671241243643650412880368150333211471395035297424887127204256326908722464623917394462679939630749446410387197599335390520467029069728074767246541966424633680601615773218990609115018202108293891151991011803340952544552635132188415103709705346657970777043221314746732187471928545207308547177553542327264672520940226251888781036654093770411265925735389942610651694464713219676594471860313120475954809929673190737166098124441789345848214708040517022155838996124293848907006907419888109057810382829316850548709211468528812150512419577354250048007280565757975359757844819724279701194952271971968109182400983285949430466403580176579808358235196432047919412166611978194160383972820803839428543781819223102375217858138264186633827564726154084918862464617886404527934356701470162555172341817057875835953741671717748853387699781466740938591750994343486592410583776852328678921121336669128939343468165354791232165526407821586702774092562342825423846314736479769371630140795341485570538796652969642206321722350767458962990861456051369560315789943007263349872724565868324293287652102593428824637171300666426843580254096051705945897970157438347228211952956498549949387040740580715926063683264912465718505170513257955773741351861008670710537188992538116637590461265650926502662281478520940158</span></span><br><span class="line">key = pow(r, x, p)</span><br><span class="line">c = <span class="string">"0e10f06cc8a34a8b93d2f5afd2a32109413fc6c1bdf3985fa55a7427f5befb215afe920b4c9f1c5fd7cd8621eccbce74842474de9eab381535ca5a3d0d21d37a"</span></span><br><span class="line">aes = AES.new(sha256(str(key).encode()).digest())</span><br><span class="line">flag = aes.decrypt(c.decode(<span class="string">'hex'</span>))</span><br><span class="line"><span class="keyword">print</span> flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/pwnhub/4.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/crypto/" rel="tag"># crypto</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/30/0CTF-TCTF-2019-Quals-Crypto/" rel="next" title="0CTF/TCTF 2019 Quals Crypto">
+                <i class="fa fa-chevron-left"></i> 0CTF/TCTF 2019 Quals Crypto
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/12/DDCTF2019-web/" rel="prev" title="DDCTF2019 web">
+                DDCTF2019 web <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目一"><span class="nav-number">1.</span> <span class="nav-text">题目一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目二"><span class="nav-number">2.</span> <span class="nav-text">题目二</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

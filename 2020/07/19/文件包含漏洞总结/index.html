@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件包含漏洞概述什么是文件包含？开发人员一般会将重复使用的函数写道到单个文件中，需要使用某个函数时直接调用此文件，而无需重新编写。例如">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件包含漏洞总结">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/文件包含漏洞总结/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="文件包含漏洞概述什么是文件包含？开发人员一般会将重复使用的函数写道到单个文件中，需要使用某个函数时直接调用此文件，而无需重新编写。例如">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/file_include/1.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/2.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/3.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/4.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/5.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/6.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/7.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/8.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/9.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/10.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/11.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/12.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/13.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/14.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/15.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/16.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/17.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/18.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/19.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/20.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/21.png">
+<meta property="og:image" content="http://yoursite.com/img/file_include/22.png">
+<meta property="og:updated_time" content="2022-04-12T08:34:44.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件包含漏洞总结">
+<meta name="twitter:description" content="文件包含漏洞概述什么是文件包含？开发人员一般会将重复使用的函数写道到单个文件中，需要使用某个函数时直接调用此文件，而无需重新编写。例如">
+<meta name="twitter:image" content="http://yoursite.com/img/file_include/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/19/文件包含漏洞总结/">
+
+
+
+
+
+  <title>文件包含漏洞总结 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/文件包含漏洞总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件包含漏洞总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T11:19:47+08:00">
+                2020-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文件包含漏洞概述"><a href="#文件包含漏洞概述" class="headerlink" title="文件包含漏洞概述"></a>文件包含漏洞概述</h3><h4 id="什么是文件包含？"><a href="#什么是文件包含？" class="headerlink" title="什么是文件包含？"></a>什么是文件包含？</h4><p>开发人员一般会将重复使用的函数写道到单个文件中，需要使用某个函数时直接调用此文件，而无需重新编写。例如</p>
+<a id="more"></a>
+
+<p>func.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">welcome</span><span class="params">($name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Welcome "</span> . $name;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>bob.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">'func.php'</span>);</span><br><span class="line">    welcome(<span class="string">'Bob'</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>alice.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">'func.php'</span>);</span><br><span class="line">    welcome(<span class="string">'Alice'</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种文件调用的过程一般被称为文件包含</p>
+<p><img src="../../../../img/file_include/1.png" alt></p>
+<p><img src="../../../../img/file_include/2.png" alt></p>
+<p>包含函数一共有4个，分别为：<strong>include</strong>、<strong>require</strong>、<strong>include_once</strong>、<strong>require_once</strong></p>
+<p>主要作用为：包含并运行指定文件，将该文件作为php代码执行</p>
+<p>include、require：这两个函数除了处理失败的方式不同之外，几乎完全一样，即如果在包含文件中出错，比如文件不存在等，<strong>include</strong>只会提出警告，<strong>脚本会继续运行</strong>；而<strong>require</strong>在发生错误后会导致<strong>脚本停止执行</strong></p>
+<p>include_once、require_once：语句在脚本执行期间包含并运行指定文件，此行为和 include、require 语句类似，唯一区别是如果该文件中已经被包含过，则不会再次包含。如同此语句名字暗示的那样，<strong>只会包含一次</strong></p>
+<p>例如：我们flag.txt里面不是php代码，但它也会照常输出</p>
+<p>flag.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是flag123</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/file_include/3.png" alt></p>
+<h4 id="什么是文件包含漏洞？"><a href="#什么是文件包含漏洞？" class="headerlink" title="什么是文件包含漏洞？"></a>什么是文件包含漏洞？</h4><p>如果我们将被包含的文件名设置为一个变量，用来进行动态调用，并且在引入文件的时候，没有对文件名进行一个合理的验证，那么用户就可以随意包含一些预料之外的文件，从而造成文件包含漏洞，导致一些文件泄露甚至恶意代码注入。</p>
+<p>include.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $file = $_GET[<span class="string">'file'</span>];</span><br><span class="line">    <span class="keyword">include</span> $file;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/file_include/4.png" alt></p>
+<h4 id="文件包含分类"><a href="#文件包含分类" class="headerlink" title="文件包含分类"></a>文件包含分类</h4><p>文件包含分为<strong>本地文件包含（LFI）</strong>和<strong>远程文件包含（RFI）</strong></p>
+<p>本地文件包含：包含服务器本身的文件</p>
+<p>远程文件包含：包含服务器之外的网络资源（如：通过http协议包含百度的首页）</p>
+<p>远程文件包含条件：</p>
+<p>（1）allow_url_open=On（默认为On） 规定是否允许从远程服务器或者网站检索数据</p>
+<p>（2）allow_url_include=On（php5.2之后默认为Off） 规定是否允许include/require包含远程文件</p>
+<p><img src="../../../../img/file_include/5.png" alt></p>
+<h3 id="文件包含漏洞利用"><a href="#文件包含漏洞利用" class="headerlink" title="文件包含漏洞利用"></a>文件包含漏洞利用</h3><h4 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h4><p>直接包含或者通过file://</p>
+<p><img src="../../../../img/file_include/6.png" alt></p>
+<p><img src="../../../../img/file_include/7.png" alt></p>
+<p>想通过本地文件包含去执行PHP代码，有什么方式？</p>
+<h5 id="包含用户上传文件"><a href="#包含用户上传文件" class="headerlink" title="包含用户上传文件"></a>包含用户上传文件</h5><h5 id="包含日志文件"><a href="#包含日志文件" class="headerlink" title="包含日志文件"></a>包含日志文件</h5><p>web服务器一般会将用户的访问记录保存在访问日志中，那么我们可以根据日志目录的内容构造一个请求，将php代码插入到日志文件中，再通过文件包含漏洞来执行php代码，比如web server的access.log、error.log</p>
+<p><img src="../../../../img/file_include/8.png" alt></p>
+<p>怎么将php代码插入到日志文件中？</p>
+<p>使用burpsuite</p>
+<p><img src="../../../../img/file_include/9.png" alt></p>
+<p><img src="../../../../img/file_include/10.png" alt></p>
+<p><img src="../../../../img/file_include/11.png" alt></p>
+<p>包含日志文件利用条件</p>
+<p>（1）对日志文件可读</p>
+<p>（2）知道日志文件的存储目录</p>
+<p>常包含的日志文件目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/var/log/apache/access.log</span><br><span class="line">/var/log/apache/error.log</span><br><span class="line">/var/log/vsftpd.log</span><br><span class="line">/var/log/sshd.log</span><br><span class="line">/var/log/mail</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>（1）一般情况下日志的存储目录会被修改，可以通过读取服务器的配置文件（httpd.conf、nginx.conf…..）来得知</p>
+<p>（2）日志记录的信息可以被调整，比如内容格式、记录哪些信息等等</p>
+<h5 id="包含session文件"><a href="#包含session文件" class="headerlink" title="包含session文件"></a>包含session文件</h5><p>session生命周期：</p>
+<p>（1）赋值content</p>
+<p><img src="../../../../img/file_include/12.png" alt></p>
+<p>（2）代码运行完之后对session进行一个序列化存储在session文件中</p>
+<p><img src="../../../../img/file_include/13.png" alt></p>
+<p>（3）当我们读取session文件时，又会进行一个反序列化将内容读取到内存中</p>
+<p>那么我们就可以构造</p>
+<p><img src="../../../../img/file_include/14.png" alt></p>
+<p><img src="../../../../img/file_include/15.png" alt></p>
+<p><img src="../../../../img/file_include/16.png" alt></p>
+<p>包含session文件利用条件</p>
+<p>（1）找到session内的可控变量</p>
+<p>（2）session文件可读写，并且知道存储路径</p>
+<p>session文件格式：sess_[PHPSESSID]，默认存储路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/tmp/</span><br><span class="line">/tmp/sessions/</span><br><span class="line">/var/lib/php5</span><br><span class="line">/var/lib/php/</span><br></pre></td></tr></table></figure>
+
+<p>PHPSESSID在cookie中可看到</p>
+<p><img src="../../../../img/file_include/17.png" alt></p>
+<h4 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h4><h5 id="http-和https"><a href="#http-和https" class="headerlink" title="http://和https://"></a>http://和https://</h5><p><img src="../../../../img/file_include/18.png" alt></p>
+<h5 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h5><p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符，内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。</p>
+<p>作用：访问各个输入/输出流（I/O streams），在CTF中经常使用的是php://filter和php://input</p>
+<p>php://filter用于读取源码，php://input用于执行php代码</p>
+<p><strong>php://input</strong></p>
+<p>可以获取POST原始数据流，当它与包含函数结合时，php://input流会被当作php代码执行</p>
+<p>条件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">allow_url_open=On/Off</span><br><span class="line">allow_url_include=On</span><br></pre></td></tr></table></figure>
+
+<p>利用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?file=php://input</span><br><span class="line">post data：&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/file_include/19.png" alt></p>
+<p><strong>php://filter</strong></p>
+<p>可以用于获取指定源码，当它与包含函数结合时，php://filter流也会被当作php文件执行，因此我们一般对其进行编码，让其不执行，从而导致任意文件读取</p>
+<p>条件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">allow_url_open=On/Off</span><br><span class="line">allow_url_include=On/Off</span><br></pre></td></tr></table></figure>
+
+<p>利用方式如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=php://filter/read=convert.base64-encode/resource=index.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/file_include/20.png" alt></p>
+<p><strong>zip:// (zlib://、bzip2://)</strong></p>
+<p>可以访问压缩包里的文件，当它与包含函数结合时，zip://流会被当作php代码执行，从而实现任意代码执行。它不需要指定后缀名，只要是个压缩包即可，后缀名可以随意更改</p>
+<p>条件：php&gt;5.2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">allow_url_open=On/Off</span><br><span class="line">allow_url_include=On/Off</span><br></pre></td></tr></table></figure>
+
+<p>利用方式：zip://[压缩包绝对路径]#[压缩包内文件] (#要url编码)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=zip:///var/www/html/upload/phpinfo.jpg%23phpinfo.txt</span><br></pre></td></tr></table></figure>
+
+<p><strong>phar://</strong></p>
+<p>同样可以访问压缩包内容，与zip类似，相对路径和绝对路径都可以使用</p>
+<p>条件：php&gt;5.3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">allow_url_open=On/Off</span><br><span class="line">allow_url_include=On/Off</span><br></pre></td></tr></table></figure>
+
+<p>利用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?file=phar:///Users/glarcy/Sites/include/shell.jpg/shell.txt</span><br><span class="line">?file=phar://shell.jpg/shell.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/file_include/21.png" alt></p>
+<p><strong>data://</strong></p>
+<p>类似php://input，可以让用户来控制输入流，当它与包含函数结合时，用户输入的data://流会被当作php文件来执行，从而导致任意代码执行</p>
+<p>条件：php&gt;5.2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">allow_url_open=On</span><br><span class="line">allow_url_include=On</span><br></pre></td></tr></table></figure>
+
+<p>利用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?file=data://text/plain,&lt;?php phpinfo()?&gt;</span><br><span class="line">?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=</span><br><span class="line"></span><br><span class="line">?file=data:text/plain,&lt;?php phpinfo()?&gt;</span><br><span class="line">?file=data:text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/file_include/22.png" alt></p>
+<h3 id="文件包含漏洞绕过"><a href="#文件包含漏洞绕过" class="headerlink" title="文件包含漏洞绕过"></a>文件包含漏洞绕过</h3><h4 id="前缀绕过"><a href="#前缀绕过" class="headerlink" title="前缀绕过"></a>前缀绕过</h4><p><strong>目录遍历</strong></p>
+<p>使用../来返回上一目录，被称为目录遍历，如：<code>file=../../../index.php</code></p>
+<p>测试代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$file = $_GET[<span class="string">'file'</span>];</span><br><span class="line"><span class="keyword">include</span> <span class="string">'var/www/htm/filename/'</span>.$file;</span><br></pre></td></tr></table></figure>
+
+<h4 id="后缀绕过"><a href="#后缀绕过" class="headerlink" title="后缀绕过"></a>后缀绕过</h4><h5 id="利用URL"><a href="#利用URL" class="headerlink" title="利用URL"></a>利用URL</h5><p>url格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protocol://hostname[:port]/path/[?query]#fragment</span><br></pre></td></tr></table></figure>
+
+<p>测试代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$file = $_GET[<span class="string">'file'</span>];</span><br><span class="line"><span class="keyword">include</span> $file.<span class="string">'.txt'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>query</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">拼接前：</span><br><span class="line">?file=http://localhost:8080/index.php?</span><br><span class="line"></span><br><span class="line">拼接后：</span><br><span class="line">?file=http://localhost:8080/index.php?.txt</span><br></pre></td></tr></table></figure>
+
+<p>fragment</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">拼接前：</span><br><span class="line">?file=http://localhost:8080/index.php%23</span><br><span class="line"></span><br><span class="line">拼接后：</span><br><span class="line">?file=http://localhost:8080/index.php#.txt</span><br></pre></td></tr></table></figure>
+
+<h5 id="利用协议"><a href="#利用协议" class="headerlink" title="利用协议"></a>利用协议</h5><p>利用zip://和phar://，由于整个压缩包我们可控，那么只要知道它的后缀，我们便可自己构造</p>
+<p>测试代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$file = $_GET[&apos;file&apos;];</span><br><span class="line">include $file.&apos;.txt&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>zip://</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">拼接前：</span><br><span class="line">?file=zip://D:\zip.jpg%23phpinfo</span><br><span class="line"></span><br><span class="line">拼接后：</span><br><span class="line">?file=zip://D:\zip.jpg#phpinfo.txt</span><br></pre></td></tr></table></figure>
+
+<p>fragment</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">拼接前：</span><br><span class="line">?file=phar://zip.zip/phpinfo</span><br><span class="line"></span><br><span class="line">拼接后：</span><br><span class="line">?file=phar://zip.zip/phpinfo.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件包含漏洞防御"><a href="#文件包含漏洞防御" class="headerlink" title="文件包含漏洞防御"></a>文件包含漏洞防御</h3><p>（1）不需要使用时，将allow_url_open和allow_url_include设置为Off</p>
+<p>（2）设置open_basedir（open_basedir将php所能打开的文件限制在指定的目录树中）</p>
+<p>（3）白名单限制包含文件，或者严格过滤<code>./\</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/18/php反序列化/" rel="next" title="php反序列化">
+                <i class="fa fa-chevron-left"></i> php反序列化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/20/JSONP和CORS/" rel="prev" title="JSONP和CORS">
+                JSONP和CORS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含漏洞概述"><span class="nav-number">1.</span> <span class="nav-text">文件包含漏洞概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是文件包含？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是文件包含？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是文件包含漏洞？"><span class="nav-number">1.2.</span> <span class="nav-text">什么是文件包含漏洞？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件包含分类"><span class="nav-number">1.3.</span> <span class="nav-text">文件包含分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含漏洞利用"><span class="nav-number">2.</span> <span class="nav-text">文件包含漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地文件包含"><span class="nav-number">2.1.</span> <span class="nav-text">本地文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#包含用户上传文件"><span class="nav-number">2.1.1.</span> <span class="nav-text">包含用户上传文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#包含日志文件"><span class="nav-number">2.1.2.</span> <span class="nav-text">包含日志文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#包含session文件"><span class="nav-number">2.1.3.</span> <span class="nav-text">包含session文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程文件包含"><span class="nav-number">2.2.</span> <span class="nav-text">远程文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#http-和https"><span class="nav-number">2.2.1.</span> <span class="nav-text">http://和https://</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#php伪协议"><span class="nav-number">2.2.2.</span> <span class="nav-text">php伪协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含漏洞绕过"><span class="nav-number">3.</span> <span class="nav-text">文件包含漏洞绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前缀绕过"><span class="nav-number">3.1.</span> <span class="nav-text">前缀绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后缀绕过"><span class="nav-number">3.2.</span> <span class="nav-text">后缀绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#利用URL"><span class="nav-number">3.2.1.</span> <span class="nav-text">利用URL</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#利用协议"><span class="nav-number">3.2.2.</span> <span class="nav-text">利用协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含漏洞防御"><span class="nav-number">4.</span> <span class="nav-text">文件包含漏洞防御</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

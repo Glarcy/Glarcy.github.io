@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Windows安装Texlive2021下载texlive 1https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/  右键texlive.iso装载进入虚拟磁盘，运行install-tl-windows.bat，根据需要修改安装路径。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文排版之latex使用">
+<meta property="og:url" content="http://yoursite.com/2021/07/18/论文排版之latex使用/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="Windows安装Texlive2021下载texlive 1https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/  右键texlive.iso装载进入虚拟磁盘，运行install-tl-windows.bat，根据需要修改安装路径。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/texlive/2.PNG">
+<meta property="og:image" content="http://yoursite.com/img/texlive/3.PNG">
+<meta property="og:image" content="http://yoursite.com/img/texlive/4.PNG">
+<meta property="og:updated_time" content="2022-04-10T11:40:22.847Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文排版之latex使用">
+<meta name="twitter:description" content="Windows安装Texlive2021下载texlive 1https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/  右键texlive.iso装载进入虚拟磁盘，运行install-tl-windows.bat，根据需要修改安装路径。">
+<meta name="twitter:image" content="http://yoursite.com/img/texlive/2.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/07/18/论文排版之latex使用/">
+
+
+
+
+
+  <title>论文排版之latex使用 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/18/论文排版之latex使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文排版之latex使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-07-18T19:34:35+08:00">
+                2021-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Windows安装Texlive2021"><a href="#Windows安装Texlive2021" class="headerlink" title="Windows安装Texlive2021"></a>Windows安装Texlive2021</h3><p>下载texlive</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/</span><br></pre></td></tr></table></figure>
+
+<p>右键texlive.iso装载进入虚拟磁盘，运行<code>install-tl-windows.bat</code>，根据需要修改安装路径。</p>
+<a id="more"></a>
+
+<p>同时还可以修改“Customize”，应为里面有很多用不到的语言，比如说French、German、Japanese、Polish、Korean、Czech(捷克)等，这会少掉很多不必要的语言包。</p>
+<p>点击安装，看到以下界面表示安装成功</p>
+<p><img src="../../../../img/texlive/2.PNG" alt></p>
+<p>通过命令行输入<code>tex -v</code>检测环境变量是否配置好</p>
+<p><img src="../../../../img/texlive/3.PNG" alt></p>
+<p>编辑器，我这里用的vscode，安装插件</p>
+<p><img src="../../../../img/texlive/4.PNG" alt></p>
+<p>配置setting.json</p>
+<p>参考<a href="https://zhuanlan.zhihu.com/p/166523064和https://zhuanlan.zhihu.com/p/362275032" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/166523064和https://zhuanlan.zhihu.com/p/362275032</a></p>
+<h3 id="elsarticle模板使用"><a href="#elsarticle模板使用" class="headerlink" title="elsarticle模板使用"></a>elsarticle模板使用</h3><p><a href="https://www.elsevier.com/authors/policies-and-guidelines/latex-instructions" target="_blank" rel="noopener">https://www.elsevier.com/authors/policies-and-guidelines/latex-instructions</a></p>
+<p>普通模板下载</p>
+<p><a href="https://ctan.org/tex-archive/macros/latex/contrib/elsarticle" target="_blank" rel="noopener">https://ctan.org/tex-archive/macros/latex/contrib/elsarticle</a></p>
+<p>要从*.dtx中提取elsarticle.cls，终端运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">latex elsarticle.ins</span><br></pre></td></tr></table></figure>
+
+<p>但后来发现，不需要这个文件在目录下也可以</p>
+<h4 id="latex语法"><a href="#latex语法" class="headerlink" title="latex语法"></a>latex语法</h4><p>编号标题<code>\section{Conclusion}</code></p>
+<p>不编号标题<code>\section*{Acknowledgments}</code></p>
+<p>上标$<code>S^1$</code> </p>
+<p>下标<code>$S_1$</code></p>
+<p>斜体 <code>\emph{}</code></p>
+<p>粗体<code>\textbf{文字}</code></p>
+<p>下划线<code>\underline{文字}</code></p>
+<p>大于号<code>\textgreater</code>、<code>\ge</code></p>
+<p>小于号<code>textless</code>、<code>\le</code></p>
+<p>不等号<code>\ne</code> 、<code>\neq</code></p>
+<p>大于等于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\emph&#123;t&#125;$\ge 2$</span><br><span class="line">$1 \geq m \geq M$</span><br></pre></td></tr></table></figure>
+
+<p>小于等于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\emph&#123;t&#125;$\le 2$</span><br><span class="line">$1 \leq m \leq M$</span><br></pre></td></tr></table></figure>
+
+<p>属于<code>$\in$</code></p>
+<p>希腊字母</p>
+<p><a href="https://zhuanlan.zhihu.com/p/157644392" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/157644392</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\alpha$</span><br></pre></td></tr></table></figure>
+
+<p>加粗希腊字母</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;amsmath&#125;</span><br><span class="line">$\boldsymbol&#123;\pi&#125;$</span><br></pre></td></tr></table></figure>
+
+<p>斜体大写希腊字母</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\varPhi</span><br></pre></td></tr></table></figure>
+
+<p>行间公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;equation&#125;</span><br><span class="line">    XXX</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+
+<p>行间公式换行，对于长公式，还是直接在mathtype里面换行好直接复制到latex比较方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;equation&#125;</span><br><span class="line">    \begin&#123;array&#125;&#123;c&#125;</span><br><span class="line">        XXX \\</span><br><span class="line">        XXX</span><br><span class="line">    \end&#123;array&#125;</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+
+<p>行内公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$XXX$</span><br></pre></td></tr></table></figure>
+
+<p>公式引用<code>\eqref{con:eq1}</code></p>
+<p>latex 输入空格</p>
+<p><a href="https://blog.csdn.net/luolang_103/article/details/81289529" target="_blank" rel="noopener">https://blog.csdn.net/luolang_103/article/details/81289529</a></p>
+<h4 id="图片表格"><a href="#图片表格" class="headerlink" title="图片表格"></a>图片表格</h4><p>常用选项[htbp]是浮动格式：<br>『h』当前位置。将图形放置在正文文本中给出该图形环境的地方。如果本页所剩的页面不够，这一参数将不起作用。<br>『t』顶部。将图形放置在页面的顶部。<br>『b』底部。将图形放置在页面的底部。<br>『p』浮动页。将图形放置在一只允许有浮动对象的页面上。</p>
+<p>一般使用[htb]这样的组合，只用[h]是没有用的。这样组合的意思就是latex会尽量满足排在前面的浮动格式，就是h-t-b这个顺序，让排版的效果尽量好。<br>!h 只是试图放在当前位置。如果页面剩下的部分放不下，还是会跑到下一页的。一般页言，用 [!h] 选项经常会出现不能正确放置的问题，所以常用 [ht]、[htbp] 等。（ [ht]用的多）</p>
+<p>修改图片标题Figure为Fig.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;caption&#125;</span><br><span class="line">\captionsetup[figure]&#123;labelfont=&#123;bf&#125;,labelformat=&#123;default&#125;,labelsep=period,name=&#123;Fig.&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>合并多行表格使用<code>multirow</code>，在第一行为其设置值，往后的行空出相应位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\multirow&#123;2&#125;&#123;*&#125;&#123;0.2/0.8&#125; &amp; HSMM &amp; 126s &amp; 115s &amp; 0.984 &amp; 0.976 &amp; 0.973\\</span><br><span class="line">             &amp; HMM &amp; 83s &amp; 66s &amp; 0.952 &amp; 0.941 &amp; 0.936\\</span><br></pre></td></tr></table></figure>
+
+<h4 id="文献"><a href="#文献" class="headerlink" title="文献"></a>文献</h4><p>各种引用格式参考</p>
+<p><a href="https://blog.csdn.net/colddie/article/details/78554206" target="_blank" rel="noopener">https://blog.csdn.net/colddie/article/details/78554206</a></p>
+<p><a href="https://www.machunjie.com/article/989.html" target="_blank" rel="noopener">https://www.machunjie.com/article/989.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">引用的文献显示模板</span><br><span class="line">\bibliographystyle&#123;cas-model2-names&#125;</span><br><span class="line">引用文献集合</span><br><span class="line">\bibliography&#123;mybibfile.bib&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="作者图片信息"><a href="#作者图片信息" class="headerlink" title="作者图片信息"></a>作者图片信息</h4><p>biography，其中pos的值为<code>l</code>或<code>r</code>，代表图片的位置在左边还是右边</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\bio[pos=x]&#123;pic.jpg&#125;</span><br><span class="line">% % Here goes the biography details.</span><br><span class="line">\endbio</span><br></pre></td></tr></table></figure>
+
+<p>多个作者之间当介绍长短不一时，可能会出现间距太短遮挡住图片，因此可通过调整间距解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\vspace&#123;40pt&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="单栏-cas-sc-cls-双栏-cas-dc-cls-模板使用"><a href="#单栏-cas-sc-cls-双栏-cas-dc-cls-模板使用" class="headerlink" title="单栏 (cas-sc.cls)双栏 (cas-dc.cls)模板使用"></a>单栏 (cas-sc.cls)双栏 (cas-dc.cls)模板使用</h4><p>模板下载</p>
+<p><a href="https://www.ctan.org/pkg/els-cas-templates/" target="_blank" rel="noopener">https://www.ctan.org/pkg/els-cas-templates/</a></p>
+<p>模板使用说明</p>
+<p><a href="https://wenda.latexstudio.net/data/ueditor/php/upload/file/20190805/1564935621978907.pdf" target="_blank" rel="noopener">https://wenda.latexstudio.net/data/ueditor/php/upload/file/20190805/1564935621978907.pdf</a></p>
+<p>下载下来不要直接运行看效果，因为很多内容没填会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The key &apos;stm/author/&lt;options&gt;&apos; is unknown and is being</span><br></pre></td></tr></table></figure>
+
+<p>此外，什么都填好之后，会报以下错误，但可以编译出文件，但文献无法显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Missing number, treated as zero. &lt;to be read again&gt;</span><br><span class="line">Citation on page 1 undefined</span><br><span class="line">Missing = inserted for \ifnum. &lt;to be read again&gt;</span><br><span class="line">You can&apos;t use `\numexpr&apos; in restricted horizontal mode. \int_compare:nNnTF ...nt_eval:w #1#2\__int_eval:w</span><br></pre></td></tr></table></figure>
+
+<p>这时要检查author是否设置了auid，因为我加上之后就不报错了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\author[1]&#123;XXX&#125;[auid=1]</span><br></pre></td></tr></table></figure>
+
+<p>文献引用可以正常编译了，但会发现在正文中引用时，所有作者的名字都会列出来，而我们想要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">只有一个作者时，在文中的引用使用（Zhang，2016）</span><br><span class="line">有两个作者时，显示（Zhang and Liu，2014）</span><br><span class="line">有三个作者或更多作者时，只显示第一个作者，其余用et al.（Zhang et al., 2012）</span><br></pre></td></tr></table></figure>
+
+<p>修改下面这条语句，将longnamesfirst删除，因为longnamesfirst的功能为：多个作者的文献第一次被引用是列出所有作者，以后引用可以缩写为et al. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage[authoryear,longnamesfirst]&#123;natbib&#125;</span><br><span class="line">\usepackage[authoryear]&#123;natbib&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="IEEEtran模板使用"><a href="#IEEEtran模板使用" class="headerlink" title="IEEEtran模板使用"></a>IEEEtran模板使用</h3><p>注意事项：</p>
+<p>THANKS要在author里面，不然会新增一页空白页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\author&#123;</span><br><span class="line">  Bailin Xie, Qi Li, Na Wei, Yu Wang</span><br><span class="line">  \IEEEcompsocitemizethanks&#123;\IEEEcompsocthanksitem XXX.\protect\\</span><br><span class="line">E-mail: XXX</span><br><span class="line">\IEEEcompsocthanksitem XXX</span><br><span class="line">\IEEEcompsocthanksitem XXX.&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>IEEEbiography后面加个<code>\vfill</code>，不然作者图片之间间隙很大</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;IEEEbiography&#125;[&#123;\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]&#123;./XXX.jpg&#125;&#125;]&#123;Author name&#125;</span><br><span class="line">  received her XXX.</span><br><span class="line">\end&#123;IEEEbiography&#125;</span><br><span class="line">\begin&#123;IEEEbiography&#125;[&#123;\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]&#123;./XXX.jpg&#125;&#125;]&#123;Author name&#125;</span><br><span class="line">  received his xxx.</span><br><span class="line">\end&#123;IEEEbiography&#125;</span><br><span class="line">\vfill</span><br></pre></td></tr></table></figure>
+
+<p>加了图片之后似乎要用<code>pdflatex</code>编译，用<code>xelatex</code>会报错</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/01/Ubuntu使用小记/" rel="next" title="Ubuntu使用小记">
+                <i class="fa fa-chevron-left"></i> Ubuntu使用小记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/13/信息收集与分析/" rel="prev" title="信息收集与分析">
+                信息收集与分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows安装Texlive2021"><span class="nav-number">1.</span> <span class="nav-text">Windows安装Texlive2021</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#elsarticle模板使用"><span class="nav-number">2.</span> <span class="nav-text">elsarticle模板使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#latex语法"><span class="nav-number">2.1.</span> <span class="nav-text">latex语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片表格"><span class="nav-number">2.2.</span> <span class="nav-text">图片表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文献"><span class="nav-number">2.3.</span> <span class="nav-text">文献</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作者图片信息"><span class="nav-number">2.4.</span> <span class="nav-text">作者图片信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单栏-cas-sc-cls-双栏-cas-dc-cls-模板使用"><span class="nav-number">2.5.</span> <span class="nav-text">单栏 (cas-sc.cls)双栏 (cas-dc.cls)模板使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEEtran模板使用"><span class="nav-number">3.</span> <span class="nav-text">IEEEtran模板使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

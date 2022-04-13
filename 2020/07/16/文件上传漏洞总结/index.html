@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件上传漏洞介绍文件上传功能作用是用户将本地文件上传到服务器上进行保存 文件上传漏洞是指文件上传功能没有对上传文件做合理严谨的过滤，导致用户可以利用此功能，上传能被服务器解析执行的文件，并通过此文件得到执行服务端命令的能力">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传漏洞总结">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/文件上传漏洞总结/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="文件上传漏洞介绍文件上传功能作用是用户将本地文件上传到服务器上进行保存 文件上传漏洞是指文件上传功能没有对上传文件做合理严谨的过滤，导致用户可以利用此功能，上传能被服务器解析执行的文件，并通过此文件得到执行服务端命令的能力">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/2.png">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/3.png">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/4.png">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/5.png">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/6.png">
+<meta property="og:image" content="http://yoursite.com/img/file_upload/7.png">
+<meta property="og:updated_time" content="2022-04-12T08:34:40.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传漏洞总结">
+<meta name="twitter:description" content="文件上传漏洞介绍文件上传功能作用是用户将本地文件上传到服务器上进行保存 文件上传漏洞是指文件上传功能没有对上传文件做合理严谨的过滤，导致用户可以利用此功能，上传能被服务器解析执行的文件，并通过此文件得到执行服务端命令的能力">
+<meta name="twitter:image" content="http://yoursite.com/img/file_upload/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/16/文件上传漏洞总结/">
+
+
+
+
+
+  <title>文件上传漏洞总结 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/文件上传漏洞总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件上传漏洞总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-16T12:42:25+08:00">
+                2020-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="文件上传漏洞介绍"><a href="#文件上传漏洞介绍" class="headerlink" title="文件上传漏洞介绍"></a>文件上传漏洞介绍</h3><p>文件上传功能作用是用户将本地文件上传到服务器上进行保存</p>
+<p>文件上传漏洞是指文件上传功能<strong>没有对上传文件做合理严谨的过滤</strong>，导致用户可以利用此功能，上传能<strong>被服务器解析执行的文件</strong>，并通过此文件得到<strong>执行服务端命令的能力</strong></p>
+<a id="more"></a>
+
+<p>常见的文件上传点：</p>
+<p>（1）上传用户头像</p>
+<p>（2）上传附件</p>
+<p>（3）文章编辑等等</p>
+<h3 id="文件上传绕过"><a href="#文件上传绕过" class="headerlink" title="文件上传绕过"></a>文件上传绕过</h3><p>文件上传功能验证流程：</p>
+<p> <img src="../../../../img/file_upload/1.jpg" alt></p>
+<h4 id="客户端javascript验证"><a href="#客户端javascript验证" class="headerlink" title="客户端javascript验证"></a>客户端javascript验证</h4><p>web应用程序通过前端js代码对用户上传的文件的后缀进行判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> file = <span class="built_in">document</span>.getElementsByName(<span class="string">'upload_file'</span>)[<span class="number">0</span>].value;</span><br><span class="line">    <span class="keyword">if</span> (file === <span class="literal">null</span> || file === <span class="string">''</span>)&#123;</span><br><span class="line">        alert(<span class="string">'请选择要上传的文件！'</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> allow_ext = <span class="string">'.jpg|.png|.gif'</span>;</span><br><span class="line">    <span class="keyword">let</span> ext_name = file.substring(file.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line">    <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">'|'</span>) === <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> errMsg = <span class="string">'该文件不允许上传，请上传'</span> + allow_ext + <span class="string">'类型的文件，当前文件类型为：'</span> + ext_name;</span><br><span class="line">        alert(errMsg);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>绕过方式：</p>
+<p>（1）使用浏览器插件禁用js代码（如火狐：noscript）（不推荐）</p>
+<p>（2）修改页面源代码（即修改关键检测函数的代码）</p>
+<p>（3）通过burpsuite抓包修改文件名后缀</p>
+<h4 id="服务端MIME类型验证"><a href="#服务端MIME类型验证" class="headerlink" title="服务端MIME类型验证"></a>服务端MIME类型验证</h4><p>MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的因特网标准，该类型的值指Content-Type的值，是根据文件名后缀生成的</p>
+<p>MIME类型验证即我们的服务端会判断content-type类型是不是图片</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($_FILES[<span class="string">'upload'</span>][<span class="string">'type'</span>] != <span class="string">'image/gif'</span>)&#123;</span><br><span class="line">     <span class="keyword">exit</span>(<span class="string">'Only can uplaod gif images.'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>content-type的值与文件名后缀不一致对服务端没有任何影响</p>
+<p>绕过方法：burpsuite抓包修改content-type的值为允许的类型</p>
+<p>常见的MIME类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GIF：image/gif</span><br><span class="line">jpg：image/jpeg</span><br><span class="line">png：image/png</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务器文件内容验证-–-文件头"><a href="#服务器文件内容验证-–-文件头" class="headerlink" title="服务器文件内容验证 – 文件头"></a>服务器文件内容验证 – 文件头</h4><p>判断一个文件是什么类型往往不是通过文件后缀名来判断的，而是根据文件头来判断的。文件头是文件开头的一段二进制，不同类型的文件，文件头都是不同的，文件头又称文件幻数</p>
+<p>常见的文件头：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JPG：FF D8 FF E0 00 10 4A 46 49 46</span><br><span class="line">GIF：47 49 46 38 39 61（GIF89a）</span><br><span class="line">PNG：89 50 4E 47</span><br></pre></td></tr></table></figure>
+
+<p> <img src="../../../../img/file_upload/2.png" alt></p>
+<p> <img src="../../../../img/file_upload/3.png" alt></p>
+<p> <img src="../../../../img/file_upload/4.png" alt></p>
+<p>绕过方法：</p>
+<p>（1）在正常的文件后面加入我们的代码内容，可以使用命令行合并两个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">windows：copy /b shell.gif+shell.php</span><br><span class="line">linux：cat a.gif shell.php &gt; shell.gif</span><br></pre></td></tr></table></figure>
+
+<p> <img src="../../../../img/file_upload/5.png" alt></p>
+<p>（2）在代码前面加上相应的文件头</p>
+<p>在没有图片类型限制时，建议使用gif文件头，比较方便</p>
+<p> <img src="../../../../img/file_upload/6.png" alt></p>
+<h4 id="服务端文件拓展名验证-–-黑名单、白名单"><a href="#服务端文件拓展名验证-–-黑名单、白名单" class="headerlink" title="服务端文件拓展名验证 – 黑名单、白名单"></a>服务端文件拓展名验证 – 黑名单、白名单</h4><h5 id="黑名单验证"><a href="#黑名单验证" class="headerlink" title="黑名单验证"></a>黑名单验证</h5><p>不能上传xxx文件（规定不能上传的格式）</p>
+<p>绕过方式：</p>
+<p><strong>大小写绕过</strong></p>
+<p>（1）服务端没有将后缀名转换为统一的格式进行比对</p>
+<p>（2）文件可被当成php文件解析</p>
+<p>例如Php、PhP（linux服务器不一定能成功解析，因为大小写敏感）</p>
+<p><strong>双写绕过</strong></p>
+<p>服务端将黑名单中的后缀名替换为空，仅此一次</p>
+<p>上传.pphphp后缀，替换一次为空，最后的后缀为.php</p>
+<p><strong>特殊可解析的后缀名</strong></p>
+<p>黑名单规则不严谨，在特定环境中某些特殊的后缀名会被当作php文件解析</p>
+<p>如<code>php|php2|php3|php4|php5|php6|php7|pht|phtm|phtml</code></p>
+<p>基于debain和ubuntu的apt-get安装的apache，默认解析规则如下：</p>
+<p> <img src="../../../../img/file_upload/7.png" alt></p>
+<p><strong>覆盖.htaccess文件，重新编写解析规则</strong></p>
+<p>在apache里，该文件作为一个配置文件，可以用来控制所在目录的访问权限以及解析设置，即可以通过设置，将该目录下的所有文件作为php文件解析，作用于当前目录及其子目录</p>
+<p>条件：</p>
+<p>（1）Apache开启rewrite模块</p>
+<p>（2）Apache配置文件中，AllowOverride All（默认为None）</p>
+<p>上传.htaccess文件，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch &quot;jpg&quot;&gt;</span><br><span class="line"> SetHandler application/x-httpd-php </span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .jpg</span><br></pre></td></tr></table></figure>
+
+<p>把<code>.jpg</code>解析成<code>php</code></p>
+<p><strong>利用操作系统特性</strong></p>
+<p>利用windows对于文件和文件名的限制，以下字符放在结尾时，不符合操作系统的命名规范，在最后生成文件时，字符会被自动去除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">文件名                 服务器文件名 </span><br><span class="line">file.php[空格]         file.php</span><br><span class="line"></span><br><span class="line">file.php[.]           file.php</span><br><span class="line">无论多少个.都可以</span><br><span class="line"></span><br><span class="line">file.php[%80-%99]     file.php       </span><br><span class="line">burp抓包，在文件结尾输%80，进行url-decode，或者增加一个空格，在hex视图把20修改为80 </span><br><span class="line"></span><br><span class="line">file.php::$DATA       file.php</span><br></pre></td></tr></table></figure>
+
+<h5 id="白名单验证"><a href="#白名单验证" class="headerlink" title="白名单验证"></a>白名单验证</h5><p>只允许上传xxx文件（规定上传格式，安全性更高）</p>
+<p>绕过方式：</p>
+<p><strong>00截断</strong></p>
+<p>00截断分为0x00截断和%00截断</p>
+<p>原理：0x00和%00都代表着chr(0)，它不是空格，是空字符。在程序输出含有空字符的变量时，空字符后面的数据将会被丢弃，可以利用此来截断文件名</p>
+<p>0x00截断和%00截断的区别：</p>
+<p>0x00代表16进制的空字符00，需要通过burpsuite抓包后在hex中改为00进行截断</p>
+<p>%00是url解码之前的字符，分为GET和POST用法，GET传参直接加%00截断即可，POST传参需要修改hex值为00</p>
+<p>利用条件：</p>
+<p>（1）php版本必须小于5.3.4</p>
+<p>（2）并且php.ini中的magic_quotes_gpc设置为Off</p>
+<p><strong>利用服务器解析漏洞</strong></p>
+<p>Apache解析漏洞</p>
+<p>原理：Apache2.3.x以下版本，其解析文件的规则是从右到左，如果后缀名为不可识别文件解析，就继续往左判断</p>
+<p>如：shell.php.aaa.bbb，Apache会先识别bbb，bbb为apache不可识别后缀，则识别aaa，以此类推，最后被识别为php来解析执行</p>
+<p>IIS6.0解析漏洞</p>
+<p>（1）目录解析：目录名为以.asp、.asa、.cer结尾的字符串，则该目录下的所有文件都会被作为asp解析</p>
+<p>​    如：url/test.asp/shell.jpg，会被当作asp脚本执行</p>
+<p>（2）文件解析：文件名分号后不被解析，例如.asp;、.asa;、.cer;</p>
+<p>​    如：url/test.asp;shell.jpg，会被当作asp脚本执行</p>
+<p>（3）文件类型解析：.cdx、.asa、.cer都会被当作asp脚本执行</p>
+<p>​    如：url/shell.asa，会被当作asp脚本执行</p>
+<h3 id="文件上传漏洞防御"><a href="#文件上传漏洞防御" class="headerlink" title="文件上传漏洞防御"></a>文件上传漏洞防御</h3><p>（1）文件拓展名使用白名单方式验证</p>
+<p>（2）对用户上传的文件进行重命名</p>
+<p>（3）对文件内容做检测</p>
+<p>（4）不将上传文件保存在公开目录</p>
+<p>（5）对中间件做安全配置</p>
+<p>   …</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/15/php变量覆盖和弱类型/" rel="next" title="php变量覆盖和弱类型">
+                <i class="fa fa-chevron-left"></i> php变量覆盖和弱类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/17/php命令执行总结/" rel="prev" title="php命令执行总结">
+                php命令执行总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传漏洞介绍"><span class="nav-number">1.</span> <span class="nav-text">文件上传漏洞介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传绕过"><span class="nav-number">2.</span> <span class="nav-text">文件上传绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端javascript验证"><span class="nav-number">2.1.</span> <span class="nav-text">客户端javascript验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端MIME类型验证"><span class="nav-number">2.2.</span> <span class="nav-text">服务端MIME类型验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器文件内容验证-–-文件头"><span class="nav-number">2.3.</span> <span class="nav-text">服务器文件内容验证 – 文件头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端文件拓展名验证-–-黑名单、白名单"><span class="nav-number">2.4.</span> <span class="nav-text">服务端文件拓展名验证 – 黑名单、白名单</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#黑名单验证"><span class="nav-number">2.4.1.</span> <span class="nav-text">黑名单验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#白名单验证"><span class="nav-number">2.4.2.</span> <span class="nav-text">白名单验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传漏洞防御"><span class="nav-number">3.</span> <span class="nav-text">文件上传漏洞防御</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

